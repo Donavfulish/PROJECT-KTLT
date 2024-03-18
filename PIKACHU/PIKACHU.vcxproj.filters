@@ -21,6 +21,9 @@
     <ClCompile Include="NORMAL MODE.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GAME STARTING.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Struct.h">

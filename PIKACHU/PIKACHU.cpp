@@ -11,6 +11,7 @@ const int Height = 900;
 
 int main()
 {
+    GameStarting_Menu();
     srand(time(0));
     InitWindow(Width, Height, "dcm van ha");
     vector<int> ArrayRandom;
