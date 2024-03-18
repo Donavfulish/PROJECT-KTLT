@@ -1,0 +1,26 @@
+﻿  NORMAL MODE.cpp
+C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(34,79): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(34,44): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(36,38): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(37,38): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(53,68): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(53,57): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(53,50): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(53,43): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(54,83): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(54,48): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(56,70): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(56,53): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(57,103): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(57,58): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(64,60): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(64,49): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(64,42): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(64,35): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(65,75): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(65,40): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(70,79): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(70,44): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  PIKACHU.vcxproj -> C:\PROJECT KTLT\PIKACHU\x64\Debug\PIKACHU.exe
+  'pwsh.exe' is not recognized as an internal or external command,
+  operable program or batch file.

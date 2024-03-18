@@ -9,10 +9,12 @@ struct board
 	int** n;
 	Rectangle rec;
 	int check;
-
-	board() {
-		check = 0;
-	}
+	char data;
 };
 
-void Paint_Broad();
+struct cell
+{
+	int indexRow, indexCol;
+	Vector2 postion;
+};
+void Paint_Broad(int c[][11]);

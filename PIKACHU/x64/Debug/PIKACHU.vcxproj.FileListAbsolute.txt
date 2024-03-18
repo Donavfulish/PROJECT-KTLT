@@ -1,0 +1,3 @@
+C:\PROJECT KTLT\PIKACHU\x64\Debug\PIKACHU.vcxproj.CopyComplete
+C:\PROJECT KTLT\PIKACHU\x64\Debug\PIKACHU.exe
+C:\PROJECT KTLT\PIKACHU\x64\Debug\raylib.dll

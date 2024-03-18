@@ -18,6 +18,9 @@
     <ClCompile Include="PIKACHU.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="NORMAL MODE.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Struct.h">
