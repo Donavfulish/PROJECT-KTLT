@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include "struct.h"
 #include "raylib.h"
 #include <time.h>
@@ -7,8 +7,9 @@
 using namespace std;
 Rectangle rec = { 100, 100, 200, 80 };
 board val[11][11];
+Vector2 selectedCells[2] = { {-1, -1}, {-1, -1} };
 
-// KHOI TAO BANG
+// Khởi tạo lưới ô chữ cái
 void Paint_Broad(int c[][11])
 {
     rec = { 10,10,75,75 };
@@ -19,9 +20,10 @@ void Paint_Broad(int c[][11])
         for (int j = 0; j < 10; j++)
         {
             rec.x += 75;
+            // Kiểm tra ô đã bị xóa chưa
             if (c[i][j] != -1)
             {
-                //VE CAC O CO CAC CHU CAI DUOC TAO NGAU NHIEN
+                //Nếu chưa thì khởi tạo chữ cái ngẫu nhiên và vẽ ô
                 char asciiChar = 'A' + c[i][j];
                 char text[2] = { asciiChar, '\0' };
                 val[i][j].data = text[0];
@@ -34,8 +36,7 @@ void Paint_Broad(int c[][11])
     }
 }
 
-//CAP NHAT CAC O DUOC CHON
-Vector2 selectedCells[2] = { {-1, -1}, {-1, -1} };
+//Cập nhật các ô đã được click chọn
 void PickCell(int c[][11])
 {
     rec = { 10,10,75,75 };
@@ -46,22 +47,22 @@ void PickCell(int c[][11])
         for (int j = 0; j < 10; j++)
         {
             rec.x += 75;
-            // KIEM TRA VI TRI CON TRO CHUOT
+            // Kiểm tra vị trí con trỏ chuột
             if (CheckCollisionPointRec(GetMousePosition(), rec) && c[i][j] != -1)
             {
 
-                // NEU CON TRO CHUOT DANG O VI TRI NAO THI O VUONG DUOC CHUYEN SANG MAU DO GIONG NHU CO VUA
+                // Con trỏ chuột di tới đâu thì ô ở đó hiện đỏ lên (giống như cờ vua online)
                 DrawRectangleRounded(rec, 0, 0, Fade(RED, 0.7f));
                 DrawText(&val[i][j].data, rec.x + 7.5 + MeasureText(&val[i][j].data, 50) / 2, rec.y + MeasureText(&val[i][j].data, 50) / 2, 50, Fade(WHITE, 0.6f));
 
-                // CAP NHAT TRANG THAI O VUONG NEU NHU CON TRO CHUOT CLICK VAO
+                // Nếu click chuột thì bắt đầu cập nhật
                 if (IsMouseButtonPressed(0))
                 {
-                    // NEU CLICK O DAU TIEN THI CAP NHAT VECTOR VI TRI 1
+                    // Nếu chọn ô đầu tiên trong cặp thì cập nhật vector vị trí 1
                     if (selectedCells[0].x == -1)
                         selectedCells[0] = { float(j), float(i) };
 
-                    // NEU CLICK O THU HAI THI CAP NHAT VECTOR VI TRI 2
+                    // Nếu chọn ô thứ 2 trong cặp thì cập nhật vector vị trí 2
                     else if (selectedCells[1].x == -1)
                         selectedCells[1] = { float(j), float(i) };
                 }
@@ -69,25 +70,25 @@ void PickCell(int c[][11])
         }
     }
 
-    // NEU DA CHON DUOC MOT O THI O DO DUOC BOI DEN
+    // Ô đầu tiên được chọn trong cặp sẽ chuyển thành màu đen báo hiệu cho việc đã chọn
     if (selectedCells[0].x != -1 && selectedCells[1].x == -1)
     {
-        // LUU TOA DO VA VI TRI 
+        // Lưu lại tọa độ và vị trí ô
         int x1 = 10 + 75 * (selectedCells[0].x + 1);
         int y1 = 10 + 75 * (selectedCells[0].y + 1);
         int i1 = selectedCells[0].y;
         int j1 = selectedCells[0].x;
         Rectangle rec1 = { x1, y1, 75, 75 };
 
-        // BOI DEN
+        // Chuyển ô thành màu đen
         DrawRectangleRounded(rec1, 0, 0, Fade(BLACK, 1));
         DrawText(&val[i1][j1].data, rec1.x + 7.5 + MeasureText(&val[i1][j1].data, 50) / 2, rec1.y + MeasureText(&val[i1][j1].data, 50) / 2, 50, Fade(WHITE, 0.6f));
     }
 
-    // NEU DA CHON DUOC 2 O THI KIEM TRA, NEU THOA MAN DIEU KIEN THI XOA CA 2 O
+    // Nếu đã chọn xong một cặp thì kiểm tra điều kiện, thõa mãn thì xóa cả 2 ô
     else if (selectedCells[1].x != -1) 
     {
-        // LUU TOA DO VA VI TRI
+        // Lưu tọa độ và vị trí 2 ô
         int x1 = 10 + 75 * (selectedCells[0].x + 1);
         int y1 = 10 + 75 * (selectedCells[0].y + 1);
         int x2 = 10 + 75 * (selectedCells[1].x + 1);
@@ -98,16 +99,18 @@ void PickCell(int c[][11])
         int j2 = selectedCells[1].x;
         Rectangle rec1 = { x1, y1, 75, 75 }, rec2 = { x2, y2, 75, 75 };
 
-        // NEU THOA DIEU KIEN THI XOA VA CAP NHAT LAI DU LIEU CUA O DO VE KHONG
+        // Nếu thõa điều kiện thì dữ liệu chứa trong ô bị xóa, trạng thái của ô từ 0 trở thành 1
         if (val[i1][j1].data == val[i2][j2].data)
         {
             DrawRectangleRounded(rec1, 0, 0, RAYWHITE);
             DrawRectangleRounded(rec2, 0, 0, RAYWHITE);
             c[i1][j1] = -1;
             c[i2][j2] = -1;
+            val[i1][j1].check = 1;
+            val[i2][j2].check = 1;
         }
 
-        // NEU KHONG THOA DIEU KIEN THI TRA O VE TRANG THAI BAN DAU
+        // Nếu không thõa thì trở về trạng thái ban đầu trước khi click
         else
         {
             DrawRectangleRounded(rec1, 0, 0, Fade(BLUE, 0.6f));
@@ -118,7 +121,7 @@ void PickCell(int c[][11])
             DrawText(&val[i2][j2].data, rec2.x + 7.5 + MeasureText(&val[i2][j2].data, 50) / 2, rec2.y + MeasureText(&val[i2][j2].data, 50) / 2, 50, Fade(WHITE, 0.6f));
         }
 
-        // CAP NHAT LAI 2 VECTOR LUU VI TRI
+        // Cập nhật lại trạng thái ban đầu cho hai vecto lưu vị trí
         selectedCells[0] = { -1, -1 };
         selectedCells[1] = { -1, -1 };
     }

@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include "struct.h"
 #include "raylib.h"
 #include <algorithm>
@@ -17,11 +17,13 @@ int main()
     vector<int> ArrayRandom;
     int count = -1, c[11][11];
 
+    // Khởi tạo vector ngẫu nhiên các chỉ số nguyên tượng trưng cho mỗi chữ cái sau đó đảo thứ tự ngẫu nhiên
     for (int i = 1; i <= 4; i++)
         for (int j = 0; j <= 24; j++)
             ArrayRandom.push_back(j);
     shuffle(ArrayRandom.begin(), ArrayRandom.end(), default_random_engine(time(nullptr)));
 
+    // Lưu các chỉ số được đảo ngẫu nhiên vào một mảng hai chiều kiểu nguyên
     for (int i = 0; i < 10; i++)
         for (int j = 0; j < 10; j++)
             c[i][j] = ArrayRandom[++count];

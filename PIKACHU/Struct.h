@@ -8,7 +8,7 @@ void GameStarting_Menu();
 
 struct board
 {
-	int check;
+	int check = 0;
 	char data;
 };
 

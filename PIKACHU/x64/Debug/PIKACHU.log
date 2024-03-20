@@ -1,94 +1,51 @@
-<<<<<<< HEAD
-﻿  NORMAL MODE.cpp
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(30,64): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(30,53): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(30,46): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(30,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(31,79): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(31,44): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(55,101): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(55,55): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(76,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(77,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(78,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(79,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(80,28): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(80,28): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(80,32): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(80,32): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(84,99): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(84,50): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(91,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(92,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(93,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(94,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(95,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(96,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(97,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(98,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(99,28): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(99,28): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(99,32): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(99,32): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(99,55): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(99,55): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(99,59): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(99,59): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(115,103): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(115,54): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(118,103): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(118,54): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-  PIKACHU.vcxproj -> C:\PROJECT KTLT\PIKACHU\x64\Debug\PIKACHU.exe
-=======
 ﻿  GAME STARTING.cpp
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\GAME STARTING.cpp(27,17): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\GAME STARTING.cpp(28,17): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\GAME STARTING.cpp(47,58): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\GAME STARTING.cpp(49,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\GAME STARTING.cpp(50,41): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\GAME STARTING.cpp(48,13): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\GAME STARTING.cpp(48,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\GAME STARTING.cpp(56,78): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\GAME STARTING.cpp(56,112): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\GAME STARTING.cpp(59,79): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\GAME STARTING.cpp(59,113): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\GAME STARTING.cpp(64,58): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\GAME STARTING.cpp(66,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\GAME STARTING.cpp(67,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\GAME STARTING.cpp(65,21): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\GAME STARTING.cpp(65,21): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\GAME STARTING.cpp(73,92): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\GAME STARTING.cpp(73,132): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\GAME STARTING.cpp(76,93): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\GAME STARTING.cpp(76,133): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\GAME STARTING.cpp(82,58): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\GAME STARTING.cpp(84,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\GAME STARTING.cpp(85,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\GAME STARTING.cpp(83,21): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\GAME STARTING.cpp(83,21): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\GAME STARTING.cpp(91,92): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\GAME STARTING.cpp(91,133): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\GAME STARTING.cpp(94,93): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\GAME STARTING.cpp(94,134): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\GAME STARTING.cpp(99,58): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\GAME STARTING.cpp(101,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\GAME STARTING.cpp(102,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\GAME STARTING.cpp(100,21): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\GAME STARTING.cpp(100,21): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\GAME STARTING.cpp(108,82): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\GAME STARTING.cpp(108,118): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\GAME STARTING.cpp(111,83): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\GAME STARTING.cpp(111,119): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\GAME STARTING.cpp(116,58): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\GAME STARTING.cpp(118,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\GAME STARTING.cpp(119,41): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\GAME STARTING.cpp(117,21): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\GAME STARTING.cpp(117,21): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\GAME STARTING.cpp(125,78): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\GAME STARTING.cpp(125,112): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\GAME STARTING.cpp(128,79): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\GAME STARTING.cpp(128,113): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  PIKACHU.vcxproj -> D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\x64\Debug\PIKACHU.exe
->>>>>>> a3b1aed1c82289158168826a501775a8a4f895c3
+C:\PROJECT KTLT\PIKACHU\GAME STARTING.cpp(27,17): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\PROJECT KTLT\PIKACHU\GAME STARTING.cpp(28,17): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\PROJECT KTLT\PIKACHU\GAME STARTING.cpp(47,58): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\PROJECT KTLT\PIKACHU\GAME STARTING.cpp(49,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\PROJECT KTLT\PIKACHU\GAME STARTING.cpp(50,41): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\PROJECT KTLT\PIKACHU\GAME STARTING.cpp(48,13): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\PROJECT KTLT\PIKACHU\GAME STARTING.cpp(48,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\PROJECT KTLT\PIKACHU\GAME STARTING.cpp(56,78): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\PROJECT KTLT\PIKACHU\GAME STARTING.cpp(56,112): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\PROJECT KTLT\PIKACHU\GAME STARTING.cpp(59,79): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\PROJECT KTLT\PIKACHU\GAME STARTING.cpp(59,113): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\PROJECT KTLT\PIKACHU\GAME STARTING.cpp(64,58): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\PROJECT KTLT\PIKACHU\GAME STARTING.cpp(66,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\PROJECT KTLT\PIKACHU\GAME STARTING.cpp(67,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\PROJECT KTLT\PIKACHU\GAME STARTING.cpp(65,21): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\PROJECT KTLT\PIKACHU\GAME STARTING.cpp(65,21): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\PROJECT KTLT\PIKACHU\GAME STARTING.cpp(73,92): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\PROJECT KTLT\PIKACHU\GAME STARTING.cpp(73,132): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\PROJECT KTLT\PIKACHU\GAME STARTING.cpp(76,93): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\PROJECT KTLT\PIKACHU\GAME STARTING.cpp(76,133): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\PROJECT KTLT\PIKACHU\GAME STARTING.cpp(82,58): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\PROJECT KTLT\PIKACHU\GAME STARTING.cpp(84,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\PROJECT KTLT\PIKACHU\GAME STARTING.cpp(85,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\PROJECT KTLT\PIKACHU\GAME STARTING.cpp(83,21): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\PROJECT KTLT\PIKACHU\GAME STARTING.cpp(83,21): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\PROJECT KTLT\PIKACHU\GAME STARTING.cpp(91,92): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\PROJECT KTLT\PIKACHU\GAME STARTING.cpp(91,133): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\PROJECT KTLT\PIKACHU\GAME STARTING.cpp(94,93): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\PROJECT KTLT\PIKACHU\GAME STARTING.cpp(94,134): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\PROJECT KTLT\PIKACHU\GAME STARTING.cpp(99,58): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\PROJECT KTLT\PIKACHU\GAME STARTING.cpp(101,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\PROJECT KTLT\PIKACHU\GAME STARTING.cpp(102,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\PROJECT KTLT\PIKACHU\GAME STARTING.cpp(100,21): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\PROJECT KTLT\PIKACHU\GAME STARTING.cpp(100,21): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\PROJECT KTLT\PIKACHU\GAME STARTING.cpp(108,82): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\PROJECT KTLT\PIKACHU\GAME STARTING.cpp(108,118): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\PROJECT KTLT\PIKACHU\GAME STARTING.cpp(111,83): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\PROJECT KTLT\PIKACHU\GAME STARTING.cpp(111,119): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\PROJECT KTLT\PIKACHU\GAME STARTING.cpp(116,58): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\PROJECT KTLT\PIKACHU\GAME STARTING.cpp(118,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\PROJECT KTLT\PIKACHU\GAME STARTING.cpp(119,41): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\PROJECT KTLT\PIKACHU\GAME STARTING.cpp(117,21): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\PROJECT KTLT\PIKACHU\GAME STARTING.cpp(117,21): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\PROJECT KTLT\PIKACHU\GAME STARTING.cpp(125,78): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\PROJECT KTLT\PIKACHU\GAME STARTING.cpp(125,112): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\PROJECT KTLT\PIKACHU\GAME STARTING.cpp(128,79): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\PROJECT KTLT\PIKACHU\GAME STARTING.cpp(128,113): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  PIKACHU.vcxproj -> C:\PROJECT KTLT\PIKACHU\x64\Debug\PIKACHU.exe
   'pwsh.exe' is not recognized as an internal or external command,
   operable program or batch file.
