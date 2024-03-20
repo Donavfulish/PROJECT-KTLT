@@ -12,5 +12,11 @@ struct board
 	char data;
 };
 
+struct matrix
+{
+	board** val;
+	int width, length;
+};
+
 void Paint_Broad(int c[][11]);
 void PickCell(int c[][11]);
