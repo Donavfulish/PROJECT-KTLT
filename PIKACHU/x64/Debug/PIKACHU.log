@@ -1,47 +1,28 @@
 ﻿  NORMAL CHECK.cpp
-  NORMAL MODE.cpp
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(32,64): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(32,53): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(32,46): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(32,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(33,79): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(33,44): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(56,101): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(56,55): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(77,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(78,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(79,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(80,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(81,28): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(81,28): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(81,32): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(81,32): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(85,99): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(85,50): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(92,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(93,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(94,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(95,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(96,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(97,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(98,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(99,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(100,28): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(100,28): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(100,32): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(100,32): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(100,55): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(100,55): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(100,59): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(100,59): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(118,103): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(118,54): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(121,103): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\NORMAL MODE.cpp(121,54): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-  PIKACHU.cpp
-C:\PROJECT KTLT\PIKACHU\PIKACHU.cpp(15,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\PIKACHU.cpp(24,79): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  Generating Code...
+C:\PROJECT KTLT\PIKACHU\NORMAL CHECK.cpp(36,8): warning C4244: 'argument': conversion from 'float' to 'const unsigned __int64', possible loss of data
+C:\PROJECT KTLT\PIKACHU\NORMAL CHECK.cpp(36,13): warning C4244: 'argument': conversion from 'float' to 'const unsigned __int64', possible loss of data
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.37.32822\include\utility(270,61): warning C4244: 'initializing': conversion from '_Ty' to '_Ty2', possible loss of data
+          with
+          [
+              _Ty=float
+          ]
+          and
+          [
+              _Ty2=int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.37.32822\include\utility(270,38): message : see reference to function template instantiation 'std::pair<int,int>::pair<int,float,0>(std::pair<int,float> &&) noexcept' being compiled
+C:\PROJECT KTLT\PIKACHU\NORMAL CHECK.cpp(37,13): message : see reference to function template instantiation 'std::pair<ii,ii>::pair<std::pair<int,float>,std::pair<float,int>,0>(std::pair<std::pair<int,float>,std::pair<float,int>> &&) noexcept' being compiled
+C:\PROJECT KTLT\PIKACHU\NORMAL CHECK.cpp(37,11): message : see the first reference to 'std::pair<ii,ii>::pair' in 'checkUseDij'
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.37.32822\include\utility(270,16): warning C4244: 'initializing': conversion from '_Ty' to '_Ty1', possible loss of data
+          with
+          [
+              _Ty=float
+          ]
+          and
+          [
+              _Ty1=int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.37.32822\include\utility(270,83): message : see reference to function template instantiation 'std::pair<int,int>::pair<float,int,0>(std::pair<float,int> &&) noexcept' being compiled
   PIKACHU.vcxproj -> C:\PROJECT KTLT\PIKACHU\x64\Debug\PIKACHU.exe
   'pwsh.exe' is not recognized as an internal or external command,
   operable program or batch file.

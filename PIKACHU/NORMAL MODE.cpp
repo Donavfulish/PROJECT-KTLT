@@ -10,14 +10,14 @@ board val[11][11];
 Vector2 selectedCells[2] = { {-1, -1}, {-1, -1} };
 
 // Khởi tạo lưới ô chữ cái
-void Paint_Broad(int c[][11])
+void Paint_Broad(int c[][12])
 {
     rec = { 10,10,75,75 };
-    for (int i = 0; i < 10; i++)
+    for (int i = 1; i <= 10 ; i++)
     {
         rec.y += 75;
         rec.x = 10;
-        for (int j = 0; j < 10; j++)
+        for (int j = 1; j <= 10; j++)
         {
             rec.x += 75;
             // Kiểm tra ô đã bị xóa chưa
@@ -37,14 +37,14 @@ void Paint_Broad(int c[][11])
 }
 
 //Cập nhật các ô đã được click chọn
-void PickCell(int c[][11])
+void PickCell(int c[][12])
 {
     rec = { 10,10,75,75 };
-    for (int i = 0; i < 10; i++)
+    for (int i = 1; i <= 10 ; i++)
     {
         rec.y += 75;
         rec.x = 10;
-        for (int j = 0; j < 10; j++)
+        for (int j = 1; j <= 10; j++)
         {
             rec.x += 75;
             // Kiểm tra vị trí con trỏ chuột
@@ -58,6 +58,7 @@ void PickCell(int c[][11])
                 // Nếu click chuột thì bắt đầu cập nhật
                 if (IsMouseButtonPressed(0))
                 {
+
                     // Nếu chọn ô đầu tiên trong cặp thì cập nhật vector vị trí 1
                     if (selectedCells[0].x == -1)
                         selectedCells[0] = { float(j), float(i) };
@@ -70,12 +71,14 @@ void PickCell(int c[][11])
         }
     }
 
+    //cout << selectedCells[0].x << " " << selectedCells[0].y << " " << selectedCells[1].x << " " << selectedCells[1].y << "\n";
+
     // Ô đầu tiên được chọn trong cặp sẽ chuyển thành màu đen báo hiệu cho việc đã chọn
     if (selectedCells[0].x != -1 && selectedCells[1].x == -1)
     {
         // Lưu lại tọa độ và vị trí ô
-        int x1 = 10 + 75 * (selectedCells[0].x + 1);
-        int y1 = 10 + 75 * (selectedCells[0].y + 1);
+        int x1 = 10 + 75 * (selectedCells[0].x);
+        int y1 = 10 + 75 * (selectedCells[0].y);
         int i1 = selectedCells[0].y;
         int j1 = selectedCells[0].x;
         Rectangle rec1 = { x1, y1, 75, 75 };
@@ -86,13 +89,18 @@ void PickCell(int c[][11])
     }
 
     // Nếu đã chọn xong một cặp thì kiểm tra điều kiện, thõa mãn thì xóa cả 2 ô
-    else if (selectedCells[1].x != -1) 
+    else if (selectedCells[1].x == selectedCells[0].x && selectedCells[1].y == selectedCells[0].y)
+    {
+        selectedCells[0] = { -1, -1 };
+        selectedCells[1] = { -1, -1 };
+    }
+    else if (selectedCells[1].x != -1)
     {
         // Lưu tọa độ và vị trí 2 ô
-        int x1 = 10 + 75 * (selectedCells[0].x + 1);
-        int y1 = 10 + 75 * (selectedCells[0].y + 1);
-        int x2 = 10 + 75 * (selectedCells[1].x + 1);
-        int y2 = 10 + 75 * (selectedCells[1].y + 1);
+        int x1 = 10 + 75 * (selectedCells[0].x );
+        int y1 = 10 + 75 * (selectedCells[0].y );
+        int x2 = 10 + 75 * (selectedCells[1].x );
+        int y2 = 10 + 75 * (selectedCells[1].y );
         int i1 = selectedCells[0].y;
         int j1 = selectedCells[0].x;
         int i2 = selectedCells[1].y;
@@ -100,7 +108,7 @@ void PickCell(int c[][11])
         Rectangle rec1 = { x1, y1, 75, 75 }, rec2 = { x2, y2, 75, 75 };
 
         // Nếu thõa điều kiện thì dữ liệu chứa trong ô bị xóa, trạng thái của ô từ 0 trở thành 1
-        if (val[i1][j1].data == val[i2][j2].data)
+        if (val[i1][j1].data == val[i2][j2].data && checkUseDij(selectedCells[0], selectedCells[1], 10, c))
         {
             DrawRectangleRounded(rec1, 0, 0, RAYWHITE);
             DrawRectangleRounded(rec2, 0, 0, RAYWHITE);
@@ -119,11 +127,11 @@ void PickCell(int c[][11])
             DrawRectangleRounded(rec2, 0, 0, Fade(BLUE, 0.6f));
             DrawRectangleLines(x2, y2, 75, 75, Fade(BLACK, 2));
             DrawText(&val[i2][j2].data, rec2.x + 7.5 + MeasureText(&val[i2][j2].data, 50) / 2, rec2.y + MeasureText(&val[i2][j2].data, 50) / 2, 50, Fade(WHITE, 0.6f));
-        }
 
-        // Cập nhật lại trạng thái ban đầu cho hai vecto lưu vị trí
-        selectedCells[0] = { -1, -1 };
-        selectedCells[1] = { -1, -1 };
-    }
+            // Cập nhật lại trạng thái ban đầu cho hai vecto lưu vị trí
+        }
+            selectedCells[0] = { -1, -1 };
+            selectedCells[1] = { -1, -1 };
+    } 
 }
 
