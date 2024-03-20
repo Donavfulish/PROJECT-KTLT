@@ -1,6 +1,4 @@
-﻿  PIKACHU.cpp
-C:\PROJECT KTLT\PIKACHU\PIKACHU.cpp(15,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\PIKACHU.cpp(25,79): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+﻿  LINK : C:\PROJECT KTLT\PIKACHU\x64\Debug\PIKACHU.exe not found or not built by the last incremental link; performing full link
   PIKACHU.vcxproj -> C:\PROJECT KTLT\PIKACHU\x64\Debug\PIKACHU.exe
   'pwsh.exe' is not recognized as an internal or external command,
   operable program or batch file.
