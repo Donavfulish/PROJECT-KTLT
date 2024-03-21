@@ -127,10 +127,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="GAME STARTING.cpp" />
+    <ClCompile Include="MENU.cpp" />
     <ClCompile Include="NORMAL CHECK.cpp" />
     <ClCompile Include="NORMAL MODE.cpp" />
     <ClCompile Include="PIKACHU.cpp" />
+    <ClCompile Include="PLAY.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Struct.h" />

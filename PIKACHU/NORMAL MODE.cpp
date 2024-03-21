@@ -8,7 +8,6 @@ using namespace std;
 Rectangle rec = { 100, 100, 200, 80 };
 board val[11][11];
 Vector2 selectedCells[2] = { {-1, -1}, {-1, -1} };
-
 // Khởi tạo lưới ô chữ cái
 void Paint_Broad(int c[][12])
 {

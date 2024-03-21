@@ -3,8 +3,12 @@
 #include "raylib.h"
 using namespace std;
 
+#define BORDER_WIDTH 3
+#define TEXT_MARGIN 20
+static Font font;
+static int RightClickOn;
 void GameStarting_Menu();
-
+void GameStarting_Play();
 
 struct board
 {

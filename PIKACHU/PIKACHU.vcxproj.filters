@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\GAME STARTING">
+      <UniqueIdentifier>{ba111374-14b0-4fda-b0cb-c509baa13929}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PIKACHU.cpp">
@@ -21,11 +24,14 @@
     <ClCompile Include="NORMAL MODE.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GAME STARTING.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="NORMAL CHECK.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MENU.cpp">
+      <Filter>Source Files\GAME STARTING</Filter>
+    </ClCompile>
+    <ClCompile Include="PLAY.cpp">
+      <Filter>Source Files\GAME STARTING</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
