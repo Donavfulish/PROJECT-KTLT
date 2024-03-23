@@ -12,29 +12,10 @@ const int Height = 900;
 int main()
 {
     GameStarting_Menu();
-    srand(time(0));
-    InitWindow(Width, Height, "dcm van ha");
-    vector<int> ArrayRandom;
-    int count = -1, c[13][12];
-    memset(c, -1, sizeof(c));
-
-    // Khởi tạo vector ngẫu nhiên các chỉ số nguyên tượng trưng cho mỗi chữ cái sau đó đảo thứ tự ngẫu nhiên
-    for (int i = 1; i <= 10; i++)
-        for (int j = 0; j <= 10; j++)
-            ArrayRandom.push_back(j);
-    shuffle(ArrayRandom.begin(), ArrayRandom.end(), default_random_engine(time(nullptr)));
-
-    // Lưu các chỉ số được đảo ngẫu nhiên vào một mảng hai chiều kiểu nguyên
-    for (int i = 1; i <= 10; i++)
-        for (int j = 1; j <= 10; j++)
-            c[i][j] = ArrayRandom[++count];
-    while (!WindowShouldClose()) {
-        BeginDrawing();
-        ClearBackground(RAYWHITE);
-        Paint_Broad(c);
-        PickCell(c);
-        EndDrawing();
-    }
+    /* Những phần Hà code Âu đã chuyển vào hàm void Play_OPTION(int boardWidth, int boardLength) trong PLAY.cpp nha
+    * Trong hàm Âu có để 2 tham số boardWidth với boardLength là kích thước ma trận, có gì Hà chỉnh code để ma trận linh hoạt thay đổi kích thước
+    * Với cái int c[][12] Hà chỉnh lại thành int** c rồi cấp phát kích thước nha do thầy kêu đồ án này quan trọng con trỏ
+    */
     return 0;
 }
 

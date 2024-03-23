@@ -13,6 +13,7 @@ extern int RightClickOn = RCO_NONE;
 
 void GameStarting_Menu()
 {
+    RightClickOn = RCO_NONE;
     // Khai báo kích thước màn hình
     const int screenWidth = 1200;
     const int screenHeight = 900;
@@ -171,7 +172,6 @@ void GameStarting_Menu()
                 WantToExit = true;
                 break;
             }
-            RightClickOn = RCO_NONE;
         }
 
         if (WantToExit) break;

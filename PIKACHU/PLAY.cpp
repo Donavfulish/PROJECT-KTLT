@@ -1,6 +1,9 @@
 ﻿#include <iostream>
-#include "Struct.h"
-
+#include "struct.h"
+#include "raylib.h"
+#include <algorithm>
+#include <vector>
+#include <random>
 
 #define RCO_NONE -1
 #define RCO_EXIT 0
@@ -9,8 +12,12 @@
 extern Font font;
 extern int RightClickOn = RCO_NONE;
 
+extern string LinkToTexture;
+#define LEVEL_BUTTON_SIZE 220
+
 void GameStarting_Play()
 {
+    RightClickOn = RCO_NONE;
     // Khai báo kích thước màn hình
     const int screenWidth = 1200;
     const int screenHeight = 900;
@@ -115,7 +122,7 @@ void GameStarting_Play()
             switch (RightClickOn)
             {
             case RCO_OPTION:
-                WantToExit = true;
+                GameStarting_Play_Option();
                 break;
             case RCO_TOURNAMENT:
                 break;
@@ -123,7 +130,6 @@ void GameStarting_Play()
                 WantToExit = true;
                 break;
             }
-            RightClickOn = RCO_NONE;
         }
         
         if (WantToExit) break;
@@ -137,15 +143,21 @@ void GameStarting_Play()
     CloseWindow();
 }
 
+
+#define RCO_LEVEL_4x4 1
+#define RCO_LEVEL_6x6 2
+#define RCO_LEVEL_8x8 3
+#define RCO_LEVEL_10x10 4
 void GameStarting_Play_Option()
 {
+    RightClickOn = RCO_NONE;
     // Khai báo kích thước màn hình
     const int screenWidth = 1200;
     const int screenHeight = 900;
 
     SetTargetFPS(60);
     // Khởi tạo cửa sổ
-    SetWindowTitle("Pikachu Menu - Play");
+    SetWindowTitle("Pikachu Menu - Play - Option");
 
     // Đặt font chữ Amatic SC Bold.ttf
     font = LoadFont("Amatic SC Bold.ttf");
@@ -153,16 +165,172 @@ void GameStarting_Play_Option()
     // Đặt font size
     int fontSize = 70;
 
-    // Tính toạ độ để vẽ các nút
-    const int buttonSpacing = 80; // Khoảng cách giữa các nút
-    int buttonX = screenWidth * 0.28;
-    int buttonY = screenHeight * 0.5;
+    // Tính khoảng cách giữa các nút
+    int buttonSpacing = 275; 
 
     // Tải texture Background từ máy tính
-    Texture2D texture = LoadTexture("GameStarting_Play.png");
+    Texture2D texture = LoadTexture("GameStarting_Play_Option.png");
+
+    // Lưu Texture cho các Button chọn Level
+    string nameTexture; // Biến lưu tạm tên các texture trên máy
+    nameTexture = "Level_4x4.png";
+    Image Image_Option_4x4 = LoadImage((LinkToTexture + nameTexture).c_str());
+    Texture2D Texture_Option_4x4 = LoadTextureFromImage(Image_Option_4x4);
+    UnloadImage(Image_Option_4x4);
+    nameTexture = "Level_6x6.png";
+    Image Image_Option_6x6 = LoadImage((LinkToTexture + nameTexture).c_str());
+    Texture2D Texture_Option_6x6 = LoadTextureFromImage(Image_Option_6x6);
+    UnloadImage(Image_Option_6x6);
+    nameTexture = "Level_8x8.png";
+    Image Image_Option_8x8 = LoadImage((LinkToTexture + nameTexture).c_str());
+    Texture2D Texture_Option_8x8 = LoadTextureFromImage(Image_Option_8x8);
+    UnloadImage(Image_Option_8x8);
+    nameTexture = "Level_10x10.png";
+    Image Image_Option_10x10 = LoadImage((LinkToTexture + nameTexture).c_str());
+    Texture2D Texture_Option_10x10 = LoadTextureFromImage(Image_Option_10x10);
+    UnloadImage(Image_Option_10x10);
 
     while (!WindowShouldClose())
     {
+        // Bắt đầu vẽ
+        BeginDrawing();
+        ClearBackground(SKYBLUE);
+
+        // Insert Background cho Menu
+        DrawTexture(texture, 0, 0, WHITE);
+
+        /* ------------------------------------------------VẼ CÁC BUTTON CHỌN LEVEL------------------------------------------------*/
+        // Vẽ button chọn Level 4x4
+        Rectangle rec_Option_4x4
+        {
+            0.06f * screenWidth, screenHeight / 2 - LEVEL_BUTTON_SIZE / 2,
+            LEVEL_BUTTON_SIZE, LEVEL_BUTTON_SIZE
+        };
+        DrawTexturePro(Texture_Option_4x4,{ 0, 0, 1.0f * Texture_Option_4x4.width, 1.0f * Texture_Option_4x4.height }, rec_Option_4x4, { 0, 0 }, 0, WHITE);
+        if (CheckCollisionPointRec(GetMousePosition(), rec_Option_4x4))
+        {
+            DrawTexturePro(Texture_Option_4x4, { 0, 0, 1.0f * Texture_Option_4x4.width, 1.0f * Texture_Option_4x4.height }, rec_Option_4x4, { 0, 0 }, 0, Fade(RED, 0.5f));
+            if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+            {
+                RightClickOn = RCO_LEVEL_4x4;
+            }
+        }
+
+        // Vẽ button chọn Level 6x6
+        Rectangle rec_Option_6x6
+        {
+            0.06f * screenWidth + buttonSpacing, screenHeight / 2 - LEVEL_BUTTON_SIZE / 2,
+            LEVEL_BUTTON_SIZE, LEVEL_BUTTON_SIZE
+        };
+        DrawTexturePro(Texture_Option_6x6, { 0, 0, 1.0f * Texture_Option_6x6.width, 1.0f * Texture_Option_6x6.height }, rec_Option_6x6, { 0, 0 }, 0, WHITE);
+        if (CheckCollisionPointRec(GetMousePosition(), rec_Option_6x6))
+        {
+            DrawTexturePro(Texture_Option_6x6, { 0, 0, 1.0f * Texture_Option_6x6.width, 1.0f * Texture_Option_6x6.height }, rec_Option_6x6, { 0, 0 }, 0, Fade(RED, 0.5f));
+            if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+            {
+                RightClickOn = RCO_LEVEL_6x6;
+            }
+        }
+
+        // Vẽ button chọn Level 8x8
+        Rectangle rec_Option_8x8
+        {
+            0.06f * screenWidth + 2 * buttonSpacing, screenHeight / 2 - LEVEL_BUTTON_SIZE / 2,
+            LEVEL_BUTTON_SIZE, LEVEL_BUTTON_SIZE
+        };
+        DrawTexturePro(Texture_Option_8x8, { 0, 0, 1.0f * Texture_Option_8x8.width, 1.0f * Texture_Option_8x8.height }, rec_Option_8x8, { 0, 0 }, 0, WHITE);
+        if (CheckCollisionPointRec(GetMousePosition(), rec_Option_8x8))
+        {
+            DrawTexturePro(Texture_Option_8x8, { 0, 0, 1.0f * Texture_Option_8x8.width, 1.0f * Texture_Option_8x8.height }, rec_Option_8x8, { 0, 0 }, 0, Fade(RED, 0.5f));
+            if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+            {
+                RightClickOn = RCO_LEVEL_8x8;
+            }
+        }
+
+        // Vẽ button chọn Level 10x10
+        Rectangle rec_Option_10x10
+        {
+            0.06f * screenWidth + 3 * buttonSpacing, screenHeight / 2 - LEVEL_BUTTON_SIZE / 2,
+            LEVEL_BUTTON_SIZE, LEVEL_BUTTON_SIZE
+        };
+        DrawTexturePro(Texture_Option_10x10, { 0, 0, 1.0f * Texture_Option_10x10.width, 1.0f * Texture_Option_10x10.height }, rec_Option_10x10, { 0, 0 }, 0, WHITE);
+        if (CheckCollisionPointRec(GetMousePosition(), rec_Option_10x10))
+        {
+            DrawTexturePro(Texture_Option_10x10, { 0, 0, 1.0f * Texture_Option_10x10.width, 1.0f * Texture_Option_10x10.height }, rec_Option_10x10, { 0, 0 }, 0, Fade(RED, 0.5f));
+            if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+            {
+                RightClickOn = RCO_LEVEL_10x10;
+            }
+        }
+
+        // Kết thúc vẽ
+        EndDrawing();
+
+#pragma region Thực hiện chức năng sau khi click chuột
+        bool WantToExit = false;
+        if (RightClickOn != RCO_NONE)
+        {
+            switch (RightClickOn)
+            {
+            case RCO_LEVEL_4x4:
+                cout << "4x4";
+                Play_OPTION(4, 4);
+                break;
+            case RCO_LEVEL_6x6:
+                Play_OPTION(6, 6);
+                break;
+            case RCO_LEVEL_8x8:
+                Play_OPTION(8, 8);
+                break;
+            case RCO_LEVEL_10x10:
+                Play_OPTION(10, 10);
+                break;
+            case RCO_EXIT:
+                WantToExit = true;
+                break;
+            }
+            RightClickOn = RCO_NONE;
+        }
+
+        if (WantToExit) break;
+#pragma endregion
         
+    }
+    UnloadTexture(Texture_Option_4x4);
+    UnloadTexture(Texture_Option_6x6);
+    UnloadTexture(Texture_Option_8x8);
+    UnloadTexture(Texture_Option_10x10);
+    UnloadTexture(texture);
+}
+
+void Play_OPTION(int boardWidth, int boardLength)
+{
+    // Khai báo kích thước màn hình
+    const int screenWidth = 1200;
+    const int screenHeight = 900;
+
+    srand(time(0));
+    InitWindow(screenWidth, screenHeight, "dcm van ha");
+    vector<int> ArrayRandom;
+    int count = -1, c[13][12];
+    memset(c, -1, sizeof(c));
+
+    // Khởi tạo vector ngẫu nhiên các chỉ số nguyên tượng trưng cho mỗi chữ cái sau đó đảo thứ tự ngẫu nhiên
+    for (int i = 1; i <= 10; i++)
+        for (int j = 0; j <= 10; j++)
+            ArrayRandom.push_back(j);
+    shuffle(ArrayRandom.begin(), ArrayRandom.end(), default_random_engine(time(nullptr)));
+
+    // Lưu các chỉ số được đảo ngẫu nhiên vào một mảng hai chiều kiểu nguyên
+    for (int i = 1; i <= 10; i++)
+        for (int j = 1; j <= 10; j++)
+            c[i][j] = ArrayRandom[++count];
+    while (!WindowShouldClose()) {
+        BeginDrawing();
+        ClearBackground(RAYWHITE);
+        Paint_Broad(c);
+        PickCell(c);
+        EndDrawing();
     }
 }
