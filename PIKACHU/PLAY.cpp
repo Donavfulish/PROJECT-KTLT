@@ -15,6 +15,7 @@ extern int RightClickOn = RCO_NONE;
 extern string LinkToTexture;
 #define LEVEL_BUTTON_SIZE 220
 
+// Hàm hiển thị và thực hiện các chức năng của cửa sổ Pikachu Menu - Play
 void GameStarting_Play()
 {
     RightClickOn = RCO_NONE;
@@ -127,6 +128,7 @@ void GameStarting_Play()
             case RCO_TOURNAMENT:
                 break;
             case RCO_EXIT:
+                SetWindowTitle("Pikachu Menu");
                 WantToExit = true;
                 break;
             }
@@ -138,9 +140,6 @@ void GameStarting_Play()
 
     // Giải phóng texture Background
     UnloadTexture(texture);
-
-    // Đóng cửa sổ
-    CloseWindow();
 }
 
 
@@ -148,6 +147,7 @@ void GameStarting_Play()
 #define RCO_LEVEL_6x6 2
 #define RCO_LEVEL_8x8 3
 #define RCO_LEVEL_10x10 4
+// Hàm hiển thị và thực hiện các chức năng của cửa sổ Pikachu Menu - Play - Option
 void GameStarting_Play_Option()
 {
     RightClickOn = RCO_NONE;
@@ -264,6 +264,28 @@ void GameStarting_Play_Option()
             }
         }
 
+        // Vẽ button Exit
+        // Vẽ button BACK
+        Rectangle rec_Back // Lưu thông tin button hình chữ nhật "BACK"
+        {
+            screenWidth / 2 - MeasureTextEx(font, "BACK", fontSize, 1).x / 2 - TEXT_MARGIN,
+            screenHeight * 0.85,
+            MeasureTextEx(font, "BACK", fontSize, 1).x + TEXT_MARGIN * 2,
+            MeasureTextEx(font, "BACK", fontSize, 1).y
+        };
+        DrawRectangleRec(rec_Back, Fade(ORANGE, 0.7f));
+        if (CheckCollisionPointRec(GetMousePosition(), rec_Back))
+        {
+            DrawRectangleRec(rec_Back, Fade(RED, 0.8f));
+            DrawTextEx(font, "BACK", { screenWidth / 2 - MeasureTextEx(font, "BACK", fontSize, 1).x / 2, rec_Back.y }, fontSize, 1, WHITE);
+            if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+            {
+                RightClickOn = RCO_EXIT;
+            }
+        }
+        else DrawTextEx(font, "BACK", { screenWidth / 2 - MeasureTextEx(font, "BACK", fontSize, 1).x / 2, rec_Back.y }, fontSize, 1, RED);
+        DrawRectangleLinesEx(rec_Back, BORDER_WIDTH, BLACK);
+
         // Kết thúc vẽ
         EndDrawing();
 
@@ -287,6 +309,7 @@ void GameStarting_Play_Option()
                 Play_OPTION(10, 10);
                 break;
             case RCO_EXIT:
+                SetWindowTitle("Pikachu Menu - Play");
                 WantToExit = true;
                 break;
             }
@@ -304,6 +327,7 @@ void GameStarting_Play_Option()
     UnloadTexture(texture);
 }
 
+// Hàm hiển thị cửa sổ chơi và thực thi quá trình chơi
 void Play_OPTION(int boardWidth, int boardLength)
 {
     // Khai báo kích thước màn hình
@@ -317,15 +341,25 @@ void Play_OPTION(int boardWidth, int boardLength)
     memset(c, -1, sizeof(c));
 
     // Khởi tạo vector ngẫu nhiên các chỉ số nguyên tượng trưng cho mỗi chữ cái sau đó đảo thứ tự ngẫu nhiên
+    int val = 0; // Value
+    int occ = 6; // Occurrences: Biến lưu số lần xuất hiện tối đa của một ô (phải là số chẵn)
+    int cur = 0; // Current: Biến đếm xem ô đang duyệt là ô thứ mấy
     for (int i = 1; i <= 10; i++)
-        for (int j = 0; j <= 10; j++)
-            ArrayRandom.push_back(j);
+    {
+        for (int j = 1; j <= 10; j++)
+        {
+            if (cur++ % occ == 0) val++; // Nếu <occ> ô liên tiếp có giá trị giống nhau (là val) thì val tăng lên 1 
+            ArrayRandom.push_back(val);
+        }
+    }
     shuffle(ArrayRandom.begin(), ArrayRandom.end(), default_random_engine(time(nullptr)));
 
     // Lưu các chỉ số được đảo ngẫu nhiên vào một mảng hai chiều kiểu nguyên
     for (int i = 1; i <= 10; i++)
         for (int j = 1; j <= 10; j++)
             c[i][j] = ArrayRandom[++count];
+
+    countCellOccurrences(c);
     while (!WindowShouldClose()) {
         BeginDrawing();
         ClearBackground(RAYWHITE);

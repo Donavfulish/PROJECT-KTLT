@@ -11,6 +11,7 @@
 extern Font font;
 extern int RightClickOn = RCO_NONE;
 
+// Hàm in ra và thực hiện các chức năng của cửa sổ Pikachu Menu
 void GameStarting_Menu()
 {
     RightClickOn = RCO_NONE;
@@ -40,6 +41,8 @@ void GameStarting_Menu()
     // Vòng lặp chính
     while (!WindowShouldClose())
     {
+        RightClickOn = RCO_NONE; 
+
         // Bắt đầu vẽ
         BeginDrawing();
         ClearBackground(SKYBLUE);
@@ -147,7 +150,7 @@ void GameStarting_Menu()
                 RightClickOn = RCO_EXIT;
             }
         }
-        else DrawTextEx(font, "EXIT", { buttonX - MeasureTextEx(font, "EXIT", fontSize, 1).x / 2, rec_Exit.y }, fontSize, 1, BLACK);
+        else DrawTextEx(font, "EXIT", { buttonX - MeasureTextEx(font, "EXIT", fontSize, 1).x / 2, rec_Exit.y }, fontSize, 1, RED);
         DrawRectangleLinesEx(rec_Exit, BORDER_WIDTH, BLACK);
 
         // Kết thúc vẽ

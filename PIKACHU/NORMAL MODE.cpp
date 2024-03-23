@@ -2,6 +2,8 @@
 #include "struct.h"
 #include "raylib.h"
 #include <time.h>
+#include <set>
+#include <map>
 #include <vector>
 
 using namespace std;
@@ -115,6 +117,7 @@ void PickCell(int c[][12])
             c[i2][j2] = -1;
             val[i1][j1].check = 1;
             val[i2][j2].check = 1;
+            countCellOccurrences(c); // Âu thêm vô để check thôi, Hà xóa cũng được 
         }
 
         // Nếu không thõa thì trở về trạng thái ban đầu trước khi click
@@ -134,3 +137,36 @@ void PickCell(int c[][12])
     } 
 }
 
+// Hàm đếm xem trong bảng PlayBoard có bao nhiêu ô khác nhau
+int countDistinctCell(int c[][12])
+{
+    set<int> cell;
+    for (int i = 1; i <= 10; i++)
+    {
+        for (int j = 1; j <= 10; j++)
+        {
+            if (c[i][j] != -1) cell.insert(c[i][j]);
+        }
+    }
+    for (int x : cell) cout << (char)('A' + x) << endl;
+    return cell.size();
+}
+
+// Hàm đếm số lần xuất hiện của các ô trong bảng PlayBoard
+void countCellOccurrences(int c[][12])
+{
+    map<char, int> cell_occurences;
+    for (int i = 1; i <= 10; i++)
+    {
+        for (int j = 1; j <= 10; j++)
+        {
+            if (c[i][j] != -1) cell_occurences['A' + c[i][j]]++;
+        }
+    }
+
+    cout << cell_occurences.size() << endl;
+    for (pair<char, int> duyet : cell_occurences)
+    {
+        cout << duyet.first << " : " << duyet.second << endl;
+    }
+}
