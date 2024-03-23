@@ -27,7 +27,7 @@ struct matrix
 };
 
 void Paint_Broad(int c[][12]);
-void PickCell(int c[][12]);
+void PickCell(int c[][12], int& countCell);
 int countDistinctCell(int c[][12]);
-void countCellOccurrences(int c[][12]);
+int countCellOccurrences(int c[][12]);
 bool checkUseDij(Vector2 A, Vector2 B, int Size, int c[][12]);

@@ -38,7 +38,7 @@ void Paint_Broad(int c[][12])
 }
 
 //Cập nhật các ô đã được click chọn
-void PickCell(int c[][12])
+void PickCell(int c[][12], int &countCell) // Biến countCell: lưu tổng số ô còn lại
 {
     rec = { 10,10,75,75 };
     for (int i = 1; i <= 10 ; i++)
@@ -117,7 +117,7 @@ void PickCell(int c[][12])
             c[i2][j2] = -1;
             val[i1][j1].check = 1;
             val[i2][j2].check = 1;
-            countCellOccurrences(c); // Âu thêm vô để check thôi, Hà xóa cũng được 
+            countCell = countCellOccurrences(c); // Âu thêm vô để check thôi, Hà xóa cũng được 
         }
 
         // Nếu không thõa thì trở về trạng thái ban đầu trước khi click
@@ -153,14 +153,19 @@ int countDistinctCell(int c[][12])
 }
 
 // Hàm đếm số lần xuất hiện của các ô trong bảng PlayBoard
-void countCellOccurrences(int c[][12])
+int countCellOccurrences(int c[][12])
 {
+    int countAll = 0;
     map<char, int> cell_occurences;
     for (int i = 1; i <= 10; i++)
     {
         for (int j = 1; j <= 10; j++)
         {
-            if (c[i][j] != -1) cell_occurences['A' + c[i][j]]++;
+            if (c[i][j] != -1)
+            {
+                cell_occurences['A' + c[i][j]]++;
+                countAll++;
+            }
         }
     }
 
@@ -169,4 +174,5 @@ void countCellOccurrences(int c[][12])
     {
         cout << duyet.first << " : " << duyet.second << endl;
     }
+    return countAll;
 }

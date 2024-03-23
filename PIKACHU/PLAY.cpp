@@ -264,7 +264,6 @@ void GameStarting_Play_Option()
             }
         }
 
-        // Vẽ button Exit
         // Vẽ button BACK
         Rectangle rec_Back // Lưu thông tin button hình chữ nhật "BACK"
         {
@@ -342,7 +341,7 @@ void Play_OPTION(int boardWidth, int boardLength)
 
     // Khởi tạo vector ngẫu nhiên các chỉ số nguyên tượng trưng cho mỗi chữ cái sau đó đảo thứ tự ngẫu nhiên
     int val = 0; // Value
-    int occ = 6; // Occurrences: Biến lưu số lần xuất hiện tối đa của một ô (phải là số chẵn)
+    int occ = 8; // Occurrences: Biến lưu số lần xuất hiện tối đa của một ô (phải là số chẵn)
     int cur = 0; // Current: Biến đếm xem ô đang duyệt là ô thứ mấy
     for (int i = 1; i <= 10; i++)
     {
@@ -359,12 +358,16 @@ void Play_OPTION(int boardWidth, int boardLength)
         for (int j = 1; j <= 10; j++)
             c[i][j] = ArrayRandom[++count];
 
-    countCellOccurrences(c);
+    int countCell = countCellOccurrences(c);
     while (!WindowShouldClose()) {
         BeginDrawing();
         ClearBackground(RAYWHITE);
         Paint_Broad(c);
-        PickCell(c);
+        PickCell(c, countCell);
+
+        // Game Finish Verify
+        if (countCell == 0) /* Code here */; // Nếu không còn ô nào trống
+        // if (Hàm MoveSuggestion không tìm thấy gợi ý) /* Code here */
         EndDrawing();
     }
 }
