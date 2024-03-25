@@ -8,8 +8,6 @@
 #define RCO_RESUME_GAME 2
 #define RCO_LEADERBOARD 3
 #define RCO_CREDIT 4
-extern Font font;
-extern int RightClickOn = RCO_NONE;
 
 // Hàm in ra và thực hiện các chức năng của cửa sổ Pikachu Menu
 void GameStarting_Menu()

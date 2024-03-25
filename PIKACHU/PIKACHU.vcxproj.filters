@@ -30,12 +30,18 @@
     <ClCompile Include="MENU.cpp">
       <Filter>Source Files\GAME STARTING</Filter>
     </ClCompile>
+    <ClCompile Include="SOUND.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="PLAY.cpp">
       <Filter>Source Files\GAME STARTING</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Struct.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="soundlib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

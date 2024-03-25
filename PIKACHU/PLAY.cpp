@@ -9,10 +9,7 @@
 #define RCO_EXIT 0
 #define RCO_OPTION 1
 #define RCO_TOURNAMENT 2
-extern Font font;
-extern int RightClickOn = RCO_NONE;
 
-extern string LinkToTexture;
 #define LEVEL_BUTTON_SIZE 220
 
 // Hàm hiển thị và thực hiện các chức năng của cửa sổ Pikachu Menu - Play

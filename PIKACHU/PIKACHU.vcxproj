@@ -132,8 +132,10 @@
     <ClCompile Include="NORMAL MODE.cpp" />
     <ClCompile Include="PIKACHU.cpp" />
     <ClCompile Include="PLAY.cpp" />
+    <ClCompile Include="SOUND.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="soundlib.h" />
     <ClInclude Include="Struct.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
