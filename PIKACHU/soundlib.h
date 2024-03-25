@@ -7,3 +7,7 @@ extern Sound sound_Correct;
 extern Sound sound_Wrong;
 extern Sound sound_ClickOnButton;
 extern Sound sound_ClickOnCell;
+
+void LoadAllSound();
+void UnloadAllSound();
+void SetAllSoundVolume();

@@ -1,5 +1,6 @@
 ﻿#include <iostream>
 #include "Struct.h"
+#include "soundlib.h"
 
 // RCO: Right Click On
 #define RCO_NONE -1
@@ -64,6 +65,7 @@ void GameStarting_Menu()
             DrawTextEx(font, "PLAY", { buttonX - MeasureTextEx(font, "PLAY", fontSize, 1).x / 2, rec_Play.y }, fontSize, 1, WHITE);
             if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
             {
+                PlaySound(sound_ClickOnButton);
                 RightClickOn = RCO_PLAY;
             }
         }
@@ -84,6 +86,7 @@ void GameStarting_Menu()
             DrawTextEx(font, "RESUME GAME", { buttonX - MeasureTextEx(font, "RESUME GAME", fontSize, 1).x / 2, rec_ResumeGame.y }, fontSize, 1, WHITE);
             if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
             {
+                PlaySound(sound_ClickOnButton);
                 RightClickOn = RCO_RESUME_GAME;
             }
         }
@@ -105,6 +108,7 @@ void GameStarting_Menu()
             DrawTextEx(font, "LEADERBOARD", { buttonX - MeasureTextEx(font, "LEADERBOARD", fontSize, 1).x / 2, rec_Leaderboard.y }, fontSize, 1, WHITE);
             if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
             {
+                PlaySound(sound_ClickOnButton);
                 RightClickOn = RCO_LEADERBOARD;
             }
         }
@@ -125,6 +129,7 @@ void GameStarting_Menu()
             DrawTextEx(font, "CREDIT", { buttonX - MeasureTextEx(font, "CREDIT", fontSize, 1).x / 2, rec_Credit.y }, fontSize, 1, WHITE);
             if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
             {
+                PlaySound(sound_ClickOnButton);
                 RightClickOn = RCO_CREDIT;
             }
         }
@@ -145,6 +150,7 @@ void GameStarting_Menu()
             DrawTextEx(font, "EXIT", { buttonX - MeasureTextEx(font, "EXIT", fontSize, 1).x / 2, rec_Exit.y }, fontSize, 1, WHITE);
             if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
             {
+                PlaySound(sound_ClickOnButton);
                 RightClickOn = RCO_EXIT;
             }
         }

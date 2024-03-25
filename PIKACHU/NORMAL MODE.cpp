@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include "struct.h"
 #include "raylib.h"
+#include "soundlib.h"
 #include <time.h>
 #include <set>
 #include <map>
@@ -59,7 +60,8 @@ void PickCell(int c[][12], int &countCell) // Biến countCell: lưu tổng số
                 // Nếu click chuột thì bắt đầu cập nhật
                 if (IsMouseButtonPressed(0))
                 {
-
+                    // Tạo âm thanh
+                    PlaySound(sound_ClickOnCell);
                     // Nếu chọn ô đầu tiên trong cặp thì cập nhật vector vị trí 1
                     if (selectedCells[0].x == -1)
                         selectedCells[0] = { float(j), float(i) };
@@ -117,6 +119,8 @@ void PickCell(int c[][12], int &countCell) // Biến countCell: lưu tổng số
             c[i2][j2] = -1;
             val[i1][j1].check = 1;
             val[i2][j2].check = 1;
+            // Tạo âm thanh
+            PlaySound(sound_Correct);
             countCell = countCellOccurrences(c); // Âu thêm vô để check thôi, Hà xóa cũng được 
         }
 
@@ -129,7 +133,7 @@ void PickCell(int c[][12], int &countCell) // Biến countCell: lưu tổng số
             DrawRectangleRounded(rec2, 0, 0, Fade(BLUE, 0.6f));
             DrawRectangleLines(x2, y2, 75, 75, Fade(BLACK, 2));
             DrawText(&val[i2][j2].data, rec2.x + 7.5 + MeasureText(&val[i2][j2].data, 50) / 2, rec2.y + MeasureText(&val[i2][j2].data, 50) / 2, 50, Fade(WHITE, 0.6f));
-
+            PlaySound(sound_Wrong);
             // Cập nhật lại trạng thái ban đầu cho hai vecto lưu vị trí
         }
             selectedCells[0] = { -1, -1 };

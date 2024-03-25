@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include "struct.h"
 #include "raylib.h"
+#include "soundlib.h"
 #include <algorithm>
 #include <vector>
 #include <random>
@@ -64,6 +65,7 @@ void GameStarting_Play()
             DrawTextEx(font, "OPTION", { buttonX - MeasureTextEx(font, "OPTION", fontSize, 1).x / 2, rec_Option.y }, fontSize, 1, WHITE);
             if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
             {
+                PlaySound(sound_ClickOnButton);
                 RightClickOn = RCO_OPTION;
             }
         }
@@ -84,6 +86,7 @@ void GameStarting_Play()
             DrawTextEx(font, "TOURNAMENT", { buttonX - MeasureTextEx(font, "TOURNAMENT", fontSize, 1).x / 2, rec_Tournament.y }, fontSize, 1, WHITE);
             if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
             {
+                PlaySound(sound_ClickOnButton);
                 RightClickOn = RCO_TOURNAMENT;
             }
         }
@@ -104,6 +107,7 @@ void GameStarting_Play()
             DrawTextEx(font, "BACK", { buttonX - MeasureTextEx(font, "BACK", fontSize, 1).x / 2, rec_Back.y }, fontSize, 1, WHITE);
             if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
             {
+                PlaySound(sound_ClickOnButton);
                 RightClickOn = RCO_EXIT;
             }
         }
@@ -209,6 +213,7 @@ void GameStarting_Play_Option()
             DrawTexturePro(Texture_Option_4x4, { 0, 0, 1.0f * Texture_Option_4x4.width, 1.0f * Texture_Option_4x4.height }, rec_Option_4x4, { 0, 0 }, 0, Fade(RED, 0.5f));
             if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
             {
+                PlaySound(sound_ClickOnButton);
                 RightClickOn = RCO_LEVEL_4x4;
             }
         }
@@ -225,6 +230,7 @@ void GameStarting_Play_Option()
             DrawTexturePro(Texture_Option_6x6, { 0, 0, 1.0f * Texture_Option_6x6.width, 1.0f * Texture_Option_6x6.height }, rec_Option_6x6, { 0, 0 }, 0, Fade(RED, 0.5f));
             if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
             {
+                PlaySound(sound_ClickOnButton);
                 RightClickOn = RCO_LEVEL_6x6;
             }
         }
@@ -241,6 +247,7 @@ void GameStarting_Play_Option()
             DrawTexturePro(Texture_Option_8x8, { 0, 0, 1.0f * Texture_Option_8x8.width, 1.0f * Texture_Option_8x8.height }, rec_Option_8x8, { 0, 0 }, 0, Fade(RED, 0.5f));
             if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
             {
+                PlaySound(sound_ClickOnButton);
                 RightClickOn = RCO_LEVEL_8x8;
             }
         }
@@ -257,6 +264,7 @@ void GameStarting_Play_Option()
             DrawTexturePro(Texture_Option_10x10, { 0, 0, 1.0f * Texture_Option_10x10.width, 1.0f * Texture_Option_10x10.height }, rec_Option_10x10, { 0, 0 }, 0, Fade(RED, 0.5f));
             if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
             {
+                PlaySound(sound_ClickOnButton);
                 RightClickOn = RCO_LEVEL_10x10;
             }
         }
@@ -276,6 +284,7 @@ void GameStarting_Play_Option()
             DrawTextEx(font, "BACK", { screenWidth / 2 - MeasureTextEx(font, "BACK", fontSize, 1).x / 2, rec_Back.y }, fontSize, 1, WHITE);
             if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
             {
+                PlaySound(sound_ClickOnButton);
                 RightClickOn = RCO_EXIT;
             }
         }
@@ -326,6 +335,9 @@ void GameStarting_Play_Option()
 // Hàm hiển thị cửa sổ chơi và thực thi quá trình chơi
 void Play_OPTION(int boardWidth, int boardLength)
 {
+    StopSound(sound_BackgroundMenu);
+    PlaySound(sound_BackgroundPlay);
+
     // Khai báo kích thước màn hình
     const int screenWidth = 1200;
     const int screenHeight = 900;

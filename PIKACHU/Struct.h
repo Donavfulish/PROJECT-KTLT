@@ -9,7 +9,6 @@ static string LinkToTexture = "Texture\\";
 #define TEXT_MARGIN 20
 static Font font;
 static int RightClickOn;
-void LoadAllSound();
 void GameStarting_Menu();
 void GameStarting_Play();
 void GameStarting_Play_Option();
