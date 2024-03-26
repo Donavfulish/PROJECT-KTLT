@@ -33,6 +33,11 @@ struct matrix
 	board** val;
 	int width, height, life, score;
 };
+struct statusLine
+{
+	int direct;
+	Vector2 position;
+};
 
 void Paint_Broad(int** c, int height, int width, matrix Matrix);
 void PickCell(int** c, int height, int width, int& countcell, matrix &Matrix);

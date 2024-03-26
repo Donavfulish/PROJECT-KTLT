@@ -25,15 +25,15 @@ bool checkUseDij(Vector2 A, Vector2 B,int Size, int **c) {
     vector <vector<vector<int> > > f(Size + 3,vector<vector<int> >(Size + 3,vector<int>(5,100)));
     priority_queue <node, vector<node>, greater<node> > p;
     // f[Size + 1][Size + 1][5] 
-    // diretion 3th is direction with: 
+    // 4 hướng được khởi tạo sẽ biễu diễn lần lượt là
     // 0 is L
     // 1 is R
     // 2 is U
-    // 3 is D 
+    // 3 is Z 
 
     swap(A.x, A.y);
     swap(B.x, B.y);
-    f[A.x][A.y][4] = 0; // co nghia la di tu A den B quay f[x][y][k] lan
+    f[A.x][A.y][4] = 0; // Đi từ A đến B quay f[x][y][k] lan
     p.push(C(C(0,A.x),C(A.y, 4)));
     while (!p.empty()) {
         node ps = p.top();
@@ -61,4 +61,32 @@ bool checkUseDij(Vector2 A, Vector2 B,int Size, int **c) {
     return false; 
 }
 
+vector<Vector2> MoveSuggestion(matrix Matrix, int** c, int& status)
+{
+    vector<Vector2> V;
+    for (int i = 1; i <= Matrix.height; i++)
+        for (int j = 1; j <= Matrix.width; i++)
+        {
+            if (c[i][j] != -1)
+            {
+                for (int i1 = i + 1; i1 <= Matrix.height; i1++)
+                    for (int j1 = j + 1; j <= Matrix.width; j1++)
+                    {
+                        if (c[i][j] == c[i1][j1] && checkUseDij({ float(i), float(j) }, { float(i1), float(j1) }, Matrix.height, c))
+                        {
+                            V.push_back({ float(i), float(j) });
+                            V.push_back({ float(i1), float(j1) });
+                            return V;
+                        }
+                    }
+            }
+        }
+    return { {-1, -1}, {-1, -1} };
+}
 
+//vector<statusLine> MoveDescription(matrix Matrix, int** c, Vector2 A, Vector2 B)
+//{
+//
+//}
+//
+//

@@ -37,17 +37,6 @@ void Paint_Broad(int** c, int height, int width, matrix Matrix)
             if (c[i][j] != -1)
             {
 
-                //char text[2] = { Matrix.val[i][j].data, '\0' };
-
-                ////Lấy kích thước ký tự và tính toán tọa độ trung tâm ô chữ để vẽ
-                //Vector2 textSize = MeasureTextEx(font, text, fontSize, 0);
-                //Vector2 positionDraw = { rec.x + (rec.width - textSize.x) / 2 , rec.y + (rec.height - textSize.y) / 2 };
-
-                ////Vẽ ô, đường viền ô và chữ vào trung tâm ô
-                //DrawRectangleRounded(rec, 0, 0, BLUE);
-                //DrawRectangleLines(rec.x, rec.y, rec.width, rec.height, BLACK);
-                //DrawTextEx(font, text, positionDraw, fontSize, 0, Fade(BLACK, 0.8f));
-
                 DrawTexturePro(cellTexture[c[i][j]], { 0, 0, 1.0f * cellTexture[c[i][j]].width, 1.0f * cellTexture[c[i][j]].height }, rec, { 0, 0 }, 0, WHITE);
                 Matrix.val[i][j].data = c[i][j];
 
@@ -135,14 +124,19 @@ void PickCell(int** c, int width, int height, int& countcell, matrix &Matrix) //
         Rectangle rec1 = { x1, y1, recHeight, recWidth }, rec2 = { x2, y2, recHeight, recWidth };
 
         // Nếu thõa điều kiện thì dữ liệu chứa trong ô bị xóa, trạng thái của ô từ 0 trở thành 1
-        if (Matrix.val[i1][j1].data == Matrix.val[i2][j2].data && checkUseDij(selectedCells[0], selectedCells[1], width, c))
+        if (c[i1][j1] == c[i2][j2] && checkUseDij(selectedCells[0], selectedCells[1], width, c))
         {
+            // Đúng thì cộng thêm 10 điểm
+            Matrix.score += 10;
+
+            // Xóa ô và trả dữ liệu ô về không có
             DrawRectangleRounded(rec1, 0, 0, RAYWHITE);
             DrawRectangleRounded(rec2, 0, 0, RAYWHITE);
             c[i1][j1] = -1;
             c[i2][j2] = -1;
             Matrix.val[i1][j1].check = 1;
             Matrix.val[i2][j2].check = 1;
+
             // Tạo âm thanh
             PlaySound(sound_Correct);
             countcell = countCellOccurrences(c, height, width); // Âu thêm vô để check thôi, Hà xóa cũng được 
@@ -155,6 +149,7 @@ void PickCell(int** c, int width, int height, int& countcell, matrix &Matrix) //
 
             // Trừ đi một mạng chuyển trái tim thành màu đen
             Matrix.life--;
+            if (Matrix.score > 0) Matrix.score -= 10;
             
             // Vẽ lại 2 ô như trạng thái ban đầu trước khi click
             DrawTexturePro(cellTexture[c[i1][j1]], { 0, 0, 1.0f * cellTexture[c[i1][j1]].width, 1.0f * cellTexture[c[i1][j1]].height }, rec1, { 0, 0 }, 0, WHITE);

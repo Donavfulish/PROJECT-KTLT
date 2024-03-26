@@ -410,6 +410,10 @@ void Play_OPTION(int boardWidth, int boardLength)
     Texture2D heart = LoadTexture("heart.png");
     int heartX = 190;
     int heartY = 115;
+    int fontSize = 50;
+    Font font = GetFontDefault();
+    char s[4];
+
 
     // Khởi tạo Textures cho các Cell
     arrangeCellID();
@@ -429,6 +433,12 @@ void Play_OPTION(int boardWidth, int boardLength)
             DrawTexturePro(heart, { 0, 0, float(heart.width), float(heart.height) }, { float(heartX + 50 * i), float(heartY), 60, 60 }, { 0, 0 }, 0, RAYWHITE);
         for (int i = tmp - 1; i >= Matrix.life; i--)
             DrawTexturePro(heart, { 0, 0, float(heart.width), float(heart.height) }, { float(heartX + 50 * i), float(heartY), 60, 60 }, { 0, 0 }, 0, BLACK);
+       
+        // Hiển thị sự thay đổi của điểm số
+        _itoa_s(Matrix.score, s, 10);
+        DrawTextEx(font, s, { 910, 675 }, fontSize, 2, BLACK);
+
+        // Vẽ lưới
         Paint_Broad(c, boardLength, boardWidth, Matrix);
         PickCell(c, boardLength, boardWidth, countcell, Matrix);
         // Game Finish Verify
