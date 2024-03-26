@@ -42,6 +42,8 @@ void GameStarting_Play()
     // Vòng lặp chính
     while (!WindowShouldClose())
     {
+        if (!IsSoundPlaying(sound_BackgroundMenu)) PlaySound(sound_BackgroundMenu);
+
         // Bắt đầu vẽ
         BeginDrawing();
         ClearBackground(SKYBLUE);
@@ -193,6 +195,8 @@ void GameStarting_Play_Option()
 
     while (!WindowShouldClose())
     {
+        if (!IsSoundPlaying(sound_BackgroundMenu)) PlaySound(sound_BackgroundMenu);
+
         // Bắt đầu vẽ
         BeginDrawing();
         ClearBackground(SKYBLUE);
@@ -332,6 +336,9 @@ void GameStarting_Play_Option()
     UnloadTexture(texture);
 }
 
+vector<int> cellID;
+vector<Texture> cellTexture;
+
 // Hàm hiển thị cửa sổ chơi và thực thi quá trình chơi
 void Play_OPTION(int boardWidth, int boardLength)
 {
@@ -360,7 +367,7 @@ void Play_OPTION(int boardWidth, int boardLength)
         val[i] = new board[boardLength + 2];
 
     // Khởi tạo vector ngẫu nhiên các chỉ số nguyên tượng trưng cho mỗi chữ cái sau đó đảo thứ tự ngẫu nhiên
-    int value = 0; // Value
+    int value = -1; // Value
     int occ = 6; // Occurrences: Biến lưu số lần xuất hiện tối đa của một ô (phải là số chẵn)
     int cur = 0; // Current: Biến đếm xem ô đang duyệt là ô thứ mấy
     for (int i = 1; i <= boardWidth; i++)
@@ -404,18 +411,24 @@ void Play_OPTION(int boardWidth, int boardLength)
     int heartX = 190;
     int heartY = 115;
 
+    // Khởi tạo Textures cho các Cell
+    arrangeCellID();
+    LoadNCellTexture(countDistinctCell(c, Matrix.height, Matrix.width));
+
     // Khởi tạo cửa sổ chơi
     while (!WindowShouldClose()) {
+        StopSound(sound_BackgroundMenu);
+        if (!IsSoundPlaying(sound_BackgroundPlay)) PlaySound(sound_BackgroundPlay);
+
         BeginDrawing();
         DrawTexturePro(background, { 0, 0, float(background.width), float(background.height) }, { 0, 0, 1200, 900 }, { 0, 0 }, 0, RAYWHITE);
 
-        // Màn có độ khó N*N thì sẽ được cung cấp N/2 mạn
+        // Màn có độ khó N*N thì sẽ được cung cấp N/2 mạng
         // g sống
         for (int i = 0; i < Matrix.life; i++)
             DrawTexturePro(heart, { 0, 0, float(heart.width), float(heart.height) }, { float(heartX + 50 * i), float(heartY), 60, 60 }, { 0, 0 }, 0, RAYWHITE);
         for (int i = tmp - 1; i >= Matrix.life; i--)
             DrawTexturePro(heart, { 0, 0, float(heart.width), float(heart.height) }, { float(heartX + 50 * i), float(heartY), 60, 60 }, { 0, 0 }, 0, BLACK);
-        cout << Matrix.life << "\n";
         Paint_Broad(c, boardLength, boardWidth, Matrix);
         PickCell(c, boardLength, boardWidth, countcell, Matrix);
         // Game Finish Verify
@@ -424,4 +437,5 @@ void Play_OPTION(int boardWidth, int boardLength)
         EndDrawing();
     }
     UnloadTexture(background);
+    UnloadAllCellTexture();
 }

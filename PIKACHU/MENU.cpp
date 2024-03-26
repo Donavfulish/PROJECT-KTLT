@@ -40,6 +40,8 @@ void GameStarting_Menu()
     // Vòng lặp chính
     while (!WindowShouldClose())
     {
+        if (!IsSoundPlaying(sound_BackgroundMenu)) PlaySound(sound_BackgroundMenu);
+
         RightClickOn = RCO_NONE; 
 
         // Bắt đầu vẽ

@@ -1,10 +1,14 @@
 ﻿#include <iostream>
 #include "struct.h"
 #include "raylib.h"
+#include "soundlib.h"
 #include <time.h>
 #include <set>
 #include <map>
 #include <vector>
+#include <algorithm>
+#include <random>
+#include <string>
 
 using namespace std;
 Rectangle rec = { 100, 100, 200, 80 };
@@ -33,16 +37,20 @@ void Paint_Broad(int** c, int height, int width, matrix Matrix)
             if (c[i][j] != -1)
             {
 
-                char text[2] = { Matrix.val[i][j].data, '\0' };
+                //char text[2] = { Matrix.val[i][j].data, '\0' };
 
-                //Lấy kích thước ký tự và tính toán tọa độ trung tâm ô chữ để vẽ
-                Vector2 textSize = MeasureTextEx(font, text, fontSize, 0);
-                Vector2 positionDraw = { rec.x + (rec.width - textSize.x) / 2 , rec.y + (rec.height - textSize.y) / 2 };
+                ////Lấy kích thước ký tự và tính toán tọa độ trung tâm ô chữ để vẽ
+                //Vector2 textSize = MeasureTextEx(font, text, fontSize, 0);
+                //Vector2 positionDraw = { rec.x + (rec.width - textSize.x) / 2 , rec.y + (rec.height - textSize.y) / 2 };
 
-                //Vẽ ô, đường viền ô và chữ vào trung tâm ô
-                DrawRectangleRounded(rec, 0, 0, BLUE);
-                DrawRectangleLines(rec.x, rec.y, rec.width, rec.height, BLACK);
-                DrawTextEx(font, text, positionDraw, fontSize, 0, Fade(BLACK, 0.8f));
+                ////Vẽ ô, đường viền ô và chữ vào trung tâm ô
+                //DrawRectangleRounded(rec, 0, 0, BLUE);
+                //DrawRectangleLines(rec.x, rec.y, rec.width, rec.height, BLACK);
+                //DrawTextEx(font, text, positionDraw, fontSize, 0, Fade(BLACK, 0.8f));
+
+                DrawTexturePro(cellTexture[c[i][j]], { 0, 0, 1.0f * cellTexture[c[i][j]].width, 1.0f * cellTexture[c[i][j]].height }, rec, { 0, 0 }, 0, WHITE);
+                Matrix.val[i][j].data = c[i][j];
+
             }
         }
     }
@@ -75,11 +83,12 @@ void PickCell(int** c, int width, int height, int& countcell, matrix &Matrix) //
                 Vector2 textSize = MeasureTextEx(font, text, fontSize, 0);
                 Vector2 positionDraw = { rec.x + (rec.width - textSize.x) / 2 , rec.y + (rec.height - textSize.y) / 2 };
                 DrawRectangleRounded(rec, 0, 0, Fade(RED, 0.7f));
-                DrawTextEx(font, text, positionDraw, fontSize, 0, Fade(WHITE, 0.8f));
 
                 // Nếu click chuột thì bắt đầu cập nhật
                 if (IsMouseButtonPressed(0))
                 {
+                    // Tạo âm thanh
+                    PlaySound(sound_ClickOnCell);
 
                     // Nếu chọn ô đầu tiên trong cặp thì cập nhật vector vị trí 1
                     if (selectedCells[0].x == -1)
@@ -101,13 +110,9 @@ void PickCell(int** c, int width, int height, int& countcell, matrix &Matrix) //
         int i1 = selectedCells[0].y;
         int j1 = selectedCells[0].x;
         Rectangle rec1 = { x1, y1, recHeight, recWidth };
-        char text1[2] = { Matrix.val[i1][j1].data, '\0' };
 
         // Chuyển ô thành màu đen
-        Vector2 textSize = MeasureTextEx(font, text1 , fontSize, 0);
-        Vector2 positionDraw = { rec1.x + (rec1.width - textSize.x) / 2 , rec1.y + (rec1.height - textSize.y) / 2 };
-        DrawRectangleRounded(rec1, 0, 0, Fade(BLACK, 0.7f));
-        DrawTextEx(font, text1, positionDraw, fontSize, 0, Fade(WHITE, 0.8f));
+        DrawRectangleRounded(rec1, 0, 0, Fade(BLACK, 0.6f));
     }
 
     // Nếu đã chọn xong một cặp thì kiểm tra điều kiện, thõa mãn thì xóa cả 2 ô
@@ -128,8 +133,6 @@ void PickCell(int** c, int width, int height, int& countcell, matrix &Matrix) //
         int i2 = selectedCells[1].y;
         int j2 = selectedCells[1].x;
         Rectangle rec1 = { x1, y1, recHeight, recWidth }, rec2 = { x2, y2, recHeight, recWidth };
-        char text1[2] = { Matrix.val[i1][j1].data, '\0' };
-        char text2[2] = { Matrix.val[i2][j2].data, '\0' };
 
         // Nếu thõa điều kiện thì dữ liệu chứa trong ô bị xóa, trạng thái của ô từ 0 trở thành 1
         if (Matrix.val[i1][j1].data == Matrix.val[i2][j2].data && checkUseDij(selectedCells[0], selectedCells[1], width, c))
@@ -140,48 +143,40 @@ void PickCell(int** c, int width, int height, int& countcell, matrix &Matrix) //
             c[i2][j2] = -1;
             Matrix.val[i1][j1].check = 1;
             Matrix.val[i2][j2].check = 1;
+            // Tạo âm thanh
+            PlaySound(sound_Correct);
             countcell = countCellOccurrences(c, height, width); // Âu thêm vô để check thôi, Hà xóa cũng được 
         }
 
         // Nếu không thõa thì trở về trạng thái ban đầu trước khi click
         else
         {
+            PlaySound(sound_Wrong);
+
             // Trừ đi một mạng chuyển trái tim thành màu đen
             Matrix.life--;
             
-            // Ô 1
-            Vector2 textSize = MeasureTextEx(font, text1, fontSize, 0);
-            Vector2 positionDraw = { rec1.x + (rec1.width - textSize.x) / 2 , rec1.y + (rec1.height - textSize.y) / 2 };
-            DrawRectangleRounded(rec1, 0, 0, Fade(BLUE, 0.6f));
-            DrawRectangleLines(rec1.x, rec1.y, rec1.width, rec1.height, Fade(BLACK, 2));
-            DrawTextEx(font, text1, positionDraw, fontSize, 0, Fade(BLACK, 0.8f));
-
-            // Ô 2
-            Vector2 textSize2 = MeasureTextEx(font, text2, fontSize, 0);
-            Vector2 positionDraw2 = { rec2.x + (rec2.width - textSize2.x) / 2 , rec2.y + (rec2.height - textSize2.y) / 2 };
-            DrawRectangleRounded(rec2, 0, 0, Fade(BLUE, 0.6f));
-            DrawRectangleLines(rec2.x, rec2.y, rec2.width, rec2.height, Fade(BLACK, 2));
-            DrawTextEx(font, text2, positionDraw2, fontSize, 0, Fade(BLACK, 0.8f));
-
-            // Cập nhật lại trạng thái ban đầu cho hai vecto lưu vị trí
+            // Vẽ lại 2 ô như trạng thái ban đầu trước khi click
+            DrawTexturePro(cellTexture[c[i1][j1]], { 0, 0, 1.0f * cellTexture[c[i1][j1]].width, 1.0f * cellTexture[c[i1][j1]].height }, rec1, { 0, 0 }, 0, WHITE);
+            DrawTexturePro(cellTexture[c[i2][j2]], { 0, 0, 1.0f * cellTexture[c[i2][j2]].width, 1.0f * cellTexture[c[i2][j2]].height }, rec2, { 0, 0 }, 0, WHITE);
         }
+        // Cập nhật lại trạng thái ban đầu cho hai vecto lưu vị trí
         selectedCells[0] = { -1, -1 };
         selectedCells[1] = { -1, -1 };
     }
 }
 
 // Hàm đếm xem trong bảng PlayBoard có bao nhiêu ô khác nhau
-int countDistinctCell(int c[][12])
+int countDistinctCell(int** c, int boardHeight, int boardWidth)
 {
     set<int> cell;
-    for (int i = 1; i <= 10; i++)
+    for (int i = 1; i <= boardHeight; i++)
     {
-        for (int j = 1; j <= 10; j++)
+        for (int j = 1; j <= boardWidth; j++)
         {
             if (c[i][j] != -1) cell.insert(c[i][j]);
         }
     }
-    for (int x : cell) cout << (char)('A' + x) << endl;
     return cell.size();
 }
 
@@ -208,4 +203,40 @@ int countCellOccurrences(int** c, int boardHeight, int boardWidth)
         cout << duyet.first << " : " << duyet.second << endl;
     }
     return countAll;
+}
+
+// Sắp xếp ID các giá trị của cell
+/* Chi tiết:
+* Mỗi cell có giá trị int >= 1
+* Cell Textures có ID từ 1 -> 50 (1.png -> 50.png)
+* Hàm arrangeCellID sắp xếp random thứ tự tương ứng của Cell ID với giá trị trong Cell
+* Tức là thay vì Cell = 1 tương ứng với textures có ID = 1 (1.png) thì giờ nó có thể tương ứng với một ID khác sau random
+*/
+void arrangeCellID()
+{
+    cellID.clear();
+    for (int i = 1; i <= 50; i++)
+    {
+        cellID.push_back(i);
+    }
+    shuffle(cellID.begin(), cellID.end(), default_random_engine(time(nullptr)));
+}
+
+// Hàm lưu texture của N cell khác nhau dựa vào thứ tự của cellID
+void LoadNCellTexture(int N)
+{
+    cellTexture.clear();
+    for (int i = 0; i < N; i++)
+    {
+        Texture texture = LoadTexture(("Texture\\Cell\\" + to_string(cellID[i]) + ".png").c_str());
+        cellTexture.push_back(texture);
+    }
+}
+
+void UnloadAllCellTexture()
+{
+    for (Texture& texture : cellTexture)
+    {
+        UnloadTexture(texture);
+    }
 }
