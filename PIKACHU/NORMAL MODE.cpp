@@ -22,7 +22,7 @@ void Paint_Broad(int** c, int height, int width, matrix Matrix)
     float recHeight = 55 * 10 / height;
     float fontSize = 50.0f;
     Font font = GetFontDefault();
-    rec = { 70 - recWidth,200 - recHeight, recHeight, recWidth };
+    rec = { 70 - recWidth,250 - recHeight, recHeight, recWidth };
 
     // Vẽ lưới ô
     for (int i = 1; i <= height; i++)
@@ -53,7 +53,7 @@ void PickCell(int** c, int width, int height, int& countcell, matrix &Matrix) //
     int recHeight = 55 * 10 / height;
     int fontSize = 50;
     Font font = GetFontDefault();
-    rec = { 70 - float(recWidth),200 - float(recHeight), float(recHeight), float(recWidth) };
+    rec = { 70 - float(recWidth),250 - float(recHeight), float(recHeight), float(recWidth) };
 
     // Thao tác với lưới ô
     for (int i = 1; i <= height; i++)
@@ -95,7 +95,7 @@ void PickCell(int** c, int width, int height, int& countcell, matrix &Matrix) //
     {
         // Lưu lại tọa độ và vị trí ô
         int x1 = 70 - recWidth + recWidth * (selectedCells[0].x);
-        int y1 = 200 - recHeight + recHeight * (selectedCells[0].y);
+        int y1 = 250 - recHeight + recHeight * (selectedCells[0].y);
         int i1 = selectedCells[0].y;
         int j1 = selectedCells[0].x;
         Rectangle rec1 = { x1, y1, recHeight, recWidth };
@@ -114,9 +114,9 @@ void PickCell(int** c, int width, int height, int& countcell, matrix &Matrix) //
     {
         // Lưu tọa độ và vị trí 2 ô
         int x1 = 70 - recWidth * (selectedCells[0].x);
-        int y1 = 200 - recHeight * (selectedCells[0].y);
+        int y1 = 250 - recHeight * (selectedCells[0].y);
         int x2 = 70 - recWidth * (selectedCells[1].x);
-        int y2 = 200 - recHeight * (selectedCells[1].y);
+        int y2 = 250 - recHeight * (selectedCells[1].y);
         int i1 = selectedCells[0].y;
         int j1 = selectedCells[0].x;
         int i2 = selectedCells[1].y;

@@ -406,10 +406,10 @@ void Play_OPTION(int boardWidth, int boardLength)
 
     // Lấy background và các hình trang trí
     InitWindow(screenWidth, screenHeight, "dcm van ha");
-    Texture2D background = LoadTexture("BACKground.png");
+    Texture2D background = LoadTexture("Background_Play.png");
     Texture2D heart = LoadTexture("heart.png");
-    int heartX = 190;
-    int heartY = 115;
+    int heartX = 195;
+    int heartY = 82;
     int fontSize = 50;
     Font font = GetFontDefault();
     char s[4];
