@@ -18,10 +18,10 @@ typedef pair<ii, ii> node;
 int dx[] = { -1,1,0,0 };
 int dy[] = { 0,0,-1,1 };
 
-bool check(int x, int y, int n, int c[][12]) {
+bool check(int x, int y, int n, int **c) {
     return x >= 0 && y >= 0 && x <= n + 1 && y <= n + 1 && c[x][y] == -1;
 }
-bool checkUseDij(Vector2 A, Vector2 B,int Size, int c[][12]) {
+bool checkUseDij(Vector2 A, Vector2 B,int Size, int **c) {
     vector <vector<vector<int> > > f(Size + 3,vector<vector<int> >(Size + 3,vector<int>(5,100)));
     priority_queue <node, vector<node>, greater<node> > p;
     // f[Size + 1][Size + 1][5] 

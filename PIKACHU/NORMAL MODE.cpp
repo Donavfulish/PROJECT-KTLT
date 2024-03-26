@@ -1,7 +1,6 @@
 ﻿#include <iostream>
 #include "struct.h"
 #include "raylib.h"
-#include "soundlib.h"
 #include <time.h>
 #include <set>
 #include <map>
@@ -9,59 +8,79 @@
 
 using namespace std;
 Rectangle rec = { 100, 100, 200, 80 };
-board val[11][11];
 Vector2 selectedCells[2] = { {-1, -1}, {-1, -1} };
+
 // Khởi tạo lưới ô chữ cái
-void Paint_Broad(int c[][12])
+void Paint_Broad(int** c, int height, int width, matrix Matrix)
 {
-    rec = { 10,10,75,75 };
-    for (int i = 1; i <= 10 ; i++)
+    // Khởi tạo kích thước font và ô chữ
+    float recWidth = 55 * 10 / width;
+    float recHeight = 55 * 10 / height;
+    float fontSize = 50.0f;
+    Font font = GetFontDefault();
+    rec = { 70 - recWidth,200 - recHeight, recHeight, recWidth };
+
+    // Vẽ lưới ô
+    for (int i = 1; i <= height; i++)
     {
-        rec.y += 75;
-        rec.x = 10;
-        for (int j = 1; j <= 10; j++)
+        rec.y += recHeight;
+        rec.x = 70 - recWidth;
+        for (int j = 1; j <= width; j++)
         {
-            rec.x += 75;
+            rec.x += recWidth;
+
             // Kiểm tra ô đã bị xóa chưa
             if (c[i][j] != -1)
             {
-                //Nếu chưa thì khởi tạo chữ cái ngẫu nhiên và vẽ ô
-                char asciiChar = 'A' + c[i][j];
-                char text[2] = { asciiChar, '\0' };
-                val[i][j].data = text[0];
 
-                DrawRectangleRounded(rec, 0, 0, Fade(BLUE, 0.6f));
-                DrawRectangleLines(rec.x, rec.y, rec.width, rec.height, Fade(BLACK, 2));
-                DrawText(text, rec.x + 7.5 + MeasureText(text, 50) / 2, rec.y + MeasureText(text, 50) / 2, 50, Fade(BLACK, 0.8f));
+                char text[2] = { Matrix.val[i][j].data, '\0' };
+
+                //Lấy kích thước ký tự và tính toán tọa độ trung tâm ô chữ để vẽ
+                Vector2 textSize = MeasureTextEx(font, text, fontSize, 0);
+                Vector2 positionDraw = { rec.x + (rec.width - textSize.x) / 2 , rec.y + (rec.height - textSize.y) / 2 };
+
+                //Vẽ ô, đường viền ô và chữ vào trung tâm ô
+                DrawRectangleRounded(rec, 0, 0, BLUE);
+                DrawRectangleLines(rec.x, rec.y, rec.width, rec.height, BLACK);
+                DrawTextEx(font, text, positionDraw, fontSize, 0, Fade(BLACK, 0.8f));
             }
         }
     }
 }
 
 //Cập nhật các ô đã được click chọn
-void PickCell(int c[][12], int &countCell) // Biến countCell: lưu tổng số ô còn lại
+void PickCell(int** c, int width, int height, int& countcell, matrix &Matrix) // Biến countCell: lưu tổng số ô còn lại
 {
-    rec = { 10,10,75,75 };
-    for (int i = 1; i <= 10 ; i++)
+    // Khởi tạo kích thước font và ô chữ
+    int recWidth = 55 * 10 / width;
+    int recHeight = 55 * 10 / height;
+    int fontSize = 50;
+    Font font = GetFontDefault();
+    rec = { 70 - float(recWidth),200 - float(recHeight), float(recHeight), float(recWidth) };
+
+    // Thao tác với lưới ô
+    for (int i = 1; i <= height; i++)
     {
-        rec.y += 75;
-        rec.x = 10;
-        for (int j = 1; j <= 10; j++)
+        rec.y += recHeight;
+        rec.x = 70 - recWidth;
+        for (int j = 1; j <= width; j++)
         {
-            rec.x += 75;
+            rec.x += recWidth;
             // Kiểm tra vị trí con trỏ chuột
             if (CheckCollisionPointRec(GetMousePosition(), rec) && c[i][j] != -1)
             {
+                char text[2] = { Matrix.val[i][j].data, '\0' };
 
                 // Con trỏ chuột di tới đâu thì ô ở đó hiện đỏ lên (giống như cờ vua online)
+                Vector2 textSize = MeasureTextEx(font, text, fontSize, 0);
+                Vector2 positionDraw = { rec.x + (rec.width - textSize.x) / 2 , rec.y + (rec.height - textSize.y) / 2 };
                 DrawRectangleRounded(rec, 0, 0, Fade(RED, 0.7f));
-                DrawText(&val[i][j].data, rec.x + 7.5 + MeasureText(&val[i][j].data, 50) / 2, rec.y + MeasureText(&val[i][j].data, 50) / 2, 50, Fade(WHITE, 0.6f));
+                DrawTextEx(font, text, positionDraw, fontSize, 0, Fade(WHITE, 0.8f));
 
                 // Nếu click chuột thì bắt đầu cập nhật
                 if (IsMouseButtonPressed(0))
                 {
-                    // Tạo âm thanh
-                    PlaySound(sound_ClickOnCell);
+
                     // Nếu chọn ô đầu tiên trong cặp thì cập nhật vector vị trí 1
                     if (selectedCells[0].x == -1)
                         selectedCells[0] = { float(j), float(i) };
@@ -73,22 +92,22 @@ void PickCell(int c[][12], int &countCell) // Biến countCell: lưu tổng số
             }
         }
     }
-
-    //cout << selectedCells[0].x << " " << selectedCells[0].y << " " << selectedCells[1].x << " " << selectedCells[1].y << "\n";
-
     // Ô đầu tiên được chọn trong cặp sẽ chuyển thành màu đen báo hiệu cho việc đã chọn
     if (selectedCells[0].x != -1 && selectedCells[1].x == -1)
     {
         // Lưu lại tọa độ và vị trí ô
-        int x1 = 10 + 75 * (selectedCells[0].x);
-        int y1 = 10 + 75 * (selectedCells[0].y);
+        int x1 = 70 - recWidth + recWidth * (selectedCells[0].x);
+        int y1 = 200 - recHeight + recHeight * (selectedCells[0].y);
         int i1 = selectedCells[0].y;
         int j1 = selectedCells[0].x;
-        Rectangle rec1 = { x1, y1, 75, 75 };
+        Rectangle rec1 = { x1, y1, recHeight, recWidth };
+        char text1[2] = { Matrix.val[i1][j1].data, '\0' };
 
         // Chuyển ô thành màu đen
-        DrawRectangleRounded(rec1, 0, 0, Fade(BLACK, 1));
-        DrawText(&val[i1][j1].data, rec1.x + 7.5 + MeasureText(&val[i1][j1].data, 50) / 2, rec1.y + MeasureText(&val[i1][j1].data, 50) / 2, 50, Fade(WHITE, 0.6f));
+        Vector2 textSize = MeasureTextEx(font, text1 , fontSize, 0);
+        Vector2 positionDraw = { rec1.x + (rec1.width - textSize.x) / 2 , rec1.y + (rec1.height - textSize.y) / 2 };
+        DrawRectangleRounded(rec1, 0, 0, Fade(BLACK, 0.7f));
+        DrawTextEx(font, text1, positionDraw, fontSize, 0, Fade(WHITE, 0.8f));
     }
 
     // Nếu đã chọn xong một cặp thì kiểm tra điều kiện, thõa mãn thì xóa cả 2 ô
@@ -100,45 +119,55 @@ void PickCell(int c[][12], int &countCell) // Biến countCell: lưu tổng số
     else if (selectedCells[1].x != -1)
     {
         // Lưu tọa độ và vị trí 2 ô
-        int x1 = 10 + 75 * (selectedCells[0].x );
-        int y1 = 10 + 75 * (selectedCells[0].y );
-        int x2 = 10 + 75 * (selectedCells[1].x );
-        int y2 = 10 + 75 * (selectedCells[1].y );
+        int x1 = 70 - recWidth * (selectedCells[0].x);
+        int y1 = 200 - recHeight * (selectedCells[0].y);
+        int x2 = 70 - recWidth * (selectedCells[1].x);
+        int y2 = 200 - recHeight * (selectedCells[1].y);
         int i1 = selectedCells[0].y;
         int j1 = selectedCells[0].x;
         int i2 = selectedCells[1].y;
         int j2 = selectedCells[1].x;
-        Rectangle rec1 = { x1, y1, 75, 75 }, rec2 = { x2, y2, 75, 75 };
+        Rectangle rec1 = { x1, y1, recHeight, recWidth }, rec2 = { x2, y2, recHeight, recWidth };
+        char text1[2] = { Matrix.val[i1][j1].data, '\0' };
+        char text2[2] = { Matrix.val[i2][j2].data, '\0' };
 
         // Nếu thõa điều kiện thì dữ liệu chứa trong ô bị xóa, trạng thái của ô từ 0 trở thành 1
-        if (val[i1][j1].data == val[i2][j2].data && checkUseDij(selectedCells[0], selectedCells[1], 10, c))
+        if (Matrix.val[i1][j1].data == Matrix.val[i2][j2].data && checkUseDij(selectedCells[0], selectedCells[1], width, c))
         {
             DrawRectangleRounded(rec1, 0, 0, RAYWHITE);
             DrawRectangleRounded(rec2, 0, 0, RAYWHITE);
             c[i1][j1] = -1;
             c[i2][j2] = -1;
-            val[i1][j1].check = 1;
-            val[i2][j2].check = 1;
-            // Tạo âm thanh
-            PlaySound(sound_Correct);
-            countCell = countCellOccurrences(c); // Âu thêm vô để check thôi, Hà xóa cũng được 
+            Matrix.val[i1][j1].check = 1;
+            Matrix.val[i2][j2].check = 1;
+            countcell = countCellOccurrences(c, height, width); // Âu thêm vô để check thôi, Hà xóa cũng được 
         }
 
         // Nếu không thõa thì trở về trạng thái ban đầu trước khi click
         else
         {
+            // Trừ đi một mạng chuyển trái tim thành màu đen
+            Matrix.life--;
+            
+            // Ô 1
+            Vector2 textSize = MeasureTextEx(font, text1, fontSize, 0);
+            Vector2 positionDraw = { rec1.x + (rec1.width - textSize.x) / 2 , rec1.y + (rec1.height - textSize.y) / 2 };
             DrawRectangleRounded(rec1, 0, 0, Fade(BLUE, 0.6f));
-            DrawRectangleLines(x1, y1, 75, 75, Fade(BLACK, 2));
-            DrawText(&val[i1][j1].data, rec1.x + 7.5 + MeasureText(&val[i1][j1].data, 50) / 2, rec1.y + MeasureText(&val[i1][j1].data, 50) / 2, 50, Fade(WHITE, 0.6f));
+            DrawRectangleLines(rec1.x, rec1.y, rec1.width, rec1.height, Fade(BLACK, 2));
+            DrawTextEx(font, text1, positionDraw, fontSize, 0, Fade(BLACK, 0.8f));
+
+            // Ô 2
+            Vector2 textSize2 = MeasureTextEx(font, text2, fontSize, 0);
+            Vector2 positionDraw2 = { rec2.x + (rec2.width - textSize2.x) / 2 , rec2.y + (rec2.height - textSize2.y) / 2 };
             DrawRectangleRounded(rec2, 0, 0, Fade(BLUE, 0.6f));
-            DrawRectangleLines(x2, y2, 75, 75, Fade(BLACK, 2));
-            DrawText(&val[i2][j2].data, rec2.x + 7.5 + MeasureText(&val[i2][j2].data, 50) / 2, rec2.y + MeasureText(&val[i2][j2].data, 50) / 2, 50, Fade(WHITE, 0.6f));
-            PlaySound(sound_Wrong);
+            DrawRectangleLines(rec2.x, rec2.y, rec2.width, rec2.height, Fade(BLACK, 2));
+            DrawTextEx(font, text2, positionDraw2, fontSize, 0, Fade(BLACK, 0.8f));
+
             // Cập nhật lại trạng thái ban đầu cho hai vecto lưu vị trí
         }
-            selectedCells[0] = { -1, -1 };
-            selectedCells[1] = { -1, -1 };
-    } 
+        selectedCells[0] = { -1, -1 };
+        selectedCells[1] = { -1, -1 };
+    }
 }
 
 // Hàm đếm xem trong bảng PlayBoard có bao nhiêu ô khác nhau
@@ -157,13 +186,13 @@ int countDistinctCell(int c[][12])
 }
 
 // Hàm đếm số lần xuất hiện của các ô trong bảng PlayBoard
-int countCellOccurrences(int c[][12])
+int countCellOccurrences(int** c, int boardHeight, int boardWidth)
 {
     int countAll = 0;
     map<char, int> cell_occurences;
-    for (int i = 1; i <= 10; i++)
+    for (int i = 1; i <= boardHeight; i++)
     {
-        for (int j = 1; j <= 10; j++)
+        for (int j = 1; j <= boardWidth; j++)
         {
             if (c[i][j] != -1)
             {

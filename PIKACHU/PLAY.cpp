@@ -335,48 +335,93 @@ void GameStarting_Play_Option()
 // Hàm hiển thị cửa sổ chơi và thực thi quá trình chơi
 void Play_OPTION(int boardWidth, int boardLength)
 {
-    StopSound(sound_BackgroundMenu);
-    PlaySound(sound_BackgroundPlay);
-
     // Khai báo kích thước màn hình
     const int screenWidth = 1200;
     const int screenHeight = 900;
 
+    // Cấp phát bộ nhớ cho con trỏ lưu dữ liệu của lưới ô 2 chiều
     srand(time(0));
-    InitWindow(screenWidth, screenHeight, "dcm van ha");
     vector<int> ArrayRandom;
-    int count = -1, c[13][12];
-    memset(c, -1, sizeof(c));
+    int count = -1, countcell;
+    int** c = new int* [boardWidth + 1];
+    for (int i = 0; i < boardWidth + 2; i++)
+        c[i] = new int[boardLength + 2];
+
+    // Khởi tạo -1 cho tất cả giá trị
+    for (int i = 0; i < boardWidth + 2; i++) {
+        for (int j = 0; j < boardLength + 2; j++) {
+            c[i][j] = -1;
+        }
+    }
+
+    // Cấp phát bộ nhớ cho matrix
+    board** val = new board * [boardWidth + 1];
+    for (int i = 0; i < boardWidth + 2; i++)
+        val[i] = new board[boardLength + 2];
 
     // Khởi tạo vector ngẫu nhiên các chỉ số nguyên tượng trưng cho mỗi chữ cái sau đó đảo thứ tự ngẫu nhiên
-    int val = 0; // Value
-    int occ = 8; // Occurrences: Biến lưu số lần xuất hiện tối đa của một ô (phải là số chẵn)
+    int value = 0; // Value
+    int occ = 6; // Occurrences: Biến lưu số lần xuất hiện tối đa của một ô (phải là số chẵn)
     int cur = 0; // Current: Biến đếm xem ô đang duyệt là ô thứ mấy
-    for (int i = 1; i <= 10; i++)
+    for (int i = 1; i <= boardWidth; i++)
     {
-        for (int j = 1; j <= 10; j++)
+        for (int j = 1; j <= boardLength; j++)
         {
-            if (cur++ % occ == 0) val++; // Nếu <occ> ô liên tiếp có giá trị giống nhau (là val) thì val tăng lên 1 
-            ArrayRandom.push_back(val);
+            if (cur++ % occ == 0) value++; // Nếu <occ> ô liên tiếp có giá trị giống nhau (là val) thì val tăng lên 1 
+            ArrayRandom.push_back(value);
         }
     }
     shuffle(ArrayRandom.begin(), ArrayRandom.end(), default_random_engine(time(nullptr)));
 
     // Lưu các chỉ số được đảo ngẫu nhiên vào một mảng hai chiều kiểu nguyên
-    for (int i = 1; i <= 10; i++)
-        for (int j = 1; j <= 10; j++)
+    for (int i = 1; i <= boardWidth; i++)
+        for (int j = 1; j <= boardLength; j++)
             c[i][j] = ArrayRandom[++count];
 
-    int countCell = countCellOccurrences(c);
+    // Chuyyển chỉ số thành ký tự vào matrix
+    for (int i = 1; i <= boardWidth; i++)
+        for (int j = 1; j <= boardLength; j++)
+        {
+            char asciiChar = 'A' + c[i][j];
+            char text[2] = { asciiChar, '\0' };
+            val[i][j].data = text[0];
+        }
+
+    // Khởi tạo biến matrix
+    matrix Matrix;
+    Matrix.val = val;
+    Matrix.life = boardLength / 2;
+    Matrix.width = boardWidth;
+    Matrix.height = boardLength;
+    Matrix.score = 0;
+    int tmp = Matrix.life;
+
+
+    // Lấy background và các hình trang trí
+    InitWindow(screenWidth, screenHeight, "dcm van ha");
+    Texture2D background = LoadTexture("BACKground.png");
+    Texture2D heart = LoadTexture("heart.png");
+    int heartX = 190;
+    int heartY = 115;
+
+    // Khởi tạo cửa sổ chơi
     while (!WindowShouldClose()) {
         BeginDrawing();
-        ClearBackground(RAYWHITE);
-        Paint_Broad(c);
-        PickCell(c, countCell);
+        DrawTexturePro(background, { 0, 0, float(background.width), float(background.height) }, { 0, 0, 1200, 900 }, { 0, 0 }, 0, RAYWHITE);
 
+        // Màn có độ khó N*N thì sẽ được cung cấp N/2 mạn
+        // g sống
+        for (int i = 0; i < Matrix.life; i++)
+            DrawTexturePro(heart, { 0, 0, float(heart.width), float(heart.height) }, { float(heartX + 50 * i), float(heartY), 60, 60 }, { 0, 0 }, 0, RAYWHITE);
+        for (int i = tmp - 1; i >= Matrix.life; i--)
+            DrawTexturePro(heart, { 0, 0, float(heart.width), float(heart.height) }, { float(heartX + 50 * i), float(heartY), 60, 60 }, { 0, 0 }, 0, BLACK);
+        cout << Matrix.life << "\n";
+        Paint_Broad(c, boardLength, boardWidth, Matrix);
+        PickCell(c, boardLength, boardWidth, countcell, Matrix);
         // Game Finish Verify
-        if (countCell == 0) /* Code here */; // Nếu không còn ô nào trống
+        //if (countCell == 0) /* Code here */; // Nếu không còn ô nào trống
         // if (Hàm MoveSuggestion không tìm thấy gợi ý) /* Code here */
         EndDrawing();
     }
+    UnloadTexture(background);
 }
