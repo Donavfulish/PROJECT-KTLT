@@ -34,7 +34,7 @@ void Paint_Broad(int** c, int height, int width, matrix Matrix)
             rec.x += recWidth;
 
             // Kiểm tra ô đã bị xóa chưa
-            if (c[i][j] != -1)
+            if (c[i][j] != -1 && c[i][j] != -2)
             {
 
                 DrawTexturePro(cellTexture[c[i][j]], { 0, 0, 1.0f * cellTexture[c[i][j]].width, 1.0f * cellTexture[c[i][j]].height }, rec, { 0, 0 }, 0, WHITE);
@@ -66,11 +66,7 @@ void PickCell(int** c, int width, int height, int& countcell, matrix &Matrix) //
             // Kiểm tra vị trí con trỏ chuột
             if (CheckCollisionPointRec(GetMousePosition(), rec) && c[i][j] != -1)
             {
-                char text[2] = { Matrix.val[i][j].data, '\0' };
-
                 // Con trỏ chuột di tới đâu thì ô ở đó hiện đỏ lên (giống như cờ vua online)
-                Vector2 textSize = MeasureTextEx(font, text, fontSize, 0);
-                Vector2 positionDraw = { rec.x + (rec.width - textSize.x) / 2 , rec.y + (rec.height - textSize.y) / 2 };
                 DrawRectangleRounded(rec, 0, 0, Fade(RED, 0.7f));
 
                 // Nếu click chuột thì bắt đầu cập nhật
@@ -200,6 +196,38 @@ int countCellOccurrences(int** c, int boardHeight, int boardWidth)
     return countAll;
 }
 
+void PickOption(int** c, Rectangle recBulb, Rectangle recSetting, matrix& Matrix, Texture2D Bulb)
+{
+    vector<Vector2> Sugestion;
+    int status = -1;
+    if (CheckCollisionPointRec(GetMousePosition(), recBulb))
+    {
+        DrawTexturePro(Bulb, { 0, 0, float(Bulb.width), float(Bulb.height) }, { 750, 380, 125, 125 }, { 0, 0 }, 0, Fade(RED, 50));
+        if (IsMouseButtonPressed(0))
+        {
+            // Sử dụng quyền gợi ý
+            Sugestion = MoveSuggestion(Matrix, c, status);
+
+            // Khởi tạo các thông số sau khi gợi ý trả về tọa độ 2 ô đúng
+            float recWidth = 55 * 10 / Matrix.width;
+            float recHeight = 55 * 10 / Matrix.height;
+            int i1 = Sugestion[0].y;
+            int j1 = Sugestion[0].x;
+            int i2 = Sugestion[1].y;
+            int j2 = Sugestion[1].x;
+            Rectangle recSu1 = { (j1 - 1) * recWidth + 70, (i1 - 1) * recHeight + 250, recHeight, recWidth };
+            Rectangle recSu2 = { (j2 - 1) * recWidth + 70, (i2 - 1) * recHeight + 250, recHeight, recWidth };
+
+      
+            c[i1][j1] = -1;
+            c[i2][j2] = -1;
+
+            // Tạo âm thanh
+            PlaySound(sound_Correct);
+        }
+    }
+
+}
 // Sắp xếp ID các giá trị của cell
 /* Chi tiết:
 * Mỗi cell có giá trị int >= 1

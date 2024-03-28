@@ -5,6 +5,8 @@
 #include <algorithm>
 #include <vector>
 #include <random>
+#include <chrono>
+#include <thread>
 
 #define RCO_NONE -1
 #define RCO_EXIT 0
@@ -12,6 +14,7 @@
 #define RCO_TOURNAMENT 2
 
 #define LEVEL_BUTTON_SIZE 220
+
 
 // Hàm hiển thị và thực hiện các chức năng của cửa sổ Pikachu Menu - Play
 void GameStarting_Play()
@@ -340,8 +343,10 @@ vector<int> cellID;
 vector<Texture> cellTexture;
 
 // Hàm hiển thị cửa sổ chơi và thực thi quá trình chơi
+int start;
 void Play_OPTION(int boardWidth, int boardLength)
 {
+    start = GetTime();
     // Khai báo kích thước màn hình
     const int screenWidth = 1200;
     const int screenHeight = 900;
@@ -401,39 +406,50 @@ void Play_OPTION(int boardWidth, int boardLength)
     Matrix.width = boardWidth;
     Matrix.height = boardLength;
     Matrix.score = 0;
+    Matrix.time = boardLength * boardWidth * 3;
+    float currenttime = Matrix.time;
     int tmp = Matrix.life;
 
 
     // Lấy background và các hình trang trí
     InitWindow(screenWidth, screenHeight, "dcm van ha");
-    Texture2D background = LoadTexture("Background_Play.png");
+    Texture2D background = LoadTexture("BACKground.png");
     Texture2D heart = LoadTexture("heart.png");
+    Texture2D Bulb = LoadTexture("Bulb.png");
+    Texture2D Setting = LoadTexture("Setting.png");
     int heartX = 195;
     int heartY = 82;
     int fontSize = 50;
     Font font = GetFontDefault();
     char s[4];
-
+    Rectangle recBulb = { 750, 380, 125, 125 };
+    Rectangle recSetting = { 900, 380, 120, 120 };
 
     // Khởi tạo Textures cho các Cell
     arrangeCellID();
-    LoadNCellTexture(countDistinctCell(c, Matrix.height, Matrix.width));
+    LoadNCellTexture(countDistinctCell(c, Matrix.height, Matrix.width));   
 
     // Khởi tạo cửa sổ chơi
-    while (!WindowShouldClose()) {
+    while (!WindowShouldClose()) 
+    {
+        // Chơi nhạc
         StopSound(sound_BackgroundMenu);
         if (!IsSoundPlaying(sound_BackgroundPlay)) PlaySound(sound_BackgroundPlay);
 
+        // Vẽ background
         BeginDrawing();
         DrawTexturePro(background, { 0, 0, float(background.width), float(background.height) }, { 0, 0, 1200, 900 }, { 0, 0 }, 0, RAYWHITE);
 
-        // Màn có độ khó N*N thì sẽ được cung cấp N/2 mạng
-        // g sống
+        // Vẽ button gợi ý và option in game
+        DrawTexturePro(Bulb, { 0, 0, float(Bulb.width), float(Bulb.height) }, { 750, 380, 125, 125 }, { 0, 0 }, 0, RAYWHITE);
+        DrawTexturePro(Setting, { 0, 0, float(Setting.width), float(Setting.height) }, { 900, 380, 120, 120 }, { 0, 0 }, 0, RAYWHITE);
+
+        // Màn có độ khó N*N thì sẽ được cung cấp N/2 mạng sống
         for (int i = 0; i < Matrix.life; i++)
             DrawTexturePro(heart, { 0, 0, float(heart.width), float(heart.height) }, { float(heartX + 50 * i), float(heartY), 60, 60 }, { 0, 0 }, 0, RAYWHITE);
         for (int i = tmp - 1; i >= Matrix.life; i--)
             DrawTexturePro(heart, { 0, 0, float(heart.width), float(heart.height) }, { float(heartX + 50 * i), float(heartY), 60, 60 }, { 0, 0 }, 0, BLACK);
-       
+
         // Hiển thị sự thay đổi của điểm số
         _itoa_s(Matrix.score, s, 10);
         DrawTextEx(font, s, { 910, 675 }, fontSize, 2, BLACK);
@@ -441,11 +457,19 @@ void Play_OPTION(int boardWidth, int boardLength)
         // Vẽ lưới
         Paint_Broad(c, boardLength, boardWidth, Matrix);
         PickCell(c, boardLength, boardWidth, countcell, Matrix);
-        // Game Finish Verify
-        //if (countCell == 0) /* Code here */; // Nếu không còn ô nào trống
-        // if (Hàm MoveSuggestion không tìm thấy gợi ý) /* Code here */
+        PickOption(c, recBulb, recSetting, Matrix, Bulb);
+
+        // Cập nhật thời gian và vẽ thanh thời gian
+        currenttime = Matrix.time - (GetTime() - start);
+        DrawRectangle(225, 150, 410, 40, Fade(LIGHTGRAY, 200));
+        DrawRectangle(230, 155, 400, 30, RAYWHITE);
+        DrawRectangle(230, 155, currenttime / Matrix.time * 400, 30, { 255, 105, 180, 180 });
         EndDrawing();
+
     }
+
     UnloadTexture(background);
+    UnloadTexture(heart);
     UnloadAllCellTexture();
+
 }

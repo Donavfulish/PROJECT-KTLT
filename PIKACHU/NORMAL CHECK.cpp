@@ -63,21 +63,24 @@ bool checkUseDij(Vector2 A, Vector2 B,int Size, int **c) {
 
 vector<Vector2> MoveSuggestion(matrix Matrix, int** c, int& status)
 {
+    
     vector<Vector2> V;
-    for (int i = 1; i <= Matrix.height; i++)
-        for (int j = 1; j <= Matrix.width; i++)
+    for (int i = 1; i <= Matrix.height ; i++)
+        for (int j = 1; j <= Matrix.width; j++)
         {
             if (c[i][j] != -1)
             {
-                for (int i1 = i + 1; i1 <= Matrix.height; i1++)
-                    for (int j1 = j + 1; j <= Matrix.width; j1++)
+                for (int i1 = 1; i1 <= Matrix.height; i1++)
+                    for (int j1 = 1; j1 <= Matrix.width; j1++)
                     {
-                        if (c[i][j] == c[i1][j1] && checkUseDij({ float(i), float(j) }, { float(i1), float(j1) }, Matrix.height, c))
-                        {
-                            V.push_back({ float(i), float(j) });
-                            V.push_back({ float(i1), float(j1) });
-                            return V;
-                        }
+                        if ((i == i1) && (j == j1)) continue;
+                        else
+                            if (c[i][j] == c[i1][j1] && checkUseDij({ float(j), float(i) }, { float(j1), float(i1) }, Matrix.height, c))
+                            {
+                                V.push_back({ float(j), float(i) });
+                                V.push_back({ float(j1), float(i1) });
+                                return V;
+                            }
                     }
             }
         }

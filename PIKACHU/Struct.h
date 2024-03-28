@@ -32,6 +32,7 @@ struct matrix
 {
 	board** val;
 	int width, height, life, score;
+	float time;
 };
 struct statusLine
 {
@@ -41,6 +42,8 @@ struct statusLine
 
 void Paint_Broad(int** c, int height, int width, matrix Matrix);
 void PickCell(int** c, int height, int width, int& countcell, matrix &Matrix);
+void PickOption(int** c, Rectangle recBulb, Rectangle recSetting, matrix& Matrix, Texture2D Bulb);
 int countDistinctCell(int** c, int boardHeight, int boardWidth);
 int countCellOccurrences(int** c, int boardHeight, int boardWidth);
 bool checkUseDij(Vector2 A, Vector2 B, int Size, int** c);
+vector<Vector2> MoveSuggestion(matrix Matrix, int** c, int& status);
