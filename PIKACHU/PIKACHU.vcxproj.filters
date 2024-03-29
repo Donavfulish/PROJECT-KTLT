@@ -16,15 +16,12 @@
     <Filter Include="Source Files\GAME STARTING">
       <UniqueIdentifier>{ba111374-14b0-4fda-b0cb-c509baa13929}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\PLAY MODE">
+      <UniqueIdentifier>{31e101e4-9dc5-4ad0-bdc4-f5ff1ca8f37f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PIKACHU.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="NORMAL MODE.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="NORMAL CHECK.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MENU.cpp">
@@ -35,6 +32,24 @@
     </ClCompile>
     <ClCompile Include="PLAY.cpp">
       <Filter>Source Files\GAME STARTING</Filter>
+    </ClCompile>
+    <ClCompile Include="ACCOUNT.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FILE.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ADVANCED MODE.cpp">
+      <Filter>Source Files\PLAY MODE</Filter>
+    </ClCompile>
+    <ClCompile Include="NORMAL CHECK.cpp">
+      <Filter>Source Files\PLAY MODE</Filter>
+    </ClCompile>
+    <ClCompile Include="NORMAL MODE.cpp">
+      <Filter>Source Files\PLAY MODE</Filter>
+    </ClCompile>
+    <ClCompile Include="LINKEDLIST.cpp">
+      <Filter>Source Files\PLAY MODE</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
