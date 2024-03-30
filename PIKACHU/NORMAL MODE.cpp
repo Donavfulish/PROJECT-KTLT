@@ -196,7 +196,7 @@ int countCellOccurrences(int** c, int boardHeight, int boardWidth)
     return countAll;
 }
 
-void PickOption(int** c, Rectangle recBulb, Rectangle recSetting, matrix& Matrix, Texture2D Bulb)
+void PickOption(int** c, Rectangle recBulb, Rectangle recSetting, matrix& Matrix, Texture2D Bulb, int& countcell)
 {
     vector<Vector2> Sugestion;
     int status = -1;
@@ -221,6 +221,7 @@ void PickOption(int** c, Rectangle recBulb, Rectangle recSetting, matrix& Matrix
       
             c[i1][j1] = -1;
             c[i2][j2] = -1;
+            countcell -= 2; // Giảm số lượng ô còn lại trên PlayBoard xuống 2
 
             // Tạo âm thanh
             PlaySound(sound_Correct);

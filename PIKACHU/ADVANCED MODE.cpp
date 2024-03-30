@@ -177,7 +177,7 @@ void PickCell_Advanced(str_linkedList*& list, int** c, int width, int height, in
     }
 }
 
-void PickOption_Advanced(str_linkedList* list, int** c, Rectangle recBulb, Rectangle recSetting, matrix& Matrix, Texture2D Bulb)
+void PickOption_Advanced(str_linkedList* list, int** c, Rectangle recBulb, Rectangle recSetting, matrix& Matrix, Texture2D Bulb, int& countcell)
 {
     vector<Vector2> Sugestion;
     int status = -1;
@@ -202,6 +202,7 @@ void PickOption_Advanced(str_linkedList* list, int** c, Rectangle recBulb, Recta
 
             c[i1][j1] = -1;
             c[i2][j2] = -1;
+            countcell -= 2; // Giảm số lượng ô còn lại trên PlayBoard xuống 2
 
             if (i1 == i2 && j2 > j1)
             {
