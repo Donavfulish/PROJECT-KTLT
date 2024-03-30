@@ -17,6 +17,8 @@ Sound sound_Wrong;
 Sound sound_ClickOnButton;
 Sound sound_ClickOnCell;
 
+Account User;
+
 int main()
 {
     InitAudioDevice();

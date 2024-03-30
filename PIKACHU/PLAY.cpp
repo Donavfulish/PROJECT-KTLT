@@ -462,6 +462,7 @@ void Play_OPTION(int boardWidth, int boardLength)
     int heartY = 82;
     int fontSize = 50;
     Font font = GetFontDefault();
+    Font font_name = LoadFont("Roboto.ttf");
     char s[4];
     Rectangle recBulb = { 750, 380, 125, 125 };
     Rectangle recSetting = { 900, 380, 120, 120 };
@@ -492,6 +493,9 @@ void Play_OPTION(int boardWidth, int boardLength)
         for (int i = tmp - 1; i >= Matrix.life; i--)
             DrawTexturePro(heart, { 0, 0, float(heart.width), float(heart.height) }, { float(heartX + 50 * i), float(heartY), 60, 60 }, { 0, 0 }, 0, BLACK);
 
+        // Hiển thị tên người chơi
+        DrawTextEx(font, User.username.c_str(), { 910, 548 }, fontSize, 2, BLACK);
+
         // Hiển thị sự thay đổi của điểm số
         _itoa_s(Matrix.score, s, 10);
         DrawTextEx(font, s, { 910, 675 }, fontSize, 2, BLACK);
@@ -509,7 +513,7 @@ void Play_OPTION(int boardWidth, int boardLength)
         EndDrawing();
 
     }
-
+    UnloadFont(font_name);
     UnloadTexture(background);
     UnloadTexture(heart);
     UnloadAllCellTexture();
@@ -609,6 +613,7 @@ void Play_OPTION_ADVANCED(int boardWidth, int boardLength)
     int heartY = 82;
     int fontSize = 50;
     Font font = GetFontDefault();
+    Font font_name = LoadFont("Roboto.ttf");
     char s[4];
     Rectangle recBulb = { 750, 380, 125, 125 };
     Rectangle recSetting = { 900, 380, 120, 120 };
@@ -639,6 +644,9 @@ void Play_OPTION_ADVANCED(int boardWidth, int boardLength)
         for (int i = tmp - 1; i >= Matrix.life; i--)
             DrawTexturePro(heart, { 0, 0, float(heart.width), float(heart.height) }, { float(heartX + 50 * i), float(heartY), 60, 60 }, { 0, 0 }, 0, BLACK);
 
+        // Hiển thị tên người chơi
+        DrawTextEx(font, User.username.c_str(), { 910, 548 }, fontSize, 2, BLACK);
+
         // Hiển thị sự thay đổi của điểm số
         _itoa_s(Matrix.score, s, 10);
         DrawTextEx(font, s, { 910, 675 }, fontSize, 2, BLACK);
@@ -656,7 +664,7 @@ void Play_OPTION_ADVANCED(int boardWidth, int boardLength)
         EndDrawing();
 
     }
-
+    UnloadFont(font_name);
     UnloadTexture(background);
     UnloadTexture(heart);
     UnloadAllCellTexture();

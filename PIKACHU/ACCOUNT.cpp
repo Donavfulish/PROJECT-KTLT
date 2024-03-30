@@ -90,6 +90,26 @@ void fillTextInputBox(InputBox& inputBox)
     }
 }
 
+string codePassword(string password)
+{
+    string coded_password = "";
+    for (int i = password.size() - 1; i >= 0; i--)
+    {
+        coded_password += password[i] + (219 - 'z');
+    }
+    return coded_password;
+}
+
+string decodePassword(string password)
+{
+    string decoded_password = "";
+    for (int i = password.size() - 1; i >= 0; i--)
+    {
+        decoded_password += password[i] - (219 - 'z');
+    }
+    return decoded_password;
+}
+
 void readFileAccount(Account*& account, int& n) // n là số tài khoảng trong data (trong File)
 {
     ifstream f;
@@ -104,7 +124,7 @@ void readFileAccount(Account*& account, int& n) // n là số tài khoảng tron
         f >> password;
         f.ignore();
         account[i].username = username;
-        account[i].password = password;
+        account[i].password = decodePassword(password);
     }
     f.close();
 }
@@ -338,6 +358,8 @@ void LoginWindow()
         // Nếu đăng nhập thành công
         if (loginSuccess == true)
         {
+            User.username = account.username;
+            User.password = account.password;
             GameStarting_Menu();
             break;
         }
@@ -366,12 +388,12 @@ void pushAccountToFile(Account account, Account*& availableAccount, int& n)
     for (int i = 0; i < n; i++)
     {
         f << availableAccount[i].username << endl;
-        f << availableAccount[i].password << endl;
+        f << codePassword(availableAccount[i].password) << endl;
         f << endl;
     }
     n++;
     f << account.username << endl;
-    f << account.password << endl;
+    f << codePassword(account.password) << endl;
     f.close();
 
     delete[] availableAccount;
@@ -447,7 +469,7 @@ void RegisterWindow()
             registerSuccess = Account_ButtonPressed(BUTTON_REGISTER, account, availableAccount, n, message, false);
         refillButtonPressed(inputBox_Username, inputBox_Password);
         DrawInputBox(inputBox_Password);
-        // Nếu bấm chữ Register thì đến cửa sổ Pikachu - Register
+        // Nếu bấm chữ Login thì đến cửa sổ Pikachu - Login
         bool accessLogin = false;
         if (clickonLogin()) accessLogin = true;
 
@@ -456,6 +478,7 @@ void RegisterWindow()
         {
             pushAccountToFile(account, availableAccount, n);
             alreadyUpdate = true;
+            registerSuccess = false;
         }
         if (registerSuccess == false) alreadyUpdate = false;
         EndDrawing();

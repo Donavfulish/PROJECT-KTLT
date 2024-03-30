@@ -30,6 +30,7 @@ struct Account
 	string username;
 	string password;
 };
+extern Account User;
 
 struct board
 {
