@@ -51,6 +51,9 @@
     <ClCompile Include="LINKEDLIST.cpp">
       <Filter>Source Files\PLAY MODE</Filter>
     </ClCompile>
+    <ClCompile Include="TOURNAMENT.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Struct.h">

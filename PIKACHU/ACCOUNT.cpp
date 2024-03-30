@@ -1,5 +1,6 @@
 ﻿#include <iostream>
 #include "struct.h"
+#include "soundlib.h"
 #include <string>
 #include <fstream>
 using namespace std;
@@ -12,13 +13,17 @@ bool IsMouseOverInputBox(InputBox& inputBox)
 
 void DrawInputBox(InputBox& inputBox)
 {
+    char cursor = '\0';
+    if (inputBox.active == true) cursor = '_';
     DrawRectangleRec(inputBox.rect, inputBox.active ? Fade(YELLOW, 0.3f) : Fade(WHITE, 0.6f));
     DrawRectangleLines(inputBox.rect.x, inputBox.rect.y, inputBox.rect.width, inputBox.rect.height, BLACK);
-    DrawTextEx(inputBox.font, inputBox.text.c_str(), { inputBox.rect.x + 10, inputBox.rect.y + inputBox.rect.height / 4 }, inputBox.rect.height * 0.7, 2, BLACK);
+    DrawTextEx(inputBox.font, (inputBox.text + cursor).c_str(), { inputBox.rect.x + 10, inputBox.rect.y + inputBox.rect.height / 4 }, inputBox.rect.height * 0.7, 2, BLACK);
 }
 
 void DrawInputBox_Hide(InputBox& inputBox)
 {
+    char cursor = '\0';
+    if (inputBox.active == true) cursor = '_';
     DrawRectangleRec(inputBox.rect, inputBox.active ? Fade(YELLOW, 0.3f) : Fade(WHITE, 0.6f));
     DrawRectangleLines(inputBox.rect.x, inputBox.rect.y, inputBox.rect.width, inputBox.rect.height, BLACK);
     string hide_password = "";
@@ -26,7 +31,7 @@ void DrawInputBox_Hide(InputBox& inputBox)
     {
         hide_password += "*";
     }
-    DrawTextEx(inputBox.font, hide_password.c_str(), { inputBox.rect.x + 10, inputBox.rect.y + inputBox.rect.height / 4 }, inputBox.rect.height * 0.7, 2, BLACK);
+    DrawTextEx(inputBox.font, (hide_password + cursor).c_str(), { inputBox.rect.x + 10, inputBox.rect.y + inputBox.rect.height / 4 }, inputBox.rect.height * 0.7, 2, BLACK);
 }
 
 void setInputBoxActive(InputBox& inputBox)
@@ -162,6 +167,9 @@ bool Account_ButtonPressed(int button, Account account, Account* availableAccoun
     }
     if (buttonActive == false) return false;
 
+    // Nếu nút được bấm hoặc được kích hoạt khi press Enter thì thực hiện các câu lệnh ở dưới
+    DrawRectangleRec(rect, Fade(RED, 0.4f));
+
     // Kiểm tra trạng thái tài khoản được nhập
     int accountStatus = checkAccountStatus(account, availableAccount, n);
 
@@ -171,12 +179,15 @@ bool Account_ButtonPressed(int button, Account account, Account* availableAccoun
         switch (accountStatus)
         {
         case UNAVAILABLE:
+            PlaySound(sound_Wrong);
             message = "Unavailable username. Register?";
             break;
         case WRONG_PASS:
+            PlaySound(sound_Wrong);
             message = "Wrong password. Please try again.";
             break;
         case VALID:
+            PlaySound(sound_Correct);
             return true;
         }
         return false;
@@ -188,12 +199,15 @@ bool Account_ButtonPressed(int button, Account account, Account* availableAccoun
         switch (accountStatus)
         {
         case UNAVAILABLE:
+            PlaySound(sound_Correct);
             message = "Register successfully! Please log in your new account.";
             return true;
         case WRONG_PASS:
+            PlaySound(sound_Wrong);
             message = "The username has been used. Try another one.";
             break;
         case VALID:
+            PlaySound(sound_Wrong);
             message = "The username has been used. Try another one.";
         }
         return false;
@@ -305,7 +319,6 @@ void LoginWindow()
             }
             else if (!IsKeyPressed(KEY_TAB) && inputBox_Password.active == true)
             {
-                inputBox_Password.active = false;
                 loginSuccess = Account_ButtonPressed(BUTTON_LOGIN, account, availableAccount, n, message, true);
             }
         }
@@ -329,7 +342,11 @@ void LoginWindow()
             break;
         }
 
-        if (accessRegister == true) gotoRegister(account, availableAccount, n);
+        if (accessRegister == true)
+        {
+            PlaySound(sound_ClickOnButton);
+            gotoRegister(account, availableAccount, n);
+        }
     }
     delete[] availableAccount;
     UnloadTexture(texture_Login);
@@ -418,7 +435,6 @@ void RegisterWindow()
             }
             else if (!IsKeyPressed(KEY_TAB) && inputBox_Password.active == true)
             {
-                inputBox_Password.active = false;
                 registerSuccess = Account_ButtonPressed(BUTTON_REGISTER, account, availableAccount, n, message, true);
             }
         }
@@ -446,6 +462,7 @@ void RegisterWindow()
 
         if (accessLogin == true)
         {
+            PlaySound(sound_ClickOnButton);
             SetWindowTitle("Pikachu - Login");
             break;
         }

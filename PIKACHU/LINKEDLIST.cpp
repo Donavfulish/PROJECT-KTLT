@@ -26,7 +26,7 @@ void addTail(str_linkedList& list, int data)
 		list.pTail = new_node;
 		list.pTail->pNext = nullptr;
 	}
-}
+}	
 
 void removeHead(str_linkedList& list)
 {

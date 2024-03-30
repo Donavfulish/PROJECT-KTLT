@@ -15,7 +15,7 @@ static int RightClickOn;
 void LoadAllSound();
 void GameStarting_Menu();
 void GameStarting_Play();
-void GameStarting_Play_Option();
+void GameStarting_Play_Option(int mode);
 void Play_OPTION(int boardWidth, int boardLength);
 void Play_OPTION_ADVANCED(int boardWidth, int boardLength);
 

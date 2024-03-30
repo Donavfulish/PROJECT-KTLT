@@ -14,7 +14,40 @@
 #define RCO_TOURNAMENT 2
 
 #define LEVEL_BUTTON_SIZE 220
+#define NORMAL_MODE 0
+#define ADVANCED_MODE 1
 
+void ModeButtonPressed(Texture2D mode_normal, Texture2D mode_advanced, int& status)
+{
+    if (status == NORMAL_MODE)
+    {
+        DrawTexture(mode_normal, 209.3, 353.3, WHITE);
+        Rectangle dest = { 337, 353.3, 127.7, 63.6 };
+        if (CheckCollisionPointRec(GetMousePosition(), dest))
+        {
+            Rectangle source = { 1.0f * mode_normal.width / 2, 0, 1.0f * mode_normal.width / 2, 1.0f * mode_normal.height };
+            DrawTexturePro(mode_normal, source, dest, { 0, 0 }, 0, Fade(ORANGE, 0.5f));
+            if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+            {
+                status = ADVANCED_MODE;
+            }
+        }
+    }
+    else if (status == ADVANCED_MODE)
+    {   
+        DrawTexture(mode_advanced, 209.3, 353.3, WHITE);
+        Rectangle dest = { 209.3, 353.3, 127.7, 63.6 };
+        if (CheckCollisionPointRec(GetMousePosition(), dest))
+        {
+            Rectangle source = { 0, 0, 1.0f * mode_normal.width / 2, 1.0f * mode_normal.height };
+            DrawTexturePro(mode_advanced, source, dest, { 0, 0 }, 0, Fade(YELLOW, 0.5f));
+            if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+            {
+                status = NORMAL_MODE;
+            }
+        }
+    }
+}
 
 // Hàm hiển thị và thực hiện các chức năng của cửa sổ Pikachu Menu - Play
 void GameStarting_Play()
@@ -41,6 +74,9 @@ void GameStarting_Play()
 
     // Tải texture Background từ máy tính
     Texture2D texture = LoadTexture("GameStarting_Play.png");
+    Texture2D mode_normal = LoadTexture("button_mode_Normal.png");
+    Texture2D mode_advanced = LoadTexture("button_mode_Advanced.png");
+    int mode = NORMAL_MODE;
 
     // Vòng lặp chính
     while (!WindowShouldClose())
@@ -55,6 +91,8 @@ void GameStarting_Play()
         DrawTexture(texture, 0, 0, WHITE);
 
         // Vẽ các nút
+            // Vẽ button chọn mode
+        ModeButtonPressed(mode_normal, mode_advanced, mode);
             // Vẽ button OPTION
         Rectangle rec_Option // Lưu thông tin button hình chữ nhật "OPTION"
         {
@@ -129,7 +167,7 @@ void GameStarting_Play()
             switch (RightClickOn)
             {
             case RCO_OPTION:
-                GameStarting_Play_Option();
+                GameStarting_Play_Option(mode);
                 break;
             case RCO_TOURNAMENT:
                 break;
@@ -154,7 +192,7 @@ void GameStarting_Play()
 #define RCO_LEVEL_8x8 3
 #define RCO_LEVEL_10x10 4
 // Hàm hiển thị và thực hiện các chức năng của cửa sổ Pikachu Menu - Play - Option
-void GameStarting_Play_Option()
+void GameStarting_Play_Option(int mode)
 {
     RightClickOn = RCO_NONE;
     // Khai báo kích thước màn hình
@@ -308,17 +346,20 @@ void GameStarting_Play_Option()
             switch (RightClickOn)
             {
             case RCO_LEVEL_4x4:
-                cout << "4x4";
-                Play_OPTION_ADVANCED(4, 4);
+                if (mode == NORMAL_MODE) Play_OPTION(4, 4);
+                else Play_OPTION_ADVANCED(4, 4);
                 break;
             case RCO_LEVEL_6x6:
-                Play_OPTION_ADVANCED(6, 6);
+                if (mode == NORMAL_MODE) Play_OPTION(6, 6);
+                else Play_OPTION_ADVANCED(6, 6);
                 break;
             case RCO_LEVEL_8x8:
-                Play_OPTION_ADVANCED(8, 8);
+                if (mode == NORMAL_MODE) Play_OPTION(8, 8);
+                else Play_OPTION_ADVANCED(8, 8);
                 break;
             case RCO_LEVEL_10x10:
-                Play_OPTION_ADVANCED(10, 10);
+                if (mode == NORMAL_MODE) Play_OPTION(10, 10);
+                else Play_OPTION_ADVANCED(10, 10);
                 break;
             case RCO_EXIT:
                 SetWindowTitle("Pikachu Menu - Play");
@@ -444,6 +485,7 @@ void Play_OPTION(int boardWidth, int boardLength)
         DrawTexturePro(Bulb, { 0, 0, float(Bulb.width), float(Bulb.height) }, { 750, 380, 125, 125 }, { 0, 0 }, 0, RAYWHITE);
         DrawTexturePro(Setting, { 0, 0, float(Setting.width), float(Setting.height) }, { 900, 380, 120, 120 }, { 0, 0 }, 0, RAYWHITE);
 
+
         // Màn có độ khó N*N thì sẽ được cung cấp N/2 mạng sống
         for (int i = 0; i < Matrix.life; i++)
             DrawTexturePro(heart, { 0, 0, float(heart.width), float(heart.height) }, { float(heartX + 50 * i), float(heartY), 60, 60 }, { 0, 0 }, 0, RAYWHITE);
@@ -473,7 +515,6 @@ void Play_OPTION(int boardWidth, int boardLength)
     UnloadAllCellTexture();
 
 }
-
 
 // Hàm hiển thị cửa sổ chơi và thực thi quá trình chơi
 void Play_OPTION_ADVANCED(int boardWidth, int boardLength)
