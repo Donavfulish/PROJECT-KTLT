@@ -19,6 +19,8 @@ void GameStarting_Play_Option(int mode);
 void Play_OPTION(int size);
 void Play_OPTION_ADVANCED(int size);
 
+void Instruction();
+
 extern vector<int> cellID;
 extern vector<Texture> cellTexture;
 void arrangeCellID();
@@ -90,8 +92,11 @@ void PickCell_Advanced(str_linkedList*& list, int** c, int size, int& countcell,
 void PickOption_Advanced(str_linkedList* list, int** c, Rectangle recBulb, Rectangle recSetting, matrix& Matrix, Texture2D Bulb, Texture2D Setting, int& countcell, int& choice);
 
 void Play_TOURNAMENT(int mode);
-int Play_TOURNAMENT_NORMAL(float playTime, float& currenttime, int& score, int lives, int& lives_left, int size);
-int Play_TOURNAMENT_ADVANCED(float playTime, float& currenttime, int& score, int lives, int& lives_left, int size);
+void resumeGame_Tournament(int mode, int** c, matrix Matrix, float playTime, float& currenttime, int& score, int lives, int& lives_left);
+int Play_TOURNAMENT_NORMAL(float playTime, float& runningtime, int& score, int lives, int& lives_left, int size);
+int Play_TOURNAMENT_ADVANCED(float playTime, float& runningtime, int& score, int lives, int& lives_left, int size);
 
 void Save_Mode1(int** c, matrix Matrix);
 void Save_Mode2(int** c, matrix Matrix);
+int Save_Mode3(int** c, matrix Matrix, float playTime, float& runningtime, int& score, int lives, int& lives_left);
+int Save_Mode4(int** c, matrix Matrix, float playTime, float& runningtime, int& score, int lives, int& lives_left);

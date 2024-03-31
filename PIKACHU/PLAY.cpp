@@ -737,7 +737,7 @@ void Play_OPTION_ADVANCED(int size)
 }
 
 // Hàm tạo cửa sổ PlayBoard cho chế độ TOURNAMENT mode NORMAL
-int Play_TOURNAMENT_NORMAL(float playTime, float& currenttime, int& score, int lives, int& lives_left, int size)
+int Play_TOURNAMENT_NORMAL(float playTime, float& runningtime, int& score, int lives, int& lives_left, int size)
 {
     start = GetTime();
     // Khai báo kích thước màn hình
@@ -780,12 +780,13 @@ int Play_TOURNAMENT_NORMAL(float playTime, float& currenttime, int& score, int l
 
     // Khởi tạo biến matrix
     matrix Matrix;
-    Matrix.life = lives_left;
+    Matrix.life = lives;
+    Matrix.death = lives - lives_left;
     Matrix.size = size;
-    Matrix.score = 0;
-    Matrix.time = playTime;
-    float time_gap = currenttime - Matrix.time; // Khoảng thời gian mất đi do chơi các level trước
-    int tmp = lives;
+    Matrix.score = score;
+    Matrix.time = runningtime;
+    float SubTime = Matrix.time;
+    float currenttime = playTime;
 
 
     // Lấy background và các hình trang trí
@@ -836,11 +837,10 @@ int Play_TOURNAMENT_NORMAL(float playTime, float& currenttime, int& score, int l
         DrawTexturePro(Bulb, { 0, 0, float(Bulb.width), float(Bulb.height) }, { 750, 380, 125, 125 }, { 0, 0 }, 0, RAYWHITE);
         DrawTexturePro(Setting, { 0, 0, float(Setting.width), float(Setting.height) }, { 900, 380, 120, 120 }, { 0, 0 }, 0, RAYWHITE);
 
-
         // Màn có độ khó N*N thì sẽ được cung cấp N/2 mạng sống
         for (int i = 0; i < Matrix.life; i++)
             DrawTexturePro(heart, { 0, 0, float(heart.width), float(heart.height) }, { float(heartX + 50 * i), float(heartY), 60, 60 }, { 0, 0 }, 0, RAYWHITE);
-        for (int i = tmp - 1; i >= Matrix.life; i--)
+        for (int i = Matrix.life - 1; i >= Matrix.life - Matrix.death; i--)
             DrawTexturePro(heart, { 0, 0, float(heart.width), float(heart.height) }, { float(heartX + 50 * i), float(heartY), 60, 60 }, { 0, 0 }, 0, BLACK);
 
         // Hiển thị tên người chơi
@@ -853,14 +853,13 @@ int Play_TOURNAMENT_NORMAL(float playTime, float& currenttime, int& score, int l
         // Vẽ lưới
         Paint_Broad(c, size, Matrix);
         if (!isGameFinish) PickCell(c, size, countcell, Matrix);
-        if (!isGameFinish) PickOption(c, recBulb, recSetting, Matrix, Bulb, Setting, countcell, choice1);
+        if (!isGameFinish) PickOption(c, recBulb, recSetting, Matrix, Bulb, Setting, countcell, choiceoption);
         if (choiceoption == 1)
         {
             setting_option = GameSetting(Settingboard, choiceoption);
             if (setting_option == OPTION_PLAY_AGAIN)
             {
                 choiceoption = 0;
-                Play_OPTION(size);
                 break;
             }
             if (setting_option == OPTION_BACK_TO_MENU)
@@ -876,10 +875,10 @@ int Play_TOURNAMENT_NORMAL(float playTime, float& currenttime, int& score, int l
             }
         }
         // Cập nhật thời gian và vẽ thanh thời gian
-        if (!isGameFinish) currenttime = Matrix.time - (GetTime() - start - time_gap);
+        if (!isGameFinish) Matrix.time = SubTime - (GetTime() - start);
         DrawRectangle(225, 150, 410, 40, Fade(LIGHTGRAY, 200));
         DrawRectangle(230, 155, 400, 30, RAYWHITE);
-        DrawRectangle(230, 155, currenttime / Matrix.time * 400, 30, { 255, 105, 180, 180 });
+        DrawRectangle(230, 155, Matrix.time / currenttime * 400, 30, { 255, 105, 180, 180 });
 
         // Game Finishing Verify
         endgame_option = GameFinishingVerify(isGameFinish, result_pass, result_lose_time, result_lose_life, countcell, Matrix.life, currenttime);
@@ -909,14 +908,16 @@ int Play_TOURNAMENT_NORMAL(float playTime, float& currenttime, int& score, int l
     UnloadAllCellTexture();
 
     score = Matrix.score;
-    lives_left = Matrix.life;
+    lives_left = Matrix.life - Matrix.death;
+    runningtime = Matrix.time;
     if (endgame_option == OPTION_NEXT_LEVEL && countcell == 0) return 1;
-    else if (endgame_option == OPTION_PLAY_AGAIN) return 2;
-    else if (endgame_option == OPTION_BACK_TO_MENU) return 3;
+    else if (setting_option == OPTION_PLAY_AGAIN || endgame_option == OPTION_PLAY_AGAIN) return 2;
+    else if (setting_option == OPTION_BACK_TO_MENU || endgame_option == OPTION_BACK_TO_MENU) return 3;
+    return 3;
 }
 
 // Hàm tạo cửa sổ PlayBoard cho chế độ TOURNAMENT mode ADVANCED
-int Play_TOURNAMENT_ADVANCED(float playTime, float& currenttime, int& score, int lives, int& lives_left, int size)
+int Play_TOURNAMENT_ADVANCED(float playTime, float& runningtime, int& score, int lives, int& lives_left, int size)
 {
     start = GetTime();
     // Khai báo kích thước màn hình
@@ -974,12 +975,13 @@ int Play_TOURNAMENT_ADVANCED(float playTime, float& currenttime, int& score, int
 
     // Khởi tạo biến matrix
     matrix Matrix;
-    Matrix.life = lives_left;
+    Matrix.life = lives;
+    Matrix.death = lives - lives_left;
     Matrix.size = size;
     Matrix.score = score;
-    Matrix.time = playTime;
-    float time_gap = currenttime - Matrix.time; // Khoảng thời gian mất đi do chơi các level trước
-    int tmp = lives;
+    Matrix.time = runningtime;
+    float SubTime = Matrix.time;
+    float currenttime = playTime;
 
 
     // Lấy background và các hình trang trí
@@ -1030,11 +1032,10 @@ int Play_TOURNAMENT_ADVANCED(float playTime, float& currenttime, int& score, int
         DrawTexturePro(Bulb, { 0, 0, float(Bulb.width), float(Bulb.height) }, { 750, 380, 125, 125 }, { 0, 0 }, 0, RAYWHITE);
         DrawTexturePro(Setting, { 0, 0, float(Setting.width), float(Setting.height) }, { 900, 380, 120, 120 }, { 0, 0 }, 0, RAYWHITE);
 
-
         // Màn có độ khó N*N thì sẽ được cung cấp N/2 mạng sống
         for (int i = 0; i < Matrix.life; i++)
             DrawTexturePro(heart, { 0, 0, float(heart.width), float(heart.height) }, { float(heartX + 50 * i), float(heartY), 60, 60 }, { 0, 0 }, 0, RAYWHITE);
-        for (int i = tmp - 1; i >= Matrix.life; i--)
+        for (int i = Matrix.life - 1; i >= Matrix.life - Matrix.death; i--)
             DrawTexturePro(heart, { 0, 0, float(heart.width), float(heart.height) }, { float(heartX + 50 * i), float(heartY), 60, 60 }, { 0, 0 }, 0, BLACK);
 
         // Hiển thị tên người chơi
@@ -1054,7 +1055,6 @@ int Play_TOURNAMENT_ADVANCED(float playTime, float& currenttime, int& score, int
             if (setting_option == OPTION_PLAY_AGAIN)
             {
                 choiceoption = 0;
-                Play_OPTION(size);
                 break;
             }
             if (setting_option == OPTION_BACK_TO_MENU)
@@ -1070,13 +1070,13 @@ int Play_TOURNAMENT_ADVANCED(float playTime, float& currenttime, int& score, int
             }
         }
         // Cập nhật thời gian và vẽ thanh thời gian
-        if (!isGameFinish) currenttime = Matrix.time - (GetTime() - start - time_gap);
+        if (!isGameFinish) Matrix.time = SubTime - (GetTime() - start);
         DrawRectangle(225, 150, 410, 40, Fade(LIGHTGRAY, 200));
         DrawRectangle(230, 155, 400, 30, RAYWHITE);
-        DrawRectangle(230, 155, currenttime / Matrix.time * 400, 30, { 255, 105, 180, 180 });
+        DrawRectangle(230, 155, Matrix.time / currenttime * 400, 30, { 255, 105, 180, 180 });
 
         // Game Finishing Verify
-        endgame_option = GameFinishingVerify(isGameFinish, result_pass, result_lose_time, result_lose_life, countcell, Matrix.life, currenttime);
+        endgame_option = GameFinishingVerify(isGameFinish, result_pass, result_lose_time, result_lose_life, countcell, Matrix.life, runningtime);
 
         // Kết thúc vẽ
         EndDrawing();
@@ -1101,10 +1101,12 @@ int Play_TOURNAMENT_ADVANCED(float playTime, float& currenttime, int& score, int
     UnloadAllCellTexture();
 
     score = Matrix.score;
-    lives_left = Matrix.life;
+    lives_left = Matrix.life - Matrix.death;
+    runningtime = Matrix.time;
     if (endgame_option == OPTION_NEXT_LEVEL && countcell == 0) return 1;
-    else if (endgame_option == OPTION_PLAY_AGAIN) return 2;
-    else if (endgame_option == OPTION_BACK_TO_MENU) return 3;
+    else if (setting_option == OPTION_PLAY_AGAIN || endgame_option == OPTION_PLAY_AGAIN) return 2;
+    else if (setting_option == OPTION_BACK_TO_MENU || endgame_option == OPTION_BACK_TO_MENU) return 3;
+    return 3;
 }
 
 // Setting

@@ -57,6 +57,9 @@
     <ClCompile Include="RESUME.cpp">
       <Filter>Source Files\PLAY MODE</Filter>
     </ClCompile>
+    <ClCompile Include="INSTRUCTION.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Struct.h">
