@@ -34,7 +34,7 @@ extern Account User;
 
 struct matrix
 {
-	int size, life, score;
+	int size, life, score, death;
 	float time;
 };
 struct statusLine
@@ -62,7 +62,7 @@ struct InputBox {
 	Font font;
 	bool active;
 };
-
+int GameFinishingVerify(bool& isGameFinish, Texture2D win, Texture2D lose_time, Texture2D lose_life, int countcell, int life, float time);
 void setInputBoxActive(InputBox& inputBox);
 void fillTextInputBox(InputBox& inputBox);
 void DrawInputBox(InputBox& inputBox);
@@ -81,14 +81,17 @@ int countDistinctCell(int** c, int size);
 int countCellOccurrences(int** c, int size);
 bool checkUseDij(Vector2 A, Vector2 B, int Size, int** c);
 vector<Vector2> MoveSuggestion(matrix Matrix, int** c, int& status);
-int GameSetting(Texture2D win);
-void SaveGame(matrix Matrix, int** c);
+int GameSetting(Texture2D win, int choiceoption);
+void SaveGame(matrix Matrix, int** c, int mode);
 void Play_Save();
 
 void PaintBroad_Advanced(str_linkedList*& list, int** c, int size, matrix Matrix);
 void PickCell_Advanced(str_linkedList*& list, int** c, int size, int& countcell, matrix& Matrix);
-void PickOption_Advanced(str_linkedList* list, int** c, Rectangle recBulb, Rectangle recSetting, matrix& Matrix, Texture2D Bulb, int& countcell);
+void PickOption_Advanced(str_linkedList* list, int** c, Rectangle recBulb, Rectangle recSetting, matrix& Matrix, Texture2D Bulb, Texture2D Setting, int& countcell, int& choice);
 
 void Play_TOURNAMENT(int mode);
 int Play_TOURNAMENT_NORMAL(float playTime, float& currenttime, int& score, int lives, int& lives_left, int size);
 int Play_TOURNAMENT_ADVANCED(float playTime, float& currenttime, int& score, int lives, int& lives_left, int size);
+
+void Save_Mode1(int** c, matrix Matrix);
+void Save_Mode2(int** c, matrix Matrix);

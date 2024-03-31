@@ -152,7 +152,7 @@ void PickCell_Advanced(str_linkedList*& list, int** c, int size, int& countcell,
             PlaySound(sound_Wrong);
 
             // Trừ đi một mạng chuyển trái tim thành màu đen
-            Matrix.life--;
+            Matrix.death++;
             if (Matrix.score > 0) Matrix.score -= 10;
 
             // Vẽ lại 2 ô như trạng thái ban đầu trước khi click
@@ -165,7 +165,7 @@ void PickCell_Advanced(str_linkedList*& list, int** c, int size, int& countcell,
     }
 }
 
-void PickOption_Advanced(str_linkedList* list, int** c, Rectangle recBulb, Rectangle recSetting, matrix& Matrix, Texture2D Bulb, int& countcell)
+void PickOption_Advanced(str_linkedList* list, int** c, Rectangle recBulb, Rectangle recSetting, matrix& Matrix, Texture2D Bulb, Texture2D Setting, int& countcell, int& choice)
 {
     vector<Vector2> Sugestion;
     int status = -1;
@@ -205,6 +205,12 @@ void PickOption_Advanced(str_linkedList* list, int** c, Rectangle recBulb, Recta
             // Tạo âm thanh
             PlaySound(sound_Correct);
         }
+    }
+    if (CheckCollisionPointRec(GetMousePosition(), recSetting))
+    {
+        DrawTexturePro(Setting, { 0, 0, float(Setting.width), float(Setting.height) }, recSetting, { 0, 0 }, 0, Fade(GREEN, 50));
+        if (IsMouseButtonPressed(0))
+            choice = 1;
     }
 
 }

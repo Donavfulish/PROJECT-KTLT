@@ -135,7 +135,7 @@ void PickCell(int** c, int size, int& countcell, matrix &Matrix) // Biến count
             PlaySound(sound_Wrong);
 
             // Trừ đi một mạng chuyển trái tim thành màu đen
-            Matrix.life--;
+            Matrix.death++;
             if (Matrix.score > 0) Matrix.score -= 10;
             
             // Vẽ lại 2 ô như trạng thái ban đầu trước khi click

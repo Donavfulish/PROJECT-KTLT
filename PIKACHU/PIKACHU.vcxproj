@@ -136,6 +136,7 @@
     <ClCompile Include="NORMAL MODE.cpp" />
     <ClCompile Include="PIKACHU.cpp" />
     <ClCompile Include="PLAY.cpp" />
+    <ClCompile Include="RESUME.cpp" />
     <ClCompile Include="SOUND.cpp" />
     <ClCompile Include="TOURNAMENT.cpp" />
   </ItemGroup>
