@@ -15,54 +15,47 @@ Rectangle rec = { 100, 100, 200, 80 };
 Vector2 selectedCells[2] = { {-1, -1}, {-1, -1} };
 
 // Khởi tạo lưới ô chữ cái
-void Paint_Broad(int** c, int height, int width, matrix Matrix)
+void Paint_Broad(int** c, int size, matrix Matrix)
 {
     // Khởi tạo kích thước font và ô chữ
-    float recWidth = 55 * 10 / width;
-    float recHeight = 55 * 10 / height;
+    float recSize = 55 * 10 / size;
     float fontSize = 50.0f;
     Font font = GetFontDefault();
-    rec = { 70 - recWidth,250 - recHeight, recHeight, recWidth };
+    rec = { 70 - recSize,250 - recSize, recSize, recSize };
 
     // Vẽ lưới ô
-    for (int i = 1; i <= height; i++)
+    for (int i = 1; i <= size; i++)
     {
-        rec.y += recHeight;
-        rec.x = 70 - recWidth;
-        for (int j = 1; j <= width; j++)
+        rec.y += recSize;
+        rec.x = 70 - recSize;
+        for (int j = 1; j <= size; j++)
         {
-            rec.x += recWidth;
+            rec.x += recSize;
 
             // Kiểm tra ô đã bị xóa chưa
-            if (c[i][j] != -1 && c[i][j] != -2)
-            {
-
+            if (c[i][j] != -1)
                 DrawTexturePro(cellTexture[c[i][j]], { 0, 0, 1.0f * cellTexture[c[i][j]].width, 1.0f * cellTexture[c[i][j]].height }, rec, { 0, 0 }, 0, WHITE);
-                Matrix.val[i][j].data = c[i][j];
-
-            }
         }
     }
 }
 
 //Cập nhật các ô đã được click chọn
-void PickCell(int** c, int width, int height, int& countcell, matrix &Matrix) // Biến countCell: lưu tổng số ô còn lại
+void PickCell(int** c, int size, int& countcell, matrix &Matrix) // Biến countCell: lưu tổng số ô còn lại
 {
     // Khởi tạo kích thước font và ô chữ
-    int recWidth = 55 * 10 / width;
-    int recHeight = 55 * 10 / height;
+    int recSize = 55 * 10 / size;
     int fontSize = 50;
     Font font = GetFontDefault();
-    rec = { 70 - float(recWidth),250 - float(recHeight), float(recHeight), float(recWidth) };
+    rec = { 70 - float(recSize),250 - float(recSize), float(recSize), float(recSize) };
 
     // Thao tác với lưới ô
-    for (int i = 1; i <= height; i++)
+    for (int i = 1; i <= size; i++)
     {
-        rec.y += recHeight;
-        rec.x = 70 - recWidth;
-        for (int j = 1; j <= width; j++)
+        rec.y += recSize;
+        rec.x = 70 - recSize;
+        for (int j = 1; j <= size; j++)
         {
-            rec.x += recWidth;
+            rec.x += recSize;
             // Kiểm tra vị trí con trỏ chuột
             if (CheckCollisionPointRec(GetMousePosition(), rec) && c[i][j] != -1)
             {
@@ -90,11 +83,11 @@ void PickCell(int** c, int width, int height, int& countcell, matrix &Matrix) //
     if (selectedCells[0].x != -1 && selectedCells[1].x == -1)
     {
         // Lưu lại tọa độ và vị trí ô
-        int x1 = 70 - recWidth + recWidth * (selectedCells[0].x);
-        int y1 = 250 - recHeight + recHeight * (selectedCells[0].y);
+        int x1 = 70 - recSize + recSize * (selectedCells[0].x);
+        int y1 = 250 - recSize + recSize * (selectedCells[0].y);
         int i1 = selectedCells[0].y;
         int j1 = selectedCells[0].x;
-        Rectangle rec1 = { x1, y1, recHeight, recWidth };
+        Rectangle rec1 = { x1, y1, recSize, recSize };
 
         // Chuyển ô thành màu đen
         DrawRectangleRounded(rec1, 0, 0, Fade(BLACK, 0.6f));
@@ -109,18 +102,18 @@ void PickCell(int** c, int width, int height, int& countcell, matrix &Matrix) //
     else if (selectedCells[1].x != -1)
     {
         // Lưu tọa độ và vị trí 2 ô
-        int x1 = 70 - recWidth * (selectedCells[0].x);
-        int y1 = 250 - recHeight * (selectedCells[0].y);
-        int x2 = 70 - recWidth * (selectedCells[1].x);
-        int y2 = 250 - recHeight * (selectedCells[1].y);
+        int x1 = 70 - recSize * (selectedCells[0].x);
+        int y1 = 250 - recSize * (selectedCells[0].y);
+        int x2 = 70 - recSize * (selectedCells[1].x);
+        int y2 = 250 - recSize * (selectedCells[1].y);
         int i1 = selectedCells[0].y;
         int j1 = selectedCells[0].x;
         int i2 = selectedCells[1].y;
         int j2 = selectedCells[1].x;
-        Rectangle rec1 = { x1, y1, recHeight, recWidth }, rec2 = { x2, y2, recHeight, recWidth };
+        Rectangle rec1 = { x1, y1, recSize, recSize }, rec2 = { x2, y2, recSize, recSize };
 
         // Nếu thõa điều kiện thì dữ liệu chứa trong ô bị xóa, trạng thái của ô từ 0 trở thành 1
-        if (c[i1][j1] == c[i2][j2] && checkUseDij(selectedCells[0], selectedCells[1], width, c))
+        if (c[i1][j1] == c[i2][j2] && checkUseDij(selectedCells[0], selectedCells[1], size, c))
         {
             // Đúng thì cộng thêm 10 điểm
             Matrix.score += 10;
@@ -130,12 +123,10 @@ void PickCell(int** c, int width, int height, int& countcell, matrix &Matrix) //
             DrawRectangleRounded(rec2, 0, 0, RAYWHITE);
             c[i1][j1] = -1;
             c[i2][j2] = -1;
-            Matrix.val[i1][j1].check = 1;
-            Matrix.val[i2][j2].check = 1;
-
+   
             // Tạo âm thanh
             PlaySound(sound_Correct);
-            countcell = countCellOccurrences(c, height, width); // Âu thêm vô để check thôi, Hà xóa cũng được 
+            countcell = countCellOccurrences(c, size); // Âu thêm vô để check thôi, Hà xóa cũng được 
         }
 
         // Nếu không thõa thì trở về trạng thái ban đầu trước khi click
@@ -148,8 +139,8 @@ void PickCell(int** c, int width, int height, int& countcell, matrix &Matrix) //
             if (Matrix.score > 0) Matrix.score -= 10;
             
             // Vẽ lại 2 ô như trạng thái ban đầu trước khi click
-            DrawTexturePro(cellTexture[c[i1][j1]], { 0, 0, 1.0f * cellTexture[c[i1][j1]].width, 1.0f * cellTexture[c[i1][j1]].height }, rec1, { 0, 0 }, 0, WHITE);
-            DrawTexturePro(cellTexture[c[i2][j2]], { 0, 0, 1.0f * cellTexture[c[i2][j2]].width, 1.0f * cellTexture[c[i2][j2]].height }, rec2, { 0, 0 }, 0, WHITE);
+            DrawTexturePro(cellTexture[c[i1][j1]], { 0, 0, 1.0f * cellTexture[c[i1][j1]].height, 1.0f * cellTexture[c[i1][j1]].width }, rec1, { 0, 0 }, 0, WHITE);
+            DrawTexturePro(cellTexture[c[i2][j2]], { 0, 0, 1.0f * cellTexture[c[i2][j2]].height, 1.0f * cellTexture[c[i2][j2]].width }, rec2, { 0, 0 }, 0, WHITE);
         }
         // Cập nhật lại trạng thái ban đầu cho hai vecto lưu vị trí
         selectedCells[0] = { -1, -1 };
@@ -158,12 +149,12 @@ void PickCell(int** c, int width, int height, int& countcell, matrix &Matrix) //
 }
 
 // Hàm đếm xem trong bảng PlayBoard có bao nhiêu ô khác nhau
-int countDistinctCell(int** c, int boardHeight, int boardWidth)
+int countDistinctCell(int** c, int size)
 {
     set<int> cell;
-    for (int i = 1; i <= boardHeight; i++)
+    for (int i = 1; i <= size; i++)
     {
-        for (int j = 1; j <= boardWidth; j++)
+        for (int j = 1; j <= size; j++)
         {
             if (c[i][j] != -1) cell.insert(c[i][j]);
         }
@@ -172,13 +163,13 @@ int countDistinctCell(int** c, int boardHeight, int boardWidth)
 }
 
 // Hàm đếm số lần xuất hiện của các ô trong bảng PlayBoard
-int countCellOccurrences(int** c, int boardHeight, int boardWidth)
+int countCellOccurrences(int** c, int size)
 {
     int countAll = 0;
     map<char, int> cell_occurences;
-    for (int i = 1; i <= boardHeight; i++)
+    for (int i = 1; i <= size; i++)
     {
-        for (int j = 1; j <= boardWidth; j++)
+        for (int j = 1; j <= size; j++)
         {
             if (c[i][j] != -1)
             {
@@ -209,14 +200,13 @@ void PickOption(int** c, Rectangle recBulb, Rectangle recSetting, matrix& Matrix
             Sugestion = MoveSuggestion(Matrix, c, status);
 
             // Khởi tạo các thông số sau khi gợi ý trả về tọa độ 2 ô đúng
-            float recWidth = 55 * 10 / Matrix.width;
-            float recHeight = 55 * 10 / Matrix.height;
+            float recSize = 55 * 10 / Matrix.size;
             int i1 = Sugestion[0].y;
             int j1 = Sugestion[0].x;
             int i2 = Sugestion[1].y;
             int j2 = Sugestion[1].x;
-            Rectangle recSu1 = { (j1 - 1) * recWidth + 70, (i1 - 1) * recHeight + 250, recHeight, recWidth };
-            Rectangle recSu2 = { (j2 - 1) * recWidth + 70, (i2 - 1) * recHeight + 250, recHeight, recWidth };
+            Rectangle recSu1 = { (j1 - 1) * recSize + 70, (i1 - 1) * recSize + 250, recSize, recSize };
+            Rectangle recSu2 = { (j2 - 1) * recSize + 70, (i2 - 1) * recSize + 250, recSize, recSize };
 
       
             c[i1][j1] = -1;

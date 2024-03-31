@@ -4,16 +4,16 @@
 
 using namespace std;
 
-void saveGame(int life, int boardHeight, int boardWidth, int** c, vector<int> cellID)
+void saveGame(int life, int size, int** c, vector<int> cellID)
 {
 	ofstream f;
 	f.open("Data\\saveGame.txt");
 	f << life << endl;
 	f << endl;
-	f << boardHeight << "x" << boardWidth << endl << endl;
-	for (int i = 1; i <= boardHeight; i++)
+	f << size << "x" << size << endl << endl;
+	for (int i = 1; i <= size; i++)
 	{
-		for (int j = 1; j <= boardWidth; j++)
+		for (int j = 1; j <= size; j++)
 		{
 			f << c[i][j] << " ";
 		}

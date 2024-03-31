@@ -21,7 +21,7 @@ int dy[] = { 0,0,-1,1 };
 bool check(int x, int y, int n, int **c) {
     return x >= 0 && y >= 0 && x <= n + 1 && y <= n + 1 && c[x][y] == -1;
 }
-bool checkUseDij(Vector2 A, Vector2 B,int Size, int **c) {
+bool checkUseDij(Vector2 A, Vector2 B, int Size, int **c) {
     vector <vector<vector<int> > > f(Size + 3,vector<vector<int> >(Size + 3,vector<int>(5,100)));
     priority_queue <node, vector<node>, greater<node> > p;
     // f[Size + 1][Size + 1][5] 
@@ -65,17 +65,17 @@ vector<Vector2> MoveSuggestion(matrix Matrix, int** c, int& status)
 {
     
     vector<Vector2> V;
-    for (int i = 1; i <= Matrix.height ; i++)
-        for (int j = 1; j <= Matrix.width; j++)
+    for (int i = 1; i <= Matrix.size ; i++)
+        for (int j = 1; j <= Matrix.size; j++)
         {
             if (c[i][j] != -1)
             {
-                for (int i1 = 1; i1 <= Matrix.height; i1++)
-                    for (int j1 = 1; j1 <= Matrix.width; j1++)
+                for (int i1 = 1; i1 <= Matrix.size; i1++)
+                    for (int j1 = 1; j1 <= Matrix.size; j1++)
                     {
                         if ((i == i1) && (j == j1)) continue;
                         else
-                            if (c[i][j] == c[i1][j1] && checkUseDij({ float(j), float(i) }, { float(j1), float(i1) }, Matrix.height, c))
+                            if (c[i][j] == c[i1][j1] && checkUseDij({ float(j), float(i) }, { float(j1), float(i1) }, Matrix.size, c))
                             {
                                 V.push_back({ float(j), float(i) });
                                 V.push_back({ float(j1), float(i1) });

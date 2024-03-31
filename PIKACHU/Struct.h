@@ -16,8 +16,8 @@ void LoadAllSound();
 void GameStarting_Menu();
 void GameStarting_Play();
 void GameStarting_Play_Option(int mode);
-void Play_OPTION(int boardWidth, int boardLength);
-void Play_OPTION_ADVANCED(int boardWidth, int boardLength);
+void Play_OPTION(int size);
+void Play_OPTION_ADVANCED(int size);
 
 extern vector<int> cellID;
 extern vector<Texture> cellTexture;
@@ -32,16 +32,9 @@ struct Account
 };
 extern Account User;
 
-struct board
-{
-	int check = 0;
-	char data;
-};
-
 struct matrix
 {
-	board** val;
-	int width, height, life, score;
+	int size, life, score;
 	float time;
 };
 struct statusLine
@@ -81,17 +74,21 @@ void removeHead(str_linkedList& list);
 void removeAtK(str_linkedList& list, int k);
 void deleteLinkedList(str_linkedList& list);
 
-void Paint_Broad(int** c, int height, int width, matrix Matrix);
-void PickCell(int** c, int height, int width, int& countcell, matrix &Matrix);
+void Paint_Broad(int** c, int size, matrix Matrix);
+void PickCell(int** c, int size, int& countcell, matrix &Matrix);
 void PickOption(int** c, Rectangle recBulb, Rectangle recSetting, matrix& Matrix, Texture2D Bulb, Texture2D Setting, int& countcell, int& setting_option);
-int countDistinctCell(int** c, int boardHeight, int boardWidth);
-int countCellOccurrences(int** c, int boardHeight, int boardWidth);
+int countDistinctCell(int** c, int size);
+int countCellOccurrences(int** c, int size);
 bool checkUseDij(Vector2 A, Vector2 B, int Size, int** c);
 vector<Vector2> MoveSuggestion(matrix Matrix, int** c, int& status);
 int GameSetting(Texture2D win);
 void SaveGame(matrix Matrix, int** c);
 void Play_Save();
 
-void PaintBroad_Advanced(str_linkedList*& list, int** c, int height, int width, matrix Matrix);
-void PickCell_Advanced(str_linkedList*& list, int** c, int width, int height, int& countcell, matrix& Matrix);
+void PaintBroad_Advanced(str_linkedList*& list, int** c, int size, matrix Matrix);
+void PickCell_Advanced(str_linkedList*& list, int** c, int size, int& countcell, matrix& Matrix);
 void PickOption_Advanced(str_linkedList* list, int** c, Rectangle recBulb, Rectangle recSetting, matrix& Matrix, Texture2D Bulb, int& countcell);
+
+void Play_TOURNAMENT(int mode);
+int Play_TOURNAMENT_NORMAL(float playTime, float& currenttime, int& score, int lives, int& lives_left, int size);
+int Play_TOURNAMENT_ADVANCED(float playTime, float& currenttime, int& score, int lives, int& lives_left, int size);
