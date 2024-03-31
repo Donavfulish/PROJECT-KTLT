@@ -92,3 +92,7 @@ vector<Vector2> MoveSuggestion(matrix Matrix, int** c, int& status);
 void PaintBroad_Advanced(str_linkedList*& list, int** c, int height, int width, matrix Matrix);
 void PickCell_Advanced(str_linkedList*& list, int** c, int width, int height, int& countcell, matrix& Matrix);
 void PickOption_Advanced(str_linkedList* list, int** c, Rectangle recBulb, Rectangle recSetting, matrix& Matrix, Texture2D Bulb, int& countcell);
+
+void Play_TOURNAMENT(int mode);
+int Play_TOURNAMENT_NORMAL(float playTime, float& currenttime, int& score, int lives, int& lives_left, int boardWidth, int boardLength);
+int Play_TOURNAMENT_ADVANCED(float playTime, float& currenttime, int& score, int lives, int& lives_left, int boardWidth, int boardLength);

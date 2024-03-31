@@ -86,6 +86,7 @@ void GameStarting_Play()
     while (!WindowShouldClose())
     {
         if (!IsSoundPlaying(sound_BackgroundMenu)) PlaySound(sound_BackgroundMenu);
+        if (!IsSoundPlaying(sound_BackgroundPlay)) StopSound(sound_BackgroundPlay);
 
         // Bắt đầu vẽ
         BeginDrawing();
@@ -174,6 +175,7 @@ void GameStarting_Play()
                 GameStarting_Play_Option(mode);
                 break;
             case RCO_TOURNAMENT:
+                Play_TOURNAMENT(mode);
                 break;
             case RCO_EXIT:
                 SetWindowTitle("Pikachu Menu");
@@ -182,6 +184,7 @@ void GameStarting_Play()
             }
         }
         
+        RightClickOn = RCO_NONE;
         if (WantToExit) break;
 #pragma endregion
     }
@@ -241,6 +244,7 @@ void GameStarting_Play_Option(int mode)
     while (!WindowShouldClose())
     {
         if (!IsSoundPlaying(sound_BackgroundMenu)) PlaySound(sound_BackgroundMenu);
+        if (!IsSoundPlaying(sound_BackgroundPlay)) StopSound(sound_BackgroundPlay);
 
         // Bắt đầu vẽ
         BeginDrawing();
@@ -536,6 +540,7 @@ void Play_OPTION(int boardWidth, int boardLength)
             break;
         }
     }
+    StopSound(sound_BackgroundPlay);
     UnloadFont(font_name);
     UnloadTexture(background);
     UnloadTexture(result_win);
@@ -625,8 +630,7 @@ void Play_OPTION_ADVANCED(int boardWidth, int boardLength)
     Matrix.width = boardWidth;
     Matrix.height = boardLength;
     Matrix.score = 0;
-    //Matrix.time = boardLength * boardWidth * 3;
-    Matrix.time = boardLength * boardWidth;
+    Matrix.time = boardLength * boardWidth * 3;
     float currenttime = Matrix.time;
     int tmp = Matrix.life;
 
@@ -708,6 +712,7 @@ void Play_OPTION_ADVANCED(int boardWidth, int boardLength)
             break;
         }
     }
+    StopSound(sound_BackgroundPlay);
     UnloadFont(font_name);
     UnloadTexture(background);
     UnloadTexture(result_win);
@@ -769,159 +774,360 @@ int GameFinishingVerify(bool& isGameFinish, Texture2D win, Texture2D lose_time, 
     return 0;
 }
 
-//void Play_OPTION_TOURNAMENT(float& currenttime, int boardWidth, int boardLength)
-//{
-//    start = GetTime();
-//    // Khai báo kích thước màn hình
-//    const int screenWidth = 1200;
-//    const int screenHeight = 900;
-//
-//    // Cấp phát bộ nhớ cho con trỏ lưu dữ liệu của lưới ô 2 chiều
-//    srand(time(0));
-//    vector<int> ArrayRandom;
-//    int count = -1, countcell;
-//    int** c = new int* [boardWidth + 1];
-//    for (int i = 0; i < boardWidth + 2; i++)
-//        c[i] = new int[boardLength + 2];
-//
-//    // Khởi tạo -1 cho tất cả giá trị
-//    for (int i = 0; i < boardWidth + 2; i++) {
-//        for (int j = 0; j < boardLength + 2; j++) {
-//            c[i][j] = -1;
-//        }
-//    }
-//
-//    // Cấp phát bộ nhớ cho matrix
-//    board** val = new board * [boardWidth + 1];
-//    for (int i = 0; i < boardWidth + 2; i++)
-//        val[i] = new board[boardLength + 2];
-//
-//    // Khởi tạo vector ngẫu nhiên các chỉ số nguyên tượng trưng cho mỗi chữ cái sau đó đảo thứ tự ngẫu nhiên
-//    int value = -1; // Value
-//    int occ = 6; // Occurrences: Biến lưu số lần xuất hiện tối đa của một ô (phải là số chẵn)
-//    int cur = 0; // Current: Biến đếm xem ô đang duyệt là ô thứ mấy
-//    for (int i = 1; i <= boardWidth; i++)
-//    {
-//        for (int j = 1; j <= boardLength; j++)
-//        {
-//            if (cur++ % occ == 0) value++; // Nếu <occ> ô liên tiếp có giá trị giống nhau (là val) thì val tăng lên 1 
-//            ArrayRandom.push_back(value);
-//        }
-//    }
-//    shuffle(ArrayRandom.begin(), ArrayRandom.end(), default_random_engine(time(nullptr)));
-//
-//    // Lưu các chỉ số được đảo ngẫu nhiên vào một mảng hai chiều kiểu nguyên
-//    for (int i = 1; i <= boardWidth; i++)
-//        for (int j = 1; j <= boardLength; j++)
-//            c[i][j] = ArrayRandom[++count];
-//
-//    // Chuyyển chỉ số thành ký tự vào matrix
-//    for (int i = 1; i <= boardWidth; i++)
-//        for (int j = 1; j <= boardLength; j++)
-//        {
-//            char asciiChar = 'A' + c[i][j];
-//            char text[2] = { asciiChar, '\0' };
-//            val[i][j].data = text[0];
-//        }
-//
-//    // Khởi tạo biến matrix
-//    matrix Matrix;
-//    Matrix.val = val;
-//    Matrix.life = boardLength / 2;
-//    Matrix.width = boardWidth;
-//    Matrix.height = boardLength;
-//    Matrix.score = 0;
-//    Matrix.time = boardLength * boardWidth * 3;
-//    int tmp = Matrix.life;
-//
-//
-//    // Lấy background và các hình trang trí
-//    SetWindowTitle("Pikachu - PlayBoard");
-//    Texture2D background = LoadTexture("BACKground.png");
-//    Texture2D result_win = LoadTexture("Result_Win.png");
-//    Texture2D result_lose_time = LoadTexture("Result_TimeRanOut.png");
-//    Texture2D result_lose_life = LoadTexture("Result_OutOfLives.png");
-//    Texture2D heart = LoadTexture("heart.png");
-//    Texture2D Bulb = LoadTexture("Bulb.png");
-//    Texture2D Setting = LoadTexture("Setting.png");
-//    int heartX = 195;
-//    int heartY = 82;
-//    int fontSize = 50;
-//    Font font = GetFontDefault();
-//    Font font_name = LoadFont("Roboto.ttf");
-//    char s[4];
-//    Rectangle recBulb = { 750, 380, 125, 125 };
-//    Rectangle recSetting = { 900, 380, 120, 120 };
-//
-//    // Khởi tạo Textures cho các Cell
-//    arrangeCellID();
-//    LoadNCellTexture(countDistinctCell(c, Matrix.height, Matrix.width));
-//    countcell = countCellOccurrences(c, Matrix.height, Matrix.width);
-//
-//    bool isGameFinish = false;
-//    // Khởi tạo cửa sổ chơi
-//    while (!WindowShouldClose())
-//    {
-//        // Chơi nhạc
-//        StopSound(sound_BackgroundMenu);
-//        if (!IsSoundPlaying(sound_BackgroundPlay)) PlaySound(sound_BackgroundPlay);
-//
-//        // Vẽ background
-//        BeginDrawing();
-//        DrawTexturePro(background, { 0, 0, float(background.width), float(background.height) }, { 0, 0, 1200, 900 }, { 0, 0 }, 0, RAYWHITE);
-//
-//        // Vẽ button gợi ý và option in game
-//        DrawTexturePro(Bulb, { 0, 0, float(Bulb.width), float(Bulb.height) }, { 750, 380, 125, 125 }, { 0, 0 }, 0, RAYWHITE);
-//        DrawTexturePro(Setting, { 0, 0, float(Setting.width), float(Setting.height) }, { 900, 380, 120, 120 }, { 0, 0 }, 0, RAYWHITE);
-//
-//
-//        // Màn có độ khó N*N thì sẽ được cung cấp N/2 mạng sống
-//        for (int i = 0; i < Matrix.life; i++)
-//            DrawTexturePro(heart, { 0, 0, float(heart.width), float(heart.height) }, { float(heartX + 50 * i), float(heartY), 60, 60 }, { 0, 0 }, 0, RAYWHITE);
-//        for (int i = tmp - 1; i >= Matrix.life; i--)
-//            DrawTexturePro(heart, { 0, 0, float(heart.width), float(heart.height) }, { float(heartX + 50 * i), float(heartY), 60, 60 }, { 0, 0 }, 0, BLACK);
-//
-//        // Hiển thị tên người chơi
-//        DrawTextEx(font, User.username.c_str(), { 910, 548 }, fontSize, 2, BLACK);
-//
-//        // Hiển thị sự thay đổi của điểm số
-//        _itoa_s(Matrix.score, s, 10);
-//        DrawTextEx(font, s, { 910, 675 }, fontSize, 2, BLACK);
-//
-//        // Vẽ lưới
-//        Paint_Broad(c, boardLength, boardWidth, Matrix);
-//        if (!isGameFinish) PickCell(c, boardLength, boardWidth, countcell, Matrix);
-//        if (!isGameFinish) PickOption(c, recBulb, recSetting, Matrix, Bulb, countcell);
-//
-//        // Cập nhật thời gian và vẽ thanh thời gian
-//        if (!isGameFinish) currenttime = Matrix.time - (GetTime() - start);
-//        DrawRectangle(225, 150, 410, 40, Fade(LIGHTGRAY, 200));
-//        DrawRectangle(230, 155, 400, 30, RAYWHITE);
-//        DrawRectangle(230, 155, currenttime / Matrix.time * 400, 30, { 255, 105, 180, 180 });
-//
-//        // Game Finishing Verify
-//        int endgame_option = GameFinishingVerify(isGameFinish, result_win, result_lose_time, result_lose_life, countcell, Matrix.life, currenttime);
-//
-//        // Kết thúc vẽ
-//        EndDrawing();
-//
-//        if (endgame_option == OPTION_PLAY_AGAIN)
-//        {
-//            Play_OPTION(boardWidth, boardLength);
-//            break;
-//        }
-//        if (endgame_option == OPTION_BACK_TO_MENU)
-//        {
-//            break;
-//        }
-//    }
-//    UnloadFont(font_name);
-//    UnloadTexture(background);
-//    UnloadTexture(result_win);
-//    UnloadTexture(result_lose_life);
-//    UnloadTexture(result_lose_time);
-//    UnloadTexture(heart);
-//    UnloadTexture(Bulb);
-//    UnloadTexture(Setting);
-//    UnloadAllCellTexture();
-//}
+#define OPTION_NEXT_LEVEL OPTION_PLAY_AGAIN
+// Hàm tạo cửa sổ PlayBoard cho chế độ TOURNAMENT mode NORMAL
+int Play_TOURNAMENT_NORMAL(float playTime, float& currenttime, int& score, int lives, int& lives_left, int boardWidth, int boardLength)
+{
+    start = GetTime();
+    // Khai báo kích thước màn hình
+    const int screenWidth = 1200;
+    const int screenHeight = 900;
+
+    // Cấp phát bộ nhớ cho con trỏ lưu dữ liệu của lưới ô 2 chiều
+    srand(time(0));
+    vector<int> ArrayRandom;
+    int count = -1, countcell;
+    int** c = new int* [boardWidth + 1];
+    for (int i = 0; i < boardWidth + 2; i++)
+        c[i] = new int[boardLength + 2];
+
+    // Khởi tạo -1 cho tất cả giá trị
+    for (int i = 0; i < boardWidth + 2; i++) {
+        for (int j = 0; j < boardLength + 2; j++) {
+            c[i][j] = -1;
+        }
+    }
+
+    // Cấp phát bộ nhớ cho matrix
+    board** val = new board * [boardWidth + 1];
+    for (int i = 0; i < boardWidth + 2; i++)
+        val[i] = new board[boardLength + 2];
+
+    // Khởi tạo vector ngẫu nhiên các chỉ số nguyên tượng trưng cho mỗi chữ cái sau đó đảo thứ tự ngẫu nhiên
+    int value = -1; // Value
+    int occ = 6; // Occurrences: Biến lưu số lần xuất hiện tối đa của một ô (phải là số chẵn)
+    int cur = 0; // Current: Biến đếm xem ô đang duyệt là ô thứ mấy
+    for (int i = 1; i <= boardWidth; i++)
+    {
+        for (int j = 1; j <= boardLength; j++)
+        {
+            if (cur++ % occ == 0) value++; // Nếu <occ> ô liên tiếp có giá trị giống nhau (là val) thì val tăng lên 1 
+            ArrayRandom.push_back(value);
+        }
+    }
+    shuffle(ArrayRandom.begin(), ArrayRandom.end(), default_random_engine(time(nullptr)));
+
+    // Lưu các chỉ số được đảo ngẫu nhiên vào một mảng hai chiều kiểu nguyên
+    for (int i = 1; i <= boardWidth; i++)
+        for (int j = 1; j <= boardLength; j++)
+            c[i][j] = ArrayRandom[++count];
+
+    // Chuyyển chỉ số thành ký tự vào matrix
+    for (int i = 1; i <= boardWidth; i++)
+        for (int j = 1; j <= boardLength; j++)
+        {
+            char asciiChar = 'A' + c[i][j];
+            char text[2] = { asciiChar, '\0' };
+            val[i][j].data = text[0];
+        }
+
+    // Khởi tạo biến matrix
+    matrix Matrix;
+    Matrix.val = val;
+    Matrix.life = lives_left;
+    Matrix.width = boardWidth;
+    Matrix.height = boardLength;
+    Matrix.score = score;
+    Matrix.time = playTime;
+    float time_gap = currenttime - Matrix.time; // Khoảng thời gian mất đi do chơi các level trước
+    int tmp = lives;
+
+
+    // Lấy background và các hình trang trí
+    SetWindowTitle("Pikachu - PlayBoard");
+    Texture2D background = LoadTexture("BACKground.png");
+    Texture2D result_pass;
+    if (boardWidth == 10 && boardLength == 10)
+        result_pass = LoadTexture("Result_Win.png");
+    else
+        result_pass = LoadTexture("Result_Pass.png");
+    Texture2D result_lose_time = LoadTexture("Result_TimeRanOut.png");
+    Texture2D result_lose_life = LoadTexture("Result_OutOfLives.png");
+    Texture2D heart = LoadTexture("heart.png");
+    Texture2D Bulb = LoadTexture("Bulb.png");
+    Texture2D Setting = LoadTexture("Setting.png");
+    int heartX = 195;
+    int heartY = 82;
+    int fontSize = 50;
+    Font font = GetFontDefault();
+    Font font_name = LoadFont("Roboto.ttf");
+    char s[4];
+    Rectangle recBulb = { 750, 380, 125, 125 };
+    Rectangle recSetting = { 900, 380, 120, 120 };
+
+    // Khởi tạo Textures cho các Cell
+    arrangeCellID();
+    LoadNCellTexture(countDistinctCell(c, Matrix.height, Matrix.width));
+    countcell = countCellOccurrences(c, Matrix.height, Matrix.width);
+
+    bool isGameFinish = false;
+    int endgame_option = 0;
+    int prev_endgame_option = 0;
+    // Khởi tạo cửa sổ chơi
+    while (!WindowShouldClose())
+    {
+        // Chơi nhạc
+        StopSound(sound_BackgroundMenu);
+        if (!IsSoundPlaying(sound_BackgroundPlay)) PlaySound(sound_BackgroundPlay);
+
+        // Vẽ background
+        BeginDrawing();
+        DrawTexturePro(background, { 0, 0, float(background.width), float(background.height) }, { 0, 0, 1200, 900 }, { 0, 0 }, 0, RAYWHITE);
+
+        // Vẽ button gợi ý và option in game
+        DrawTexturePro(Bulb, { 0, 0, float(Bulb.width), float(Bulb.height) }, { 750, 380, 125, 125 }, { 0, 0 }, 0, RAYWHITE);
+        DrawTexturePro(Setting, { 0, 0, float(Setting.width), float(Setting.height) }, { 900, 380, 120, 120 }, { 0, 0 }, 0, RAYWHITE);
+
+
+        // Màn có độ khó N*N thì sẽ được cung cấp N/2 mạng sống
+        for (int i = 0; i < Matrix.life; i++)
+            DrawTexturePro(heart, { 0, 0, float(heart.width), float(heart.height) }, { float(heartX + 50 * i), float(heartY), 60, 60 }, { 0, 0 }, 0, RAYWHITE);
+        for (int i = tmp - 1; i >= Matrix.life; i--)
+            DrawTexturePro(heart, { 0, 0, float(heart.width), float(heart.height) }, { float(heartX + 50 * i), float(heartY), 60, 60 }, { 0, 0 }, 0, BLACK);
+
+        // Hiển thị tên người chơi
+        DrawTextEx(font, User.username.c_str(), { 910, 548 }, fontSize, 2, BLACK);
+
+        // Hiển thị sự thay đổi của điểm số
+        _itoa_s(Matrix.score, s, 10);
+        DrawTextEx(font, s, { 910, 675 }, fontSize, 2, BLACK);
+
+        // Vẽ lưới
+        Paint_Broad(c, boardLength, boardWidth, Matrix);
+        if (!isGameFinish) PickCell(c, boardLength, boardWidth, countcell, Matrix);
+        if (!isGameFinish) PickOption(c, recBulb, recSetting, Matrix, Bulb, countcell);
+
+        // Cập nhật thời gian và vẽ thanh thời gian
+        if (!isGameFinish) currenttime = Matrix.time - (GetTime() - start - time_gap);
+        DrawRectangle(225, 150, 410, 40, Fade(LIGHTGRAY, 200));
+        DrawRectangle(230, 155, 400, 30, RAYWHITE);
+        DrawRectangle(230, 155, currenttime / Matrix.time * 400, 30, { 255, 105, 180, 180 });
+
+        // Game Finishing Verify
+        endgame_option = GameFinishingVerify(isGameFinish, result_pass, result_lose_time, result_lose_life, countcell, Matrix.life, currenttime);
+
+        // Kết thúc vẽ
+        EndDrawing();
+
+        if (prev_endgame_option == 0 && isGameFinish)
+        {
+            prev_endgame_option = 1;
+            continue; // Câu lệnh giúp tránh trường hợp tọa độ cell cuối cùng click trùng với tọa độ của button -> vô tình kích hoạt ngay button
+        }
+
+        if (endgame_option == OPTION_NEXT_LEVEL || endgame_option == OPTION_PLAY_AGAIN || endgame_option == OPTION_BACK_TO_MENU)
+        {
+            break;
+        }
+    }
+    UnloadFont(font_name);
+    UnloadTexture(background);
+    UnloadTexture(result_pass);
+    UnloadTexture(result_lose_life);
+    UnloadTexture(result_lose_time);
+    UnloadTexture(heart);
+    UnloadTexture(Bulb);
+    UnloadTexture(Setting);
+    UnloadAllCellTexture();
+
+    score = Matrix.score;
+    lives_left = Matrix.life;
+    if (endgame_option == OPTION_NEXT_LEVEL && countcell == 0) return 1;
+    else if (endgame_option == OPTION_PLAY_AGAIN) return 2;
+    else if (endgame_option == OPTION_BACK_TO_MENU) return 3;
+}
+
+// Hàm tạo cửa sổ PlayBoard cho chế độ TOURNAMENT mode ADVANCED
+int Play_TOURNAMENT_ADVANCED(float playTime, float& currenttime, int& score, int lives, int& lives_left, int boardWidth, int boardLength)
+{
+    start = GetTime();
+    // Khai báo kích thước màn hình
+    const int screenWidth = 1200;
+    const int screenHeight = 900;
+
+    // Cấp phát bộ nhớ cho con trỏ lưu dữ liệu của lưới ô 2 chiều
+    srand(time(0));
+    vector<int> ArrayRandom;
+    int count = -1, countcell;
+    int** c = new int* [boardWidth + 1];
+    for (int i = 0; i < boardWidth + 2; i++)
+        c[i] = new int[boardLength + 2];
+
+    // Khởi tạo -1 cho tất cả giá trị
+    for (int i = 0; i < boardWidth + 2; i++) {
+        for (int j = 0; j < boardLength + 2; j++) {
+            c[i][j] = -1;
+        }
+    }
+
+    // Cấp phát bộ nhớ cho matrix
+    board** val = new board * [boardWidth + 1];
+    for (int i = 0; i < boardWidth + 2; i++)
+        val[i] = new board[boardLength + 2];
+
+    // Khởi tạo vector ngẫu nhiên các chỉ số nguyên tượng trưng cho mỗi chữ cái sau đó đảo thứ tự ngẫu nhiên
+    int value = -1; // Value
+    int occ = 6; // Occurrences: Biến lưu số lần xuất hiện tối đa của một ô (phải là số chẵn)
+    int cur = 0; // Current: Biến đếm xem ô đang duyệt là ô thứ mấy
+    for (int i = 1; i <= boardWidth; i++)
+    {
+        for (int j = 1; j <= boardLength; j++)
+        {
+            if (cur++ % occ == 0) value++; // Nếu <occ> ô liên tiếp có giá trị giống nhau (là val) thì val tăng lên 1 
+            ArrayRandom.push_back(value);
+        }
+    }
+    shuffle(ArrayRandom.begin(), ArrayRandom.end(), default_random_engine(time(nullptr)));
+
+    // Khởi tạo Linkedlist
+    str_linkedList* list = new str_linkedList[boardWidth + 1];
+    for (int i = 1; i <= boardWidth; i++)
+    {
+        list[i].width = 0;
+        list[i].pHead = nullptr;
+        list[i].pTail = nullptr;
+    }
+
+    // Lưu các chỉ số được đảo ngẫu nhiên vào một mảng hai chiều kiểu nguyên
+    for (int i = 1; i <= boardWidth; i++)
+    {
+        str_node* pCurr = list[i].pHead;
+        for (int j = 1; j <= boardLength; j++)
+        {
+            c[i][j] = ArrayRandom[++count];
+            addTail(list[i], c[i][j]);
+        }
+    }
+
+    // Chuyyển chỉ số thành ký tự vào matrix
+    for (int i = 1; i <= boardWidth; i++)
+        for (int j = 1; j <= boardLength; j++)
+        {
+            char asciiChar = 'A' + c[i][j];
+            char text[2] = { asciiChar, '\0' };
+            val[i][j].data = text[0];
+        }
+
+    // Khởi tạo biến matrix
+    matrix Matrix;
+    Matrix.val = val;
+    Matrix.life = lives_left;
+    Matrix.width = boardWidth;
+    Matrix.height = boardLength;
+    Matrix.score = score;
+    Matrix.time = playTime;
+    float time_gap = currenttime - Matrix.time; // Khoảng thời gian mất đi do chơi các level trước
+    int tmp = lives;
+
+
+    // Lấy background và các hình trang trí
+    SetWindowTitle("Pikachu - PlayBoard");
+    Texture2D background = LoadTexture("BACKground.png");
+    Texture2D result_pass;
+    if (boardWidth == 10 && boardLength == 10)
+        result_pass = LoadTexture("Result_Win.png");
+    else
+        result_pass = LoadTexture("Result_Pass.png");
+    Texture2D result_lose_time = LoadTexture("Result_TimeRanOut.png");
+    Texture2D result_lose_life = LoadTexture("Result_OutOfLives.png");
+    Texture2D heart = LoadTexture("heart.png");
+    Texture2D Bulb = LoadTexture("Bulb.png");
+    Texture2D Setting = LoadTexture("Setting.png");
+    int heartX = 195;
+    int heartY = 82;
+    int fontSize = 50;
+    Font font = GetFontDefault();
+    Font font_name = LoadFont("Roboto.ttf");
+    char s[4];
+    Rectangle recBulb = { 750, 380, 125, 125 };
+    Rectangle recSetting = { 900, 380, 120, 120 };
+
+    // Khởi tạo Textures cho các Cell
+    arrangeCellID();
+    LoadNCellTexture(countDistinctCell(c, Matrix.height, Matrix.width));
+    countcell = countCellOccurrences(c, Matrix.height, Matrix.width);
+
+    bool isGameFinish = false;
+    int endgame_option = 0;
+    int prev_endgame_option = 0;
+    // Khởi tạo cửa sổ chơi
+    while (!WindowShouldClose())
+    {
+        // Chơi nhạc
+        StopSound(sound_BackgroundMenu);
+        if (!IsSoundPlaying(sound_BackgroundPlay)) PlaySound(sound_BackgroundPlay);
+
+        // Vẽ background
+        BeginDrawing();
+        DrawTexturePro(background, { 0, 0, float(background.width), float(background.height) }, { 0, 0, 1200, 900 }, { 0, 0 }, 0, RAYWHITE);
+
+        // Vẽ button gợi ý và option in game
+        DrawTexturePro(Bulb, { 0, 0, float(Bulb.width), float(Bulb.height) }, { 750, 380, 125, 125 }, { 0, 0 }, 0, RAYWHITE);
+        DrawTexturePro(Setting, { 0, 0, float(Setting.width), float(Setting.height) }, { 900, 380, 120, 120 }, { 0, 0 }, 0, RAYWHITE);
+
+
+        // Màn có độ khó N*N thì sẽ được cung cấp N/2 mạng sống
+        for (int i = 0; i < Matrix.life; i++)
+            DrawTexturePro(heart, { 0, 0, float(heart.width), float(heart.height) }, { float(heartX + 50 * i), float(heartY), 60, 60 }, { 0, 0 }, 0, RAYWHITE);
+        for (int i = tmp - 1; i >= Matrix.life; i--)
+            DrawTexturePro(heart, { 0, 0, float(heart.width), float(heart.height) }, { float(heartX + 50 * i), float(heartY), 60, 60 }, { 0, 0 }, 0, BLACK);
+
+        // Hiển thị tên người chơi
+        DrawTextEx(font, User.username.c_str(), { 910, 548 }, fontSize, 2, BLACK);
+
+        // Hiển thị sự thay đổi của điểm số
+        _itoa_s(Matrix.score, s, 10);
+        DrawTextEx(font, s, { 910, 675 }, fontSize, 2, BLACK);
+
+        // Vẽ lưới
+        PaintBroad_Advanced(list, c, boardLength, boardWidth, Matrix);
+        if (!isGameFinish) PickCell_Advanced(list, c, boardLength, boardWidth, countcell, Matrix);
+        if (!isGameFinish) PickOption_Advanced(list, c, recBulb, recSetting, Matrix, Bulb, countcell);
+
+        // Cập nhật thời gian và vẽ thanh thời gian
+        if (!isGameFinish) currenttime = Matrix.time - (GetTime() - start - time_gap);
+        DrawRectangle(225, 150, 410, 40, Fade(LIGHTGRAY, 200));
+        DrawRectangle(230, 155, 400, 30, RAYWHITE);
+        DrawRectangle(230, 155, currenttime / Matrix.time * 400, 30, { 255, 105, 180, 180 });
+
+        // Game Finishing Verify
+        endgame_option = GameFinishingVerify(isGameFinish, result_pass, result_lose_time, result_lose_life, countcell, Matrix.life, currenttime);
+
+        // Kết thúc vẽ
+        EndDrawing();
+        if (prev_endgame_option == 0 && isGameFinish)
+        {
+            prev_endgame_option = 1;
+            continue; // Câu lệnh giúp tránh trường hợp tọa độ cell cuối cùng click trùng với tọa độ của button -> vô tình kích hoạt ngay button
+        }
+        if (endgame_option == OPTION_NEXT_LEVEL || endgame_option == OPTION_PLAY_AGAIN || endgame_option == OPTION_BACK_TO_MENU)
+        {
+            break;
+        }
+    }
+    UnloadFont(font_name);
+    UnloadTexture(background);
+    UnloadTexture(result_pass);
+    UnloadTexture(result_lose_life);
+    UnloadTexture(result_lose_time);
+    UnloadTexture(heart);
+    UnloadTexture(Bulb);
+    UnloadTexture(Setting);
+    UnloadAllCellTexture();
+
+    score = Matrix.score;
+    lives_left = Matrix.life;
+    if (endgame_option == OPTION_NEXT_LEVEL && countcell == 0) return 1;
+    else if (endgame_option == OPTION_PLAY_AGAIN) return 2;
+    else if (endgame_option == OPTION_BACK_TO_MENU) return 3;
+}

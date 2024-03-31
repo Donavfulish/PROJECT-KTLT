@@ -8,7 +8,7 @@
 #define RCO_PLAY 1
 #define RCO_RESUME_GAME 2
 #define RCO_LEADERBOARD 3
-#define RCO_CREDIT 4
+#define RCO_INSTRUCTION 4
 
 // Hàm in ra và thực hiện các chức năng của cửa sổ Pikachu Menu
 void GameStarting_Menu()
@@ -117,26 +117,26 @@ void GameStarting_Menu()
         else DrawTextEx(font, "LEADERBOARD", { buttonX - MeasureTextEx(font, "LEADERBOARD", fontSize, 1).x / 2, rec_Leaderboard.y }, fontSize, 1, BLACK);
         DrawRectangleLinesEx(rec_Leaderboard, BORDER_WIDTH, BLACK);
         // Vẽ button CREDIT
-        Rectangle rec_Credit // Lưu thông tin button hình chữ nhật "CREDIT"
+        Rectangle rec_Instruction // Lưu thông tin button hình chữ nhật "INSTRUCTION"
         {
             buttonX - MeasureTextEx(font, "RESUME GAME", fontSize, 1).x / 2 - TEXT_MARGIN,
             buttonY + buttonSpacing * 3,
             MeasureTextEx(font, "RESUME GAME", fontSize, 1).x + TEXT_MARGIN * 2,
-            MeasureTextEx(font, "CREDIT", fontSize, 1).y
+            MeasureTextEx(font, "INSTRUCTION", fontSize, 1).y
         };
-        DrawRectangleRec(rec_Credit, Fade(ORANGE, 0.7f));
-        if (CheckCollisionPointRec(GetMousePosition(), rec_Credit))
+        DrawRectangleRec(rec_Instruction, Fade(ORANGE, 0.7f));
+        if (CheckCollisionPointRec(GetMousePosition(), rec_Instruction))
         {
-            DrawRectangleRec(rec_Credit, Fade(RED, 0.8f));
-            DrawTextEx(font, "CREDIT", { buttonX - MeasureTextEx(font, "CREDIT", fontSize, 1).x / 2, rec_Credit.y }, fontSize, 1, WHITE);
+            DrawRectangleRec(rec_Instruction, Fade(RED, 0.8f));
+            DrawTextEx(font, "INSTRUCTION", { buttonX - MeasureTextEx(font, "INSTRUCTION", fontSize, 1).x / 2, rec_Instruction.y }, fontSize, 1, WHITE);
             if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
             {
                 PlaySound(sound_ClickOnButton);
-                RightClickOn = RCO_CREDIT;
+                RightClickOn = RCO_INSTRUCTION;
             }
         }
-        else DrawTextEx(font, "CREDIT", { buttonX - MeasureTextEx(font, "CREDIT", fontSize, 1).x / 2, rec_Credit.y }, fontSize, 1, BLACK);
-        DrawRectangleLinesEx(rec_Credit, BORDER_WIDTH, BLACK);
+        else DrawTextEx(font, "INSTRUCTION", { buttonX - MeasureTextEx(font, "INSTRUCTION", fontSize, 1).x / 2, rec_Instruction.y }, fontSize, 1, BLACK);
+        DrawRectangleLinesEx(rec_Instruction, BORDER_WIDTH, BLACK);
         // Vẽ button EXIT
         Rectangle rec_Exit // Lưu thông tin button hình chữ nhật "EXIT"
         {
@@ -175,7 +175,7 @@ void GameStarting_Menu()
                 break;
             case RCO_LEADERBOARD:
                 break;
-            case RCO_CREDIT:
+            case RCO_INSTRUCTION:
                 break;
             case RCO_EXIT:
                 WantToExit = true;
