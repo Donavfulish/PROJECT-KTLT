@@ -27,7 +27,7 @@ void Play_TOURNAMENT(int mode)
 				{
 					if ((endgame_option = Play_TOURNAMENT_NORMAL(playTime, currenttime, score, lives, lives_left, 8, 8)) == OPTION_NEXT_LEVEL)
 					{
-						Play_TOURNAMENT_NORMAL(playTime, currenttime, score, lives, lives_left, 10, 10);
+						endgame_option = Play_TOURNAMENT_NORMAL(playTime, currenttime, score, lives, lives_left, 10, 10);
 					}
 				}
 			}
@@ -51,7 +51,7 @@ void Play_TOURNAMENT(int mode)
 				{
 					if ((endgame_option = Play_TOURNAMENT_ADVANCED(playTime, currenttime, score, lives, lives_left, 8, 8)) == OPTION_NEXT_LEVEL)
 					{
-						Play_TOURNAMENT_ADVANCED(playTime, currenttime, score, lives, lives_left, 10, 10);
+						endgame_option = Play_TOURNAMENT_ADVANCED(playTime, currenttime, score, lives, lives_left, 10, 10);
 					}
 				}
 			}
