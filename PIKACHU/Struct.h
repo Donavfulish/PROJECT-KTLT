@@ -83,11 +83,14 @@ void deleteLinkedList(str_linkedList& list);
 
 void Paint_Broad(int** c, int height, int width, matrix Matrix);
 void PickCell(int** c, int height, int width, int& countcell, matrix &Matrix);
-void PickOption(int** c, Rectangle recBulb, Rectangle recSetting, matrix& Matrix, Texture2D Bulb, int& countcell);
+void PickOption(int** c, Rectangle recBulb, Rectangle recSetting, matrix& Matrix, Texture2D Bulb, Texture2D Setting, int& countcell, int& setting_option);
 int countDistinctCell(int** c, int boardHeight, int boardWidth);
 int countCellOccurrences(int** c, int boardHeight, int boardWidth);
 bool checkUseDij(Vector2 A, Vector2 B, int Size, int** c);
 vector<Vector2> MoveSuggestion(matrix Matrix, int** c, int& status);
+int GameSetting(Texture2D win);
+void SaveGame(matrix Matrix, int** c);
+void Play_Save();
 
 void PaintBroad_Advanced(str_linkedList*& list, int** c, int height, int width, matrix Matrix);
 void PickCell_Advanced(str_linkedList*& list, int** c, int width, int height, int& countcell, matrix& Matrix);

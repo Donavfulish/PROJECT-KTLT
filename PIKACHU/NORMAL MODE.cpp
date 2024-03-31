@@ -196,13 +196,13 @@ int countCellOccurrences(int** c, int boardHeight, int boardWidth)
     return countAll;
 }
 
-void PickOption(int** c, Rectangle recBulb, Rectangle recSetting, matrix& Matrix, Texture2D Bulb, int& countcell)
+void PickOption(int** c, Rectangle recBulb, Rectangle recSetting, matrix& Matrix, Texture2D Bulb, Texture2D Setting, int& countcell, int& setting_option)
 {
     vector<Vector2> Sugestion;
     int status = -1;
     if (CheckCollisionPointRec(GetMousePosition(), recBulb))
     {
-        DrawTexturePro(Bulb, { 0, 0, float(Bulb.width), float(Bulb.height) }, { 750, 380, 125, 125 }, { 0, 0 }, 0, Fade(RED, 50));
+        DrawTexturePro(Bulb, { 0, 0, float(Bulb.width), float(Bulb.height) }, { 750, 380, 125, 125 }, { 0, 0 }, 0, Fade(GREEN, 50));
         if (IsMouseButtonPressed(0))
         {
             // Sử dụng quyền gợi ý
@@ -228,6 +228,12 @@ void PickOption(int** c, Rectangle recBulb, Rectangle recSetting, matrix& Matrix
         }
     }
 
+    if (CheckCollisionPointRec(GetMousePosition(), recSetting))
+    {
+        DrawTexturePro(Setting, { 0, 0, float(Setting.width), float(Setting.height) }, recSetting , { 0, 0 }, 0, Fade(GREEN, 50));
+        if (IsMouseButtonPressed(0))
+            setting_option = 1;
+    }
 }
 // Sắp xếp ID các giá trị của cell
 /* Chi tiết:

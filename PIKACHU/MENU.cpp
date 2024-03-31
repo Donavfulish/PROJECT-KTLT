@@ -172,6 +172,7 @@ void GameStarting_Menu()
                 GameStarting_Play();
                 break;
             case RCO_RESUME_GAME:
+                Play_Save();
                 break;
             case RCO_LEADERBOARD:
                 break;
