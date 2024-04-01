@@ -175,7 +175,8 @@ void GameStarting_Menu()
                 Play_Save();
                 break;
             case RCO_LEADERBOARD:
-
+                createLeaderboard();
+                ViewLeaderboard();
                 break;
             case RCO_INSTRUCTION:
                 break;

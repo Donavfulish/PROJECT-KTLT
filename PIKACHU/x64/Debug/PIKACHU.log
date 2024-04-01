@@ -1,17 +1,1 @@
-﻿  RESUME.cpp
-C:\PROJECT KTLT\PIKACHU\RESUME.cpp(57,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\RESUME.cpp(86,24): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\RESUME.cpp(88,23): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\PROJECT KTLT\PIKACHU\RESUME.cpp(142,63): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\PROJECT KTLT\PIKACHU\RESUME.cpp(146,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\PROJECT KTLT\PIKACHU\RESUME.cpp(175,50): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\PROJECT KTLT\PIKACHU\RESUME.cpp(178,59): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\RESUME.cpp(210,24): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\PROJECT KTLT\PIKACHU\RESUME.cpp(212,23): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\PROJECT KTLT\PIKACHU\RESUME.cpp(287,63): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\PROJECT KTLT\PIKACHU\RESUME.cpp(291,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\PROJECT KTLT\PIKACHU\RESUME.cpp(316,50): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\PROJECT KTLT\PIKACHU\RESUME.cpp(319,59): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  PIKACHU.vcxproj -> C:\PROJECT KTLT\PIKACHU\x64\Debug\PIKACHU.exe
-  'pwsh.exe' is not recognized as an internal or external command,
-  operable program or batch file.
+﻿  PIKACHU.vcxproj -> C:\KTLT PRJ\PIKACHU\x64\Debug\PIKACHU.exe

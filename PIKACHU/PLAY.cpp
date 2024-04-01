@@ -533,19 +533,37 @@ void Play_OPTION(int size)
         DrawRectangle(230, 155, Matrix.time/currenttime * 400, 30, { 255, 105, 180, 180 });
 
         // Game Finishing Verify
-        int endgame_option = GameFinishingVerify(isGameFinish, result_win, result_lose_time, result_lose_life, countcell, Matrix.life - Matrix.death, currenttime);
+        int endgame_option = GameFinishingVerify(isGameFinish, result_win, result_lose_time, result_lose_life, countcell, Matrix.life - Matrix.death, currenttime, 1, Matrix);
         // Kết thúc vẽ
         EndDrawing();
         if (endgame_option == OPTION_PLAY_AGAIN)
         {
-            Play_OPTION(size);
-            break;
+            if (countcell == 0)
+            {
+                leaderboardSaving(Matrix, 1, User.username);
+                Play_OPTION(size);
+                break;
+            }
+            else
+            {
+                Play_OPTION(size);
+                break;
+            }
         }
         if (endgame_option == OPTION_BACK_TO_MENU)
         {
-            break;
+            if (countcell == 0)
+            {
+                leaderboardSaving(Matrix, 1, User.username);
+                break;
+            }
+            else
+            {
+                break;
+            }
         }
     }
+    cout << isGameFinish << " " << countcell << "\n";
     StopSound(sound_BackgroundPlay);
     UnloadFont(font_name);
     UnloadTexture(background);
@@ -711,17 +729,34 @@ void Play_OPTION_ADVANCED(int size)
         DrawRectangle(230, 155, Matrix.time/currenttime * 400, 30, { 255, 105, 180, 180 });
         
         // Game Finishing Verify
-        int endgame_option = GameFinishingVerify(isGameFinish, result_win, result_lose_time, result_lose_life, countcell, Matrix.life - Matrix.death, currenttime);
+        int endgame_option = GameFinishingVerify(isGameFinish, result_win, result_lose_time, result_lose_life, countcell, Matrix.life - Matrix.death, currenttime, 2, Matrix);
         EndDrawing();
 
         if (endgame_option == OPTION_PLAY_AGAIN)
         {
-            Play_OPTION_ADVANCED(size);
-            break;
+            if (countcell == 0)
+            {
+                leaderboardSaving(Matrix, 2, User.username);
+                Play_OPTION_ADVANCED(size);
+                break;
+            }
+            else
+            {
+                Play_OPTION_ADVANCED(size);
+                break;
+            }
         }
         if (endgame_option == OPTION_BACK_TO_MENU)
         {
-            break;
+            if (countcell == 0)
+            {
+                leaderboardSaving(Matrix, 2, User.username);
+                break;
+            }
+            else
+            {
+                break;
+            }
         }
     }
     StopSound(sound_BackgroundPlay);
@@ -853,25 +888,22 @@ int Play_TOURNAMENT_NORMAL(float playTime, float& currenttime, int& score, int l
         // Vẽ lưới
         Paint_Broad(c, size, Matrix);
         if (!isGameFinish) PickCell(c, size, countcell, Matrix);
-        if (!isGameFinish) PickOption(c, recBulb, recSetting, Matrix, Bulb, Setting, countcell, choice1);
+        if (!isGameFinish) PickOption(c, recBulb, recSetting, Matrix, Bulb, Setting, countcell, choiceoption);
         if (choiceoption == 1)
         {
             setting_option = GameSetting(Settingboard, choiceoption);
             if (setting_option == OPTION_PLAY_AGAIN)
             {
-                choiceoption = 0;
-                Play_OPTION(size);
+                Play_TOURNAMENT_NORMAL(playTime, currenttime, score, lives, lives_left, size);
                 break;
             }
             if (setting_option == OPTION_BACK_TO_MENU)
             {
-                choiceoption = 0;
                 break;
             }
             if (setting_option == OPTION_SAVE_GAME)
             {
                 SaveGame(Matrix, c, 3);
-                choiceoption = 0;
                 break;
             }
         }
@@ -882,7 +914,7 @@ int Play_TOURNAMENT_NORMAL(float playTime, float& currenttime, int& score, int l
         DrawRectangle(230, 155, currenttime / Matrix.time * 400, 30, { 255, 105, 180, 180 });
 
         // Game Finishing Verify
-        endgame_option = GameFinishingVerify(isGameFinish, result_pass, result_lose_time, result_lose_life, countcell, Matrix.life, currenttime);
+        endgame_option = GameFinishingVerify(isGameFinish, result_pass, result_lose_time, result_lose_life, countcell, Matrix.life, currenttime, 3, Matrix);
 
         // Kết thúc vẽ
         EndDrawing();
@@ -1053,19 +1085,16 @@ int Play_TOURNAMENT_ADVANCED(float playTime, float& currenttime, int& score, int
             setting_option = GameSetting(Settingboard, choiceoption);
             if (setting_option == OPTION_PLAY_AGAIN)
             {
-                choiceoption = 0;
-                Play_OPTION(size);
+                Play_TOURNAMENT_ADVANCED(playTime, currenttime, score, lives, lives_left, size);
                 break;
             }
             if (setting_option == OPTION_BACK_TO_MENU)
             {
-                choiceoption = 0;
                 break;
             }
             if (setting_option == OPTION_SAVE_GAME)
             {
                 SaveGame(Matrix, c, 4);
-                choiceoption = 0;
                 break;
             }
         }
@@ -1076,7 +1105,7 @@ int Play_TOURNAMENT_ADVANCED(float playTime, float& currenttime, int& score, int
         DrawRectangle(230, 155, currenttime / Matrix.time * 400, 30, { 255, 105, 180, 180 });
 
         // Game Finishing Verify
-        endgame_option = GameFinishingVerify(isGameFinish, result_pass, result_lose_time, result_lose_life, countcell, Matrix.life, currenttime);
+        endgame_option = GameFinishingVerify(isGameFinish, result_pass, result_lose_time, result_lose_life, countcell, Matrix.life, currenttime, 4, Matrix);
 
         // Kết thúc vẽ
         EndDrawing();
@@ -1122,7 +1151,7 @@ int GameSetting(Texture2D Is, int choiceoption) // Is stand for interface settin
             DrawRectangleRec(rect_PlayAgain, Fade(RED, 0.5f));
             if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
             {
-                return 1;
+                return OPTION_PLAY_AGAIN;
             }
         }
         else if (CheckCollisionPointRec(GetMousePosition(), rect_BackToMenu))
@@ -1130,7 +1159,7 @@ int GameSetting(Texture2D Is, int choiceoption) // Is stand for interface settin
             DrawRectangleRec(rect_BackToMenu, Fade(RED, 0.5f));
             if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
             {
-                return 2;
+                return OPTION_BACK_TO_MENU;
             }
         }
         else if (CheckCollisionPointRec(GetMousePosition(), rect_SaveGame))
@@ -1138,7 +1167,7 @@ int GameSetting(Texture2D Is, int choiceoption) // Is stand for interface settin
             DrawRectangleRec(rect_SaveGame, Fade(RED, 0.5f));
             if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
             {
-                return 3;
+                return OPTION_SAVE_GAME;
             }
         }
     }
@@ -1146,7 +1175,7 @@ int GameSetting(Texture2D Is, int choiceoption) // Is stand for interface settin
 }
 
 // Check end game
-int GameFinishingVerify(bool& isGameFinish, Texture2D win, Texture2D lose_time, Texture2D lose_life, int countcell, int life, float time)
+int GameFinishingVerify(bool& isGameFinish, Texture2D win, Texture2D lose_time, Texture2D lose_life, int countcell, int life, float time, int mode, matrix Matrix)
 {
     // Nếu không còn ô nào nữa thì3 kết quả YOU WIN
     if (countcell == 0)
@@ -1195,3 +1224,46 @@ int GameFinishingVerify(bool& isGameFinish, Texture2D win, Texture2D lose_time, 
     }
     return 0;
 }
+
+// Save to leaderboard
+void leaderboardSaving(matrix Matrix, int mode, string name)
+{
+    fstream fs;
+    if (mode == 1)
+    {
+        fs.open("LeaderboardNormal", std::ios::app);
+        if (!fs.is_open()) return;
+        int time = Matrix.size * Matrix.size * 3 - Matrix.time;
+        fs << Matrix.size << " " << Matrix.score << " " << time << " " << name << "\n";
+        fs.close();
+        return;
+    }
+    if (mode == 2)
+    {
+        fs.open("LeaderboardAdvanced", std::ios::app);
+        if (!fs.is_open()) return;
+        int time = Matrix.size * Matrix.size * 3 - Matrix.time;
+        fs << Matrix.size << " " << Matrix.score << " " <<  time << " " << name << "\n";
+        fs.close();
+        return;
+    } 
+    if (mode == 3)
+    {
+        fs.open("LeaderboardTourNormal", std::ios::app);
+        if (!fs.is_open()) return;
+        int time = Matrix.size * Matrix.size * 3 - Matrix.time;
+        fs << Matrix.score << " " << time << " " << name << "\n";
+        fs.close();
+        return;
+    }
+    if (mode == 4)
+    {
+        fs.open("LeaderboardTourAdvanced", std::ios::app);
+        if (!fs.is_open()) return;
+        int time = Matrix.size * Matrix.size * 3 - Matrix.time;
+        fs << Matrix.score << " " << time << " " << name << "\n";
+        fs.close();
+        return;
+    }
+}
+

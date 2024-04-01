@@ -130,6 +130,7 @@
     <ClCompile Include="ACCOUNT.cpp" />
     <ClCompile Include="ADVANCED MODE.cpp" />
     <ClCompile Include="FILE.cpp" />
+    <ClCompile Include="LEADERBOARD.cpp" />
     <ClCompile Include="LINKEDLIST.cpp" />
     <ClCompile Include="MENU.cpp" />
     <ClCompile Include="NORMAL CHECK.cpp" />

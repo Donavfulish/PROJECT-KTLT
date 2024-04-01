@@ -18,6 +18,8 @@ void GameStarting_Play();
 void GameStarting_Play_Option(int mode);
 void Play_OPTION(int size);
 void Play_OPTION_ADVANCED(int size);
+void ViewLeaderboard();
+void createLeaderboard();
 
 extern vector<int> cellID;
 extern vector<Texture> cellTexture;
@@ -36,6 +38,12 @@ struct matrix
 {
 	int size, life, score, death;
 	float time;
+};
+
+struct leaderBoard
+{
+	string name;
+	int score, time;
 };
 struct statusLine
 {
@@ -62,7 +70,7 @@ struct InputBox {
 	Font font;
 	bool active;
 };
-int GameFinishingVerify(bool& isGameFinish, Texture2D win, Texture2D lose_time, Texture2D lose_life, int countcell, int life, float time);
+int GameFinishingVerify(bool& isGameFinish, Texture2D win, Texture2D lose_time, Texture2D lose_life, int countcell, int life, float time, int mode, matrix Matrix);
 void setInputBoxActive(InputBox& inputBox);
 void fillTextInputBox(InputBox& inputBox);
 void DrawInputBox(InputBox& inputBox);
@@ -84,6 +92,7 @@ vector<Vector2> MoveSuggestion(matrix Matrix, int** c, int& status);
 int GameSetting(Texture2D win, int choiceoption);
 void SaveGame(matrix Matrix, int** c, int mode);
 void Play_Save();
+void leaderboardSaving(matrix Matrix, int mode, string name);
 
 void PaintBroad_Advanced(str_linkedList*& list, int** c, int size, matrix Matrix);
 void PickCell_Advanced(str_linkedList*& list, int** c, int size, int& countcell, matrix& Matrix);

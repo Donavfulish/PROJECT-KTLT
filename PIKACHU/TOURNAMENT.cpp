@@ -28,6 +28,7 @@ void Play_TOURNAMENT(int mode)
 					if ((endgame_option = Play_TOURNAMENT_NORMAL(playTime, currenttime, score, lives, lives_left, 8)) == OPTION_NEXT_LEVEL)
 					{
 						endgame_option = Play_TOURNAMENT_NORMAL(playTime, currenttime, score, lives, lives_left, 10);
+						
 					}
 				}
 			}

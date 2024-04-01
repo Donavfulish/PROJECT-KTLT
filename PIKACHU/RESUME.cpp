@@ -178,7 +178,7 @@ void Save_Mode1(int** c, matrix Matrix)
         DrawRectangle(230, 155, Matrix.time / currenttime * 400, 30, { 255, 105, 180, 180 });
 
         // Game Finishing Verify
-        int endgame_option = GameFinishingVerify(isGameFinish, result_win, result_lose_time, result_lose_life, countcell, Matrix.life - Matrix.death, currenttime);
+        int endgame_option = GameFinishingVerify(isGameFinish, result_win, result_lose_time, result_lose_life, countcell, Matrix.life - Matrix.death, currenttime, 1, Matrix);
         // Kết thúc vẽ
         EndDrawing();
         if (endgame_option == OPTION_PLAY_AGAIN)
@@ -300,14 +300,17 @@ void Save_Mode2(int** c, matrix Matrix)
             if (setting_option == OPTION_PLAY_AGAIN)
             {
                 Play_OPTION(size);
+                choiceadvanced = 0;
                 break;
             }
             if (setting_option == OPTION_BACK_TO_MENU)
             {
+                choiceadvanced = 0;
                 break;
             }
             if (setting_option == OPTION_SAVE_GAME)
             {
+                choiceadvanced = 0;
                 SaveGame(Matrix, c, 2);
                 break;
             }
@@ -319,7 +322,7 @@ void Save_Mode2(int** c, matrix Matrix)
         DrawRectangle(230, 155, Matrix.time / currenttime * 400, 30, { 255, 105, 180, 180 });
 
         // Game Finishing Verify
-        int endgame_option = GameFinishingVerify(isGameFinish, result_win, result_lose_time, result_lose_life, countcell, Matrix.life - Matrix.death, currenttime);
+        int endgame_option = GameFinishingVerify(isGameFinish, result_win, result_lose_time, result_lose_life, countcell, Matrix.life - Matrix.death, currenttime, 2, Matrix);
         EndDrawing();
 
         if (endgame_option == OPTION_PLAY_AGAIN)
