@@ -10,6 +10,23 @@ using namespace std;
 #define OPTION_SAVE_GAME 3
 
 int startsave;
+
+int maxCellValue(int** c, int size)
+{
+    int max = -1;
+    for (int i = 1; i <= size; i++)
+    {
+        for (int j = 1; j <= size; j++)
+        {
+            if (max < c[i][j])
+            {
+                max = c[i][j];
+            }
+        }
+    }
+    return max;
+}
+
 // Ghi dữ liệu
 void SaveGame(matrix Matrix, int** c, int mode)
 {
@@ -21,6 +38,14 @@ void SaveGame(matrix Matrix, int** c, int mode)
         fs << mode << "\n";
         fs << Matrix.size << "\n";
         fs << Matrix.life << " " << Matrix.death << " " << Matrix.score << " " << int(Matrix.time) << "\n";
+        
+        int countCellID = 0;
+        for (int x : cellID)
+        {
+            if (countCellID++ % 10 == 0) fs << endl;
+            fs << x << " ";
+        }
+        fs << endl << endl;
         for (int i = 1; i <= Matrix.size; i++)
         {
             for (int j = 1; j <= Matrix.size; j++)
@@ -51,6 +76,16 @@ void Play_Save()
     fs >> mode;
     fs >> Matrix.size;
     fs >> Matrix.life >> Matrix.death >> Matrix.score >> Matrix.time;
+    cellID.clear();
+
+    for (int i = 0; i < 50; i++)
+    {
+        int x;
+        fs >> x;
+        cellID.push_back(x);
+    }
+    fs.ignore();
+
     int size = Matrix.size;
 
     // Cấp phát bộ nhớ cho con trỏ lưu dữ liệu của lưới ô 2 chiều
@@ -116,8 +151,7 @@ void Save_Mode1(int** c, matrix Matrix)
     Rectangle recSetting = { 900, 380, 120, 120 };
 
     // Khởi tạo Textures cho các Cell
-    arrangeCellID();
-    LoadNCellTexture(countDistinctCell(c, Matrix.size));
+    LoadNCellTexture(maxCellValue(c, Matrix.size) + 1);
     countcell = countCellOccurrences(c, Matrix.size);
     bool isGameFinish = false;
 
@@ -252,8 +286,7 @@ void Save_Mode2(int** c, matrix Matrix)
     Rectangle recSetting = { 900, 380, 120, 120 };
 
     // Khởi tạo Textures cho các Cell
-    arrangeCellID();
-    LoadNCellTexture(countDistinctCell(c, Matrix.size));
+    LoadNCellTexture(maxCellValue(c, Matrix.size) + 1);
     countcell = countCellOccurrences(c, Matrix.size);
 
     bool isGameFinish = false;
@@ -366,8 +399,7 @@ int Save_Mode3(int** c, matrix Matrix, float playTime, float& runningtime, int& 
     Rectangle recSetting = { 900, 380, 120, 120 };
 
     // Khởi tạo Textures cho các Cell
-    arrangeCellID();
-    LoadNCellTexture(countDistinctCell(c, Matrix.size));
+    LoadNCellTexture(maxCellValue(c, Matrix.size) + 1);
     countcell = countCellOccurrences(c, Matrix.size);
 
     bool isGameFinish = false;
@@ -512,8 +544,7 @@ int Save_Mode4(int** c, matrix Matrix, float playTime, float& runningtime, int& 
     Rectangle recSetting = { 900, 380, 120, 120 };
 
     // Khởi tạo Textures cho các Cell
-    arrangeCellID();
-    LoadNCellTexture(countDistinctCell(c, Matrix.size));
+    LoadNCellTexture(maxCellValue(c, Matrix.size) + 1);
     countcell = countCellOccurrences(c, Matrix.size);
 
     bool isGameFinish = false;

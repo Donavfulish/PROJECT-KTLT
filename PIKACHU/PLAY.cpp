@@ -725,31 +725,7 @@ void Play_OPTION_ADVANCED(int size)
 }
 
 // Hàm tạo cửa sổ PlayBoard cho chế độ TOURNAMENT mode NORMAL
-int Play_TOURNAMENT_NORMAL(float playTime, float& runningtime, in
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    t& score, int lives, int& lives_left, int size)
+int Play_TOURNAMENT_NORMAL(float playTime, float& runningtime, int& score, int lives, int& lives_left, int size)
 {
     start = GetTime();
     // Khai báo kích thước màn hình
