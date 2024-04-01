@@ -78,7 +78,7 @@ void deleteLinkedList(str_linkedList& list);
 
 void Paint_Broad(int** c, int size, matrix Matrix);
 void PickCell(int** c, int size, int& countcell, matrix &Matrix);
-void PickOption(int** c, Rectangle recBulb, Rectangle recSetting, matrix& Matrix, Texture2D Bulb, Texture2D Setting, int& countcell, int& setting_option);
+void PickOption(int** c, Rectangle recBulb, Rectangle recSetting, matrix& Matrix, Texture2D Bulb, Texture2D Setting, int& countcell, int& setting_option, float& time);
 int countDistinctCell(int** c, int size);
 int countCellOccurrences(int** c, int size);
 bool checkUseDij(Vector2 A, Vector2 B, int Size, int** c);
@@ -89,7 +89,7 @@ void Play_Save();
 
 void PaintBroad_Advanced(str_linkedList*& list, int** c, int size, matrix Matrix);
 void PickCell_Advanced(str_linkedList*& list, int** c, int size, int& countcell, matrix& Matrix);
-void PickOption_Advanced(str_linkedList* list, int** c, Rectangle recBulb, Rectangle recSetting, matrix& Matrix, Texture2D Bulb, Texture2D Setting, int& countcell, int& choice);
+void PickOption_Advanced(str_linkedList* list, int** c, Rectangle recBulb, Rectangle recSetting, matrix& Matrix, Texture2D Bulb, Texture2D Setting, int& countcell, int& choice, float& time);
 
 void Play_TOURNAMENT(int mode);
 void resumeGame_Tournament(int mode, int** c, matrix Matrix, float playTime, float& currenttime, int& score, int lives, int& lives_left);

@@ -13,9 +13,10 @@ using namespace std;
 Texture2D GameRule[4];
 Texture2D PlayMode[3];
 Texture2D PlayOption[4];
+Texture2D Functionalities[5];
 
 // Biến lưu số page của từng section
-int sectionPage[] = { 4, 3, 4, 4 };
+int sectionPage[] = { 4, 3, 4, 5 };
 
 // Lưu tọa độ tâm của các nút tròn và bán kính nút tròn
 Vector2 prevPage = { 410.15, 810 };
@@ -41,6 +42,13 @@ void Instruction_LoadAllTexture()
 	PlayOption[1] = LoadTexture("Instruction\\Instruction_3.2.png");
 	PlayOption[2] = LoadTexture("Instruction\\Instruction_3.3.png");
 	PlayOption[3] = LoadTexture("Instruction\\Instruction_3.4.png");
+
+	// Load all textures cho section In-game Functionalities
+	Functionalities[0] = LoadTexture("Instruction\\Instruction_4.1.png");
+	Functionalities[1] = LoadTexture("Instruction\\Instruction_4.2.png");
+	Functionalities[2] = LoadTexture("Instruction\\Instruction_4.3.png");
+	Functionalities[3] = LoadTexture("Instruction\\Instruction_4.4.png");
+	Functionalities[4] = LoadTexture("Instruction\\Instruction_4.5.png");
 }
 
 void Instruction_UnloadAllTexture()
@@ -56,6 +64,10 @@ void Instruction_UnloadAllTexture()
 	// Unload all textures cho section Play Mode
 	for (int i = 0; i < sectionPage[SECTION_PLAY_OPTION]; i++)
 		UnloadTexture(PlayOption[i]);
+
+	// Unload all textures cho section Play Mode
+	for (int i = 0; i < sectionPage[SECTION_PLAY_FUNCTIONALITIES]; i++)
+		UnloadTexture(Functionalities[i]);
 }
 
 int pagebuttonPressed(int& page)
@@ -172,6 +184,11 @@ void Instruction()
 		else if (section == SECTION_PLAY_OPTION)
 		{
 			DrawTexture(PlayOption[page], 0, 0, WHITE);
+		}
+
+		else if (section == SECTION_PLAY_FUNCTIONALITIES)
+		{
+			DrawTexture(Functionalities[page], 0, 0, WHITE);
 		}
 
 		pagebuttonPressed(page);

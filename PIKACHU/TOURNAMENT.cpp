@@ -68,11 +68,12 @@ void resumeGame_Tournament(int mode, int** c, matrix Matrix, float playTime, flo
 
 	int currentLevel = Matrix.size + 2;
 	int endgame_option = OPTION_PLAY_AGAIN;
-	endgame_option = Save_Mode3(c, Matrix, playTime, currenttime, score, lives, lives_left);
-	if (endgame_option == OPTION_BACK_TO_MENU) return;
 
 	if (mode == NORMAL_MODE)
 	{
+		endgame_option = Save_Mode3(c, Matrix, playTime, currenttime, score, lives, lives_left);
+		if (endgame_option == OPTION_BACK_TO_MENU) return;
+		if (endgame_option == OPTION_PLAY_AGAIN) currentLevel = 0;
 		while (!WindowShouldClose())
 		{
 			if (currentLevel == 0)
@@ -105,6 +106,9 @@ void resumeGame_Tournament(int mode, int** c, matrix Matrix, float playTime, flo
 	}
 	else if (mode == ADVANCED_MODE)
 	{
+		endgame_option = Save_Mode4(c, Matrix, playTime, currenttime, score, lives, lives_left);
+		if (endgame_option == OPTION_BACK_TO_MENU) return;
+		if (endgame_option == OPTION_PLAY_AGAIN) currentLevel = 0;
 		while (!WindowShouldClose())
 		{
 			if (currentLevel == 0)

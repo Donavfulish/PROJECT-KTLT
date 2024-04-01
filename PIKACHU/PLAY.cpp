@@ -446,6 +446,7 @@ void Play_OPTION(int size)
     Matrix.score = 0;
     Matrix.time = size * size * 3;
     float currenttime = Matrix.time;
+    float penaltyTime = 0; // Mỗi lần sử dụng Move Suggestion: penaltyTime tăng lên 5 giây
 
 
     // Lấy background và các hình trang trí
@@ -503,45 +504,39 @@ void Play_OPTION(int size)
         // Hiển thị sự thay đổi của điểm số
         _itoa_s(Matrix.score, s, 10);
         DrawTextEx(font, s, { 910, 675 }, fontSize, 2, BLACK);
-
+        
         // Vẽ lưới
         Paint_Broad(c, size, Matrix);
-        if (!isGameFinish) PickCell(c, size, countcell, Matrix);
-        if (!isGameFinish) PickOption(c, recBulb, recSetting, Matrix, Bulb, Setting, countcell, choiceoption);
-     
+        if (choiceoption == 0 && !isGameFinish) PickCell(c, size, countcell, Matrix);
+        if (choiceoption == 0 && !isGameFinish) PickOption(c, recBulb, recSetting, Matrix, Bulb, Setting, countcell, choiceoption, penaltyTime);
+        
+        if (choiceoption == 1)
+        {
             setting_option = GameSetting(Settingboard, choiceoption);
-            if (setting_option == 1)
-            {
-                Play_OPTION(size);
-                break;
-            }
-            if (setting_option == 2)
-            {
-                break;
-            }
-            if (setting_option == 3)
-            {
-                SaveGame(Matrix, c, 1);
-                break;
-            }
-
-
+            if (setting_option != 0) choiceoption = 0;
+        }
+        
         // Cập nhật thời gian và vẽ thanh thời gian
-        if (!isGameFinish) Matrix.time = currenttime - (GetTime() - start);
+        if (!isGameFinish) Matrix.time = currenttime - (GetTime() - start - penaltyTime);
         DrawRectangle(225, 150, 410, 40, Fade(LIGHTGRAY, 200));
         DrawRectangle(230, 155, 400, 30, RAYWHITE);
         DrawRectangle(230, 155, Matrix.time/currenttime * 400, 30, { 255, 105, 180, 180 });
 
         // Game Finishing Verify
-        int endgame_option = GameFinishingVerify(isGameFinish, result_win, result_lose_time, result_lose_life, countcell, Matrix.life - Matrix.death, currenttime);
+        int endgame_option = GameFinishingVerify(isGameFinish, result_win, result_lose_time, result_lose_life, countcell, Matrix.life - Matrix.death, Matrix.time);
         // Kết thúc vẽ
         EndDrawing();
-        if (endgame_option == OPTION_PLAY_AGAIN)
+        if (setting_option == 3)
+        {
+            SaveGame(Matrix, c, 1);
+            break;
+        }
+        if (setting_option == OPTION_PLAY_AGAIN|| endgame_option == OPTION_PLAY_AGAIN)
         {
             Play_OPTION(size);
             break;
         }
-        if (endgame_option == OPTION_BACK_TO_MENU)
+        if (setting_option == OPTION_BACK_TO_MENU || endgame_option == OPTION_BACK_TO_MENU)
         {
             break;
         }
@@ -624,6 +619,7 @@ void Play_OPTION_ADVANCED(int size)
     Matrix.score = 0;
     Matrix.time = size * size * 3;
     float currenttime = Matrix.time;
+    float penaltyTime = 0; // Mỗi lần sử dụng Move Suggestion: penaltyTime tăng lên 5 giây
     int tmp = Matrix.life;
 
 
@@ -684,42 +680,45 @@ void Play_OPTION_ADVANCED(int size)
 
         // Vẽ lưới
         PaintBroad_Advanced(list, c, size, Matrix);
-        if (!isGameFinish) PickCell_Advanced(list, c, size, countcell, Matrix);
-        if (!isGameFinish) PickOption_Advanced(list, c, recBulb, recSetting, Matrix, Bulb, Setting, countcell, choiceadvanced);
+        if (choiceadvanced == 0 && !isGameFinish) PickCell_Advanced(list, c, size, countcell, Matrix);
+        if (choiceadvanced == 0 && !isGameFinish) PickOption_Advanced(list, c, recBulb, recSetting, Matrix, Bulb, Setting, countcell, choiceadvanced, penaltyTime);
         if (choiceadvanced == 1)
         {
             setting_option = GameSetting(Settingboard, choiceadvanced);
             if (setting_option == OPTION_PLAY_AGAIN)
             {
-                Play_OPTION(size);
-                break;
+                choiceadvanced = 0;
             }
             if (setting_option == OPTION_BACK_TO_MENU)
             {
-                break;
+                choiceadvanced = 0;
             }
             if (setting_option == OPTION_SAVE_GAME)
             {
-                SaveGame(Matrix, c, 2);
-                break;
+                choiceadvanced = 0;
             }
         }
         // Cập nhật thời gian và vẽ thanh thời gian
-        if (!isGameFinish) Matrix.time = currenttime - (GetTime() - start);
+        if (!isGameFinish) Matrix.time = currenttime - (GetTime() - start - penaltyTime);
         DrawRectangle(225, 150, 410, 40, Fade(LIGHTGRAY, 200));
         DrawRectangle(230, 155, 400, 30, RAYWHITE);
         DrawRectangle(230, 155, Matrix.time/currenttime * 400, 30, { 255, 105, 180, 180 });
         
         // Game Finishing Verify
-        int endgame_option = GameFinishingVerify(isGameFinish, result_win, result_lose_time, result_lose_life, countcell, Matrix.life - Matrix.death, currenttime);
+        int endgame_option = GameFinishingVerify(isGameFinish, result_win, result_lose_time, result_lose_life, countcell, Matrix.life - Matrix.death, Matrix.time);
         EndDrawing();
 
-        if (endgame_option == OPTION_PLAY_AGAIN)
+        if (setting_option == 3)
         {
-            Play_OPTION_ADVANCED(size);
+            SaveGame(Matrix, c, 2);
             break;
         }
-        if (endgame_option == OPTION_BACK_TO_MENU)
+        if (setting_option == OPTION_PLAY_AGAIN || endgame_option == OPTION_PLAY_AGAIN)
+        {
+            Play_OPTION(size);
+            break;
+        }
+        if (setting_option == OPTION_BACK_TO_MENU || endgame_option == OPTION_BACK_TO_MENU)
         {
             break;
         }
@@ -787,6 +786,7 @@ int Play_TOURNAMENT_NORMAL(float playTime, float& runningtime, int& score, int l
     Matrix.time = runningtime;
     float SubTime = Matrix.time;
     float currenttime = playTime;
+    float penaltyTime = 0; // Mỗi lần sử dụng Move Suggestion: penaltyTime tăng lên 5 giây
 
 
     // Lấy background và các hình trang trí
@@ -852,47 +852,48 @@ int Play_TOURNAMENT_NORMAL(float playTime, float& runningtime, int& score, int l
 
         // Vẽ lưới
         Paint_Broad(c, size, Matrix);
-        if (!isGameFinish) PickCell(c, size, countcell, Matrix);
-        if (!isGameFinish) PickOption(c, recBulb, recSetting, Matrix, Bulb, Setting, countcell, choiceoption);
+        if (choiceoption == 0 && !isGameFinish) PickCell(c, size, countcell, Matrix);
+        if (choiceoption == 0 && !isGameFinish) PickOption(c, recBulb, recSetting, Matrix, Bulb, Setting, countcell, choiceoption, penaltyTime);
         if (choiceoption == 1)
         {
             setting_option = GameSetting(Settingboard, choiceoption);
             if (setting_option == OPTION_PLAY_AGAIN)
             {
                 choiceoption = 0;
-                break;
             }
             if (setting_option == OPTION_BACK_TO_MENU)
             {
                 choiceoption = 0;
-                break;
             }
             if (setting_option == OPTION_SAVE_GAME)
             {
-                SaveGame(Matrix, c, 3);
                 choiceoption = 0;
-                break;
             }
         }
         // Cập nhật thời gian và vẽ thanh thời gian
-        if (!isGameFinish) Matrix.time = SubTime - (GetTime() - start);
+        if (!isGameFinish) Matrix.time = SubTime - (GetTime() - start - penaltyTime);
         DrawRectangle(225, 150, 410, 40, Fade(LIGHTGRAY, 200));
         DrawRectangle(230, 155, 400, 30, RAYWHITE);
         DrawRectangle(230, 155, Matrix.time / currenttime * 400, 30, { 255, 105, 180, 180 });
 
         // Game Finishing Verify
-        endgame_option = GameFinishingVerify(isGameFinish, result_pass, result_lose_time, result_lose_life, countcell, Matrix.life, currenttime);
+        endgame_option = GameFinishingVerify(isGameFinish, result_pass, result_lose_time, result_lose_life, countcell, Matrix.life, Matrix.time);
 
         // Kết thúc vẽ
         EndDrawing();
 
+        if (setting_option == OPTION_SAVE_GAME)
+        {
+            SaveGame(Matrix, c, 3);
+            break;
+        }
         if (prev_endgame_option == 0 && isGameFinish)
         {
             prev_endgame_option = 1;
             continue; // Câu lệnh giúp tránh trường hợp tọa độ cell cuối cùng click trùng với tọa độ của button -> vô tình kích hoạt ngay button
         }
 
-        if (endgame_option == OPTION_NEXT_LEVEL || endgame_option == OPTION_PLAY_AGAIN || endgame_option == OPTION_BACK_TO_MENU)
+        if (setting_option != 0 || endgame_option == OPTION_NEXT_LEVEL || endgame_option == OPTION_PLAY_AGAIN || endgame_option == OPTION_BACK_TO_MENU)
         {
             break;
         }
@@ -982,7 +983,7 @@ int Play_TOURNAMENT_ADVANCED(float playTime, float& runningtime, int& score, int
     Matrix.time = runningtime;
     float SubTime = Matrix.time;
     float currenttime = playTime;
-
+    float penaltyTime = 0; // Mỗi lần sử dụng Move Suggestion: penaltyTime tăng lên 5 giây
 
     // Lấy background và các hình trang trí
     SetWindowTitle("Pikachu - PlayBoard");
@@ -1047,45 +1048,47 @@ int Play_TOURNAMENT_ADVANCED(float playTime, float& runningtime, int& score, int
 
         // Vẽ lưới
         PaintBroad_Advanced(list, c, size, Matrix);
-        if (!isGameFinish) PickCell_Advanced(list, c, size, countcell, Matrix);
-        if (!isGameFinish) PickOption_Advanced(list, c, recBulb, recSetting, Matrix, Bulb, Setting, countcell, choiceoption);
+        if (choiceoption == 0 && !isGameFinish) PickCell_Advanced(list, c, size, countcell, Matrix);
+        if (choiceoption == 0 && !isGameFinish) PickOption_Advanced(list, c, recBulb, recSetting, Matrix, Bulb, Setting, countcell, choiceoption, penaltyTime);
         if (choiceoption == 1)
         {
             setting_option = GameSetting(Settingboard, choiceoption);
             if (setting_option == OPTION_PLAY_AGAIN)
             {
                 choiceoption = 0;
-                break;
             }
             if (setting_option == OPTION_BACK_TO_MENU)
             {
                 choiceoption = 0;
-                break;
             }
             if (setting_option == OPTION_SAVE_GAME)
             {
-                SaveGame(Matrix, c, 4);
                 choiceoption = 0;
-                break;
             }
         }
         // Cập nhật thời gian và vẽ thanh thời gian
-        if (!isGameFinish) Matrix.time = SubTime - (GetTime() - start);
+        if (!isGameFinish) Matrix.time = SubTime - (GetTime() - start - penaltyTime);
         DrawRectangle(225, 150, 410, 40, Fade(LIGHTGRAY, 200));
         DrawRectangle(230, 155, 400, 30, RAYWHITE);
         DrawRectangle(230, 155, Matrix.time / currenttime * 400, 30, { 255, 105, 180, 180 });
 
         // Game Finishing Verify
-        endgame_option = GameFinishingVerify(isGameFinish, result_pass, result_lose_time, result_lose_life, countcell, Matrix.life, runningtime);
+        endgame_option = GameFinishingVerify(isGameFinish, result_pass, result_lose_time, result_lose_life, countcell, Matrix.life, Matrix.time);
 
         // Kết thúc vẽ
         EndDrawing();
+
+        if (setting_option == OPTION_SAVE_GAME)
+        {
+            SaveGame(Matrix, c, 4);
+            break;
+        }
         if (prev_endgame_option == 0 && isGameFinish)
         {
             prev_endgame_option = 1;
             continue; // Câu lệnh giúp tránh trường hợp tọa độ cell cuối cùng click trùng với tọa độ của button -> vô tình kích hoạt ngay button
         }
-        if (endgame_option == OPTION_NEXT_LEVEL || endgame_option == OPTION_PLAY_AGAIN || endgame_option == OPTION_BACK_TO_MENU)
+        if (setting_option != 0 || endgame_option == OPTION_NEXT_LEVEL || endgame_option == OPTION_PLAY_AGAIN || endgame_option == OPTION_BACK_TO_MENU)
         {
             break;
         }
