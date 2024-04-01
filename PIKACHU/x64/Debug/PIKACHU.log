@@ -1,1 +1,351 @@
-﻿  PIKACHU.vcxproj -> C:\KTLT PRJ\PIKACHU\x64\Debug\PIKACHU.exe
+﻿  ACCOUNT.cpp
+C:\KTLT PRJ\PIKACHU\ACCOUNT.cpp(19,92): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\ACCOUNT.cpp(19,71): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\ACCOUNT.cpp(19,54): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\ACCOUNT.cpp(19,37): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\ACCOUNT.cpp(20,156): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\ACCOUNT.cpp(28,92): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\ACCOUNT.cpp(28,71): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\ACCOUNT.cpp(28,54): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\ACCOUNT.cpp(28,37): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\ACCOUNT.cpp(34,156): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\ACCOUNT.cpp(76,108): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\ACCOUNT.cpp(96,16): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\ACCOUNT.cpp(106,16): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\ACCOUNT.cpp(242,24): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\ACCOUNT.cpp(242,31): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\ACCOUNT.cpp(242,38): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\ACCOUNT.cpp(242,45): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\ACCOUNT.cpp(250,33): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\ACCOUNT.cpp(250,40): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\ACCOUNT.cpp(250,51): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\ACCOUNT.cpp(262,33): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\ACCOUNT.cpp(262,40): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\ACCOUNT.cpp(262,51): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\ACCOUNT.cpp(276,24): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\ACCOUNT.cpp(276,31): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\ACCOUNT.cpp(276,38): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\ACCOUNT.cpp(276,45): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\ACCOUNT.cpp(406,24): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\ACCOUNT.cpp(406,31): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\ACCOUNT.cpp(406,38): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\ACCOUNT.cpp(406,44): warning C4305: 'initializing': truncation from 'double' to 'float'
+  ADVANCED MODE.cpp
+C:\KTLT PRJ\PIKACHU\ADVANCED MODE.cpp(22,19): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\ADVANCED MODE.cpp(61,20): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\ADVANCED MODE.cpp(93,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\ADVANCED MODE.cpp(94,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\ADVANCED MODE.cpp(95,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\ADVANCED MODE.cpp(96,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\ADVANCED MODE.cpp(97,28): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\KTLT PRJ\PIKACHU\ADVANCED MODE.cpp(97,28): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\ADVANCED MODE.cpp(97,32): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\KTLT PRJ\PIKACHU\ADVANCED MODE.cpp(97,32): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\ADVANCED MODE.cpp(97,36): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\KTLT PRJ\PIKACHU\ADVANCED MODE.cpp(97,36): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\ADVANCED MODE.cpp(97,45): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\KTLT PRJ\PIKACHU\ADVANCED MODE.cpp(97,45): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\ADVANCED MODE.cpp(112,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\ADVANCED MODE.cpp(113,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\ADVANCED MODE.cpp(114,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\ADVANCED MODE.cpp(115,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\ADVANCED MODE.cpp(116,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\ADVANCED MODE.cpp(117,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\ADVANCED MODE.cpp(118,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\ADVANCED MODE.cpp(119,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\ADVANCED MODE.cpp(120,28): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\KTLT PRJ\PIKACHU\ADVANCED MODE.cpp(120,28): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\ADVANCED MODE.cpp(120,32): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\KTLT PRJ\PIKACHU\ADVANCED MODE.cpp(120,32): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\ADVANCED MODE.cpp(120,36): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\KTLT PRJ\PIKACHU\ADVANCED MODE.cpp(120,36): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\ADVANCED MODE.cpp(120,45): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\KTLT PRJ\PIKACHU\ADVANCED MODE.cpp(120,45): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\ADVANCED MODE.cpp(120,65): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\KTLT PRJ\PIKACHU\ADVANCED MODE.cpp(120,65): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\ADVANCED MODE.cpp(120,69): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\KTLT PRJ\PIKACHU\ADVANCED MODE.cpp(120,69): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\ADVANCED MODE.cpp(120,73): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\KTLT PRJ\PIKACHU\ADVANCED MODE.cpp(120,73): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\ADVANCED MODE.cpp(120,82): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\KTLT PRJ\PIKACHU\ADVANCED MODE.cpp(120,82): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\ADVANCED MODE.cpp(181,27): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\ADVANCED MODE.cpp(182,20): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\ADVANCED MODE.cpp(183,20): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\ADVANCED MODE.cpp(184,20): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\ADVANCED MODE.cpp(185,20): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  FILE.cpp
+  INSTRUCTION.cpp
+C:\KTLT PRJ\PIKACHU\INSTRUCTION.cpp(22,22): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\INSTRUCTION.cpp(23,22): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\INSTRUCTION.cpp(118,21): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\INSTRUCTION.cpp(118,29): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\INSTRUCTION.cpp(118,35): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\INSTRUCTION.cpp(118,42): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\INSTRUCTION.cpp(137,4): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\INSTRUCTION.cpp(137,11): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\INSTRUCTION.cpp(137,18): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\INSTRUCTION.cpp(137,25): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\INSTRUCTION.cpp(138,4): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\INSTRUCTION.cpp(138,11): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\INSTRUCTION.cpp(138,18): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\INSTRUCTION.cpp(138,25): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\INSTRUCTION.cpp(139,4): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\INSTRUCTION.cpp(139,11): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\INSTRUCTION.cpp(139,18): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\INSTRUCTION.cpp(139,25): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\INSTRUCTION.cpp(140,4): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\INSTRUCTION.cpp(140,11): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\INSTRUCTION.cpp(140,18): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\INSTRUCTION.cpp(140,25): warning C4305: 'initializing': truncation from 'double' to 'float'
+  LEADERBOARD.cpp
+  LINKEDLIST.cpp
+  MENU.cpp
+C:\KTLT PRJ\PIKACHU\MENU.cpp(34,17): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\MENU.cpp(35,17): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\MENU.cpp(58,58): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\MENU.cpp(60,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\MENU.cpp(61,41): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\MENU.cpp(59,13): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\KTLT PRJ\PIKACHU\MENU.cpp(59,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\MENU.cpp(67,78): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\MENU.cpp(67,112): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\MENU.cpp(74,79): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\MENU.cpp(74,113): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\MENU.cpp(79,58): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\MENU.cpp(81,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\MENU.cpp(82,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\MENU.cpp(80,21): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\KTLT PRJ\PIKACHU\MENU.cpp(80,21): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\MENU.cpp(88,92): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\MENU.cpp(88,132): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\MENU.cpp(95,93): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\MENU.cpp(95,133): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\MENU.cpp(101,58): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\MENU.cpp(103,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\MENU.cpp(104,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\MENU.cpp(102,21): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\KTLT PRJ\PIKACHU\MENU.cpp(102,21): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\MENU.cpp(110,92): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\MENU.cpp(110,133): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\MENU.cpp(117,93): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\MENU.cpp(117,134): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\MENU.cpp(122,58): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\MENU.cpp(124,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\MENU.cpp(125,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\MENU.cpp(123,21): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\KTLT PRJ\PIKACHU\MENU.cpp(123,21): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\MENU.cpp(131,92): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\MENU.cpp(131,133): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\MENU.cpp(138,93): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\MENU.cpp(138,134): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\MENU.cpp(143,58): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\MENU.cpp(145,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\MENU.cpp(146,41): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\MENU.cpp(144,21): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\KTLT PRJ\PIKACHU\MENU.cpp(144,21): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\MENU.cpp(152,78): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\MENU.cpp(152,112): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\MENU.cpp(159,79): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\MENU.cpp(159,113): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  NORMAL CHECK.cpp
+C:\KTLT PRJ\PIKACHU\NORMAL CHECK.cpp(36,8): warning C4244: 'argument': conversion from 'float' to 'const unsigned __int64', possible loss of data
+C:\KTLT PRJ\PIKACHU\NORMAL CHECK.cpp(36,13): warning C4244: 'argument': conversion from 'float' to 'const unsigned __int64', possible loss of data
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.37.32822\include\utility(270,61): warning C4244: 'initializing': conversion from '_Ty' to '_Ty2', possible loss of data
+          with
+          [
+              _Ty=float
+          ]
+          and
+          [
+              _Ty2=int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.37.32822\include\utility(270,38): message : see reference to function template instantiation 'std::pair<int,int>::pair<int,float,0>(std::pair<int,float> &&) noexcept' being compiled
+C:\KTLT PRJ\PIKACHU\NORMAL CHECK.cpp(37,13): message : see reference to function template instantiation 'std::pair<ii,ii>::pair<std::pair<int,float>,std::pair<float,int>,0>(std::pair<std::pair<int,float>,std::pair<float,int>> &&) noexcept' being compiled
+C:\KTLT PRJ\PIKACHU\NORMAL CHECK.cpp(37,11): message : see the first reference to 'std::pair<ii,ii>::pair' in 'checkUseDij'
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.37.32822\include\utility(270,16): warning C4244: 'initializing': conversion from '_Ty' to '_Ty1', possible loss of data
+          with
+          [
+              _Ty=float
+          ]
+          and
+          [
+              _Ty1=int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.37.32822\include\utility(270,83): message : see reference to function template instantiation 'std::pair<int,int>::pair<float,int,0>(std::pair<float,int> &&) noexcept' being compiled
+  NORMAL MODE.cpp
+C:\KTLT PRJ\PIKACHU\NORMAL MODE.cpp(21,19): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\NORMAL MODE.cpp(55,20): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\NORMAL MODE.cpp(86,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\NORMAL MODE.cpp(87,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\NORMAL MODE.cpp(88,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\NORMAL MODE.cpp(89,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\NORMAL MODE.cpp(90,28): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\KTLT PRJ\PIKACHU\NORMAL MODE.cpp(90,28): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\NORMAL MODE.cpp(90,32): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\KTLT PRJ\PIKACHU\NORMAL MODE.cpp(90,32): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\NORMAL MODE.cpp(90,36): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\KTLT PRJ\PIKACHU\NORMAL MODE.cpp(90,36): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\NORMAL MODE.cpp(90,45): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\KTLT PRJ\PIKACHU\NORMAL MODE.cpp(90,45): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\NORMAL MODE.cpp(105,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\NORMAL MODE.cpp(106,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\NORMAL MODE.cpp(107,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\NORMAL MODE.cpp(108,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\NORMAL MODE.cpp(109,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\NORMAL MODE.cpp(110,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\NORMAL MODE.cpp(111,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\NORMAL MODE.cpp(112,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\NORMAL MODE.cpp(113,28): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\KTLT PRJ\PIKACHU\NORMAL MODE.cpp(113,28): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\NORMAL MODE.cpp(113,32): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\KTLT PRJ\PIKACHU\NORMAL MODE.cpp(113,32): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\NORMAL MODE.cpp(113,36): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\KTLT PRJ\PIKACHU\NORMAL MODE.cpp(113,36): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\NORMAL MODE.cpp(113,45): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\KTLT PRJ\PIKACHU\NORMAL MODE.cpp(113,45): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\NORMAL MODE.cpp(113,65): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\KTLT PRJ\PIKACHU\NORMAL MODE.cpp(113,65): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\NORMAL MODE.cpp(113,69): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\KTLT PRJ\PIKACHU\NORMAL MODE.cpp(113,69): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\NORMAL MODE.cpp(113,73): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\KTLT PRJ\PIKACHU\NORMAL MODE.cpp(113,73): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\NORMAL MODE.cpp(113,82): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\KTLT PRJ\PIKACHU\NORMAL MODE.cpp(113,82): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\NORMAL MODE.cpp(162,21): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\NORMAL MODE.cpp(203,27): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\NORMAL MODE.cpp(204,20): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\NORMAL MODE.cpp(205,20): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\NORMAL MODE.cpp(206,20): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\NORMAL MODE.cpp(207,20): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\NORMAL MODE.cpp(243,69): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  PIKACHU.cpp
+  PLAY.cpp
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(41,41): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(41,34): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(42,33): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(42,40): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(42,47): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(55,43): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(55,36): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(56,28): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(56,35): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(56,42): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(56,49): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(89,17): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(90,17): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(117,57): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(119,47): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(120,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(118,13): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(118,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(126,82): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(126,118): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(133,83): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(133,119): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(138,57): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(140,47): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(141,47): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(139,21): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(139,21): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(147,90): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(147,130): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(154,91): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(154,131): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(159,57): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(161,47): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(162,41): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(160,21): warning C4838: conversion from 'int' to 'float' requires a narrowing conversion
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(160,21): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(168,78): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(168,112): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(175,79): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(175,113): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(336,59): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(338,41): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(339,41): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(345,86): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(345,120): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(352,87): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(352,121): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(402,20): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(408,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(434,79): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(447,31): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(502,63): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(506,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(520,54): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(523,57): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(587,20): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(593,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(619,79): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(647,31): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(702,63): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(706,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(718,54): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(721,57): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(784,20): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(790,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(816,79): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(890,63): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(894,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(906,50): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(909,59): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(955,20): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(961,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(987,79): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(1075,63): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(1079,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(1091,50): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(1094,59): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(1143,54): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(1144,47): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(1144,54): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(1145,45): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(1145,53): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(1146,37): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(1146,44): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(1146,52): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(1146,59): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(1212,54): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(1213,47): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(1213,54): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(1242,18): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(1251,18): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(1260,18): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\PLAY.cpp(1269,18): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  RESUME.cpp
+C:\KTLT PRJ\PIKACHU\RESUME.cpp(57,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\KTLT PRJ\PIKACHU\RESUME.cpp(90,24): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\RESUME.cpp(92,23): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\RESUME.cpp(147,63): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\RESUME.cpp(151,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\RESUME.cpp(164,50): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\RESUME.cpp(167,59): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\RESUME.cpp(204,24): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\RESUME.cpp(206,23): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\RESUME.cpp(282,63): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\RESUME.cpp(286,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\RESUME.cpp(298,50): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\RESUME.cpp(301,59): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\RESUME.cpp(336,24): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\RESUME.cpp(400,63): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\RESUME.cpp(404,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\RESUME.cpp(417,50): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\RESUME.cpp(420,59): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\RESUME.cpp(463,24): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\KTLT PRJ\PIKACHU\RESUME.cpp(546,63): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\RESUME.cpp(550,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\RESUME.cpp(563,50): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\KTLT PRJ\PIKACHU\RESUME.cpp(566,59): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  SOUND.cpp
+C:\KTLT PRJ\PIKACHU\SOUND.cpp(19,39): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\SOUND.cpp(20,39): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\SOUND.cpp(21,32): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\KTLT PRJ\PIKACHU\SOUND.cpp(24,36): warning C4305: 'argument': truncation from 'double' to 'float'
+  TOURNAMENT.cpp
+  Generating Code...
+C:\KTLT PRJ\PIKACHU\ACCOUNT.cpp(235): warning C4715: 'Account_ButtonPressed': not all control paths return a value
+  PIKACHU.vcxproj -> C:\KTLT PRJ\PIKACHU\x64\Debug\PIKACHU.exe
+  'pwsh.exe' is not recognized as an internal or external command,
+  operable program or batch file.

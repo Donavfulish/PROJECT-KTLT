@@ -12,7 +12,7 @@ Rectangle rec66 = { 190, 365, 115, 115 };
 Rectangle rec88 = { 60, 495, 115, 115 };
 Rectangle rec10 = { 190, 495, 115, 115 };
 Rectangle recTour = { 60, 665, 245, 115 };
-Rectangle recNormal = { 410, 195, 190, 57};
+Rectangle recNormal = { 410, 195, 190, 57 };
 Rectangle recAdvanced = { 601, 195, 190, 57 };
 Rectangle recExit = { 495, 810, 210, 55 };
 Vector2 name = { 510, 385 };
@@ -33,8 +33,8 @@ int mode = RCO_NONE;
 int type = RCO_NONE;
 int size = 0;
 
-vector<vector<leaderBoard>> Option (4);
-vector<vector<leaderBoard>> Advanced (4);
+vector<vector<leaderBoard>> Option(4);
+vector<vector<leaderBoard>> Advanced(4);
 vector<leaderBoard> Tournament;
 vector<leaderBoard> TournamentAdvanced;
 
@@ -44,7 +44,7 @@ bool compareMyStruct(leaderBoard x, leaderBoard y) {
         return x.score > y.score;
     // Nếu a giống nhau, so sánh theo b
     if (x.time != y.time)
-        return x.time > y.time;
+        return x.time < y.time;
     // Nếu cả a và b giống nhau, so sánh theo s
     return x.name > y.name;
 }
@@ -53,12 +53,33 @@ void createLeaderboard()
 {
     fstream fs;
     // leaderboard Normal
-    fs.open("LeaderboardNormal.txt");
+    fs.open("LeaderboardNormal");
     if (!fs.is_open())
         return;
     else
     {
-        int score, time, size;
+        int score, time, size, tmp;
+        string name;
+        leaderBoard l;
+        while (!fs.eof())
+        {
+            fs >> size >> score >> time >> name;
+            l.name = name;
+            l.score = score;
+            l.time = time;
+            Option[(size / 2) - 2].push_back(l);
+            tmp = size / 2 - 2;
+        }
+        fs.close();
+        Option[tmp].pop_back();
+    }
+    // leaderboard Advanced
+    fs.open("LeaderboardAdvanced");
+    if (!fs.is_open())
+        return;
+    else
+    {
+        int score, time, size, tmp;
         string name;
         leaderBoard l;
         while (!fs.eof())
@@ -68,34 +89,15 @@ void createLeaderboard()
             l.name = name;
             l.score = score;
             l.time = time;
-            Option[(size / 2) - 2].push_back(l);
-            //cout << Option[0][0].score << "\n";
+            Advanced[(size / 2) - 2].push_back(l);
+            tmp = size / 2 - 2;
         }
         fs.close();
-    }
-    // leaderboard Advanced
-    fs.open("LeaderboardAdvanced.txt");
-    if (!fs.is_open())
-        return;
-    else
-    {
-        int score, time, size;
-        string name;
-        leaderBoard l;
-        while (!fs.eof())
-        {
-            fs >> size >> score >> time >> name;
-            l.name = name;
-            l.score = score;
-            l.time = time;
-            if (mode == 1)
-                Advanced[(size / 2) - 2].push_back(l);
-        }
-        fs.close();
+        Advanced[tmp].pop_back();
     }
 
     // leaderboard TourNormal
-    fs.open("LeaderboardTourNormal.txt");
+    fs.open("LeaderboardTourNormal");
     if (!fs.is_open())
         return;
     else
@@ -109,14 +111,14 @@ void createLeaderboard()
             l.name = name;
             l.score = score;
             l.time = time;
-            if (mode == 1)
-                Tournament.push_back(l);
+            Tournament.push_back(l);
         }
         fs.close();
+        Tournament.pop_back();
     }
 
     //leaderboard Advanced;
-    fs.open("LeaderboardTourAdvanced.txt");
+    fs.open("LeaderboardTourAdvanced");
     if (!fs.is_open())
         return;
     else
@@ -130,24 +132,25 @@ void createLeaderboard()
             l.name = name;
             l.score = score;
             l.time = time;
-            if (mode == 1)
-                TournamentAdvanced.push_back(l);
+            TournamentAdvanced.push_back(l);
         }
         fs.close();
+        TournamentAdvanced.pop_back();
     }
     // Sort leaderboard
+
     for (int i = 0; i < 4; i++)
     {
-        sort(Option[i].begin(), Option[i].end() , compareMyStruct);
-        sort(Advanced[i].begin(), Advanced[i].end() , compareMyStruct);
+        sort(Option[i].begin(), Option[i].end(), compareMyStruct);
+        sort(Advanced[i].begin(), Advanced[i].end(), compareMyStruct);
     }
 
-    sort(Tournament.begin(), Tournament.end() , compareMyStruct);
-    sort(TournamentAdvanced.begin(), TournamentAdvanced.end() , compareMyStruct);
+    sort(Tournament.begin(), Tournament.end(), compareMyStruct);
+    sort(TournamentAdvanced.begin(), TournamentAdvanced.end(), compareMyStruct);
 }
 void ViewLeaderboard()
 {
-	Texture2D Leaderboard = LoadTexture("leaderboard.png");
+    Texture2D Leaderboard = LoadTexture("leaderboard.png");
 
     const int screenWidth = 1200;
     const int screenHeight = 900;
@@ -161,7 +164,7 @@ void ViewLeaderboard()
         BeginDrawing();
         ClearBackground(RAYWHITE);
         DrawTexture(Leaderboard, 0, 0, RAYWHITE);
-        
+
         // Chọn chế độ normal hoặc advanced
         if (CheckCollisionPointRec(GetMousePosition(), recNormal))
         {
@@ -218,7 +221,7 @@ void ViewLeaderboard()
                 type = OPTION10;
         }
 
-        if (type == TOURNAMENT) 
+        if (type == TOURNAMENT)
             DrawRectangleRounded(recTour, 0, 0, Fade(ORANGE, 0.6f));
         else if (type == OPTION4)
             DrawRectangleRounded(rec44, 0, 0, Fade(ORANGE, 0.6f));
@@ -237,7 +240,7 @@ void ViewLeaderboard()
             if (IsMouseButtonPressed(0))
                 type = RCO_EXIT;
         }
-        
+
         // In tên
         // 4x4
         if (type == OPTION4)
@@ -262,24 +265,21 @@ void ViewLeaderboard()
             }
             else
             {
-                for (int i = 0; i < 7 && i < Advanced[0].size(); i++)
-                {
-                    char s[4];
-                    for (int i = 0; i < 7 && i < Option[0].size(); i++)
+                char s[4];
+                for (int i = 0; i < 7 && i < Advanced[0].size() ; i++)
                     {
-                        DrawTextEx(GetFontDefault(), Option[1][i].name.c_str(), name, 35, 1, BLACK);
-                        _itoa_s(Option[1][i].score, s, 10);
+                        DrawTextEx(GetFontDefault(), Advanced[0][i].name.c_str(), name, 35, 1, BLACK);
+                        _itoa_s(Advanced[0][i].score, s, 10);
                         DrawTextEx(font, s, score, 35, 1, BLACK);
-                        _itoa_s(Option[1][i].time, s, 10);
+                        _itoa_s(Advanced[0][i].time, s, 10);
                         DrawTextEx(font, s, wtime, 35, 1, BLACK);
                         name.y += line;
                         score.y += line;
                         wtime.y += line;
                     }
-                    name.y = 385;
-                    score.y = 385;
-                    wtime.y = 385;
-                }
+                name.y = 385;
+                score.y = 385;
+                wtime.y = 385;
             }
         }
         //6x6
@@ -287,67 +287,80 @@ void ViewLeaderboard()
         {
             if (mode == MODE_NORMAL)
             {
-                for (int i = 0; i < Option[1].size() && i < 7; i++)
+                char s[4];
+                for (int i = 0; i < 7 && i < Option[1].size() ; i++)
                 {
-                    char s[4];
-                    for (int i = 0; i < 7 && i < Option[1].size(); i++)
-                    {
-                        DrawTextEx(GetFontDefault(), Option[1][i].name.c_str(), name, 35, 1, BLACK);
-                        _itoa_s(Option[1][i].score, s, 10);
-                        DrawTextEx(font, s, score, 35, 1, BLACK);
-                        _itoa_s(Option[1][i].time, s, 10);
-                        DrawTextEx(font, s, wtime, 35, 1, BLACK);
-                        name.y += line;
-                        score.y += line;
-                        wtime.y += line;
-                    }
-                    name.y = 385;
-                    score.y = 385;
-                    wtime.y = 385;
+                    DrawTextEx(GetFontDefault(), Option[1][i].name.c_str(), name, 35, 1, BLACK);
+                    _itoa_s(Option[1][i].score, s, 10);
+                    DrawTextEx(font, s, score, 35, 1, BLACK);
+                    _itoa_s(Option[1][i].time, s, 10);
+                    DrawTextEx(font, s, wtime, 35, 1, BLACK);
+                    name.y += line;
+                    score.y += line;
+                    wtime.y += line;
                 }
+                name.y = 385;
+                score.y = 385;
+                wtime.y = 385;
             }
             else
             {
-                for (int i = 0; i < Advanced[1].size() && i < 7; i++)
+                char s[4];
+                for (int i = 0; i < 7 && i < Advanced[1].size(); i++)
                 {
-                    for (int i = 0; i < Option[1].size() && i < 7; i++)
-                    {
-                        char s[4];
-                        for (int i = 0; i < 7 && i < Option[1].size(); i++)
-                        {
-                            DrawTextEx(GetFontDefault(), Option[1][i].name.c_str(), name, 35, 1, BLACK);
-                            _itoa_s(Option[1][i].score, s, 10);
-                            DrawTextEx(font, s, score, 35, 1, BLACK);
-                            _itoa_s(Option[1][i].time, s, 10);
-                            DrawTextEx(font, s, wtime, 35, 1, BLACK);
-                            name.y += line;
-                            score.y += line;
-                            wtime.y += line;
-                        }
-                        name.y = 385;
-                        score.y = 385;
-                        wtime.y = 385;
-                    }
+                    DrawTextEx(GetFontDefault(), Advanced[1][i].name.c_str(), name, 35, 1, BLACK);
+                    _itoa_s(Advanced[1][i].score, s, 10);
+                    DrawTextEx(font, s, score, 35, 1, BLACK);
+                    _itoa_s(Advanced[1][i].time, s, 10);
+                    DrawTextEx(font, s, wtime, 35, 1, BLACK);
+                    name.y += line;
+                    score.y += line;
+                    wtime.y += line;
                 }
+                name.y = 385;
+                score.y = 385;
+                wtime.y = 385;
             }
         }
-        
+
         //8x8
         if (type == OPTION8)
         {
             if (mode == MODE_NORMAL)
             {
-                for (int i = 0; i < Option[2].size(), i < 7; i++)
-                    //DRAW...
+                char s[4];
+                for (int i = 0; i < 7 && i < Option[2].size(); i++)
                 {
+                    DrawTextEx(GetFontDefault(), Option[2][i].name.c_str(), name, 35, 1, BLACK);
+                    _itoa_s(Option[2][i].score, s, 10);
+                    DrawTextEx(font, s, score, 35, 1, BLACK);
+                    _itoa_s(Option[2][i].time, s, 10);
+                    DrawTextEx(font, s, wtime, 35, 1, BLACK);
+                    name.y += line;
+                    score.y += line;
+                    wtime.y += line;
                 }
+                name.y = 385;
+                score.y = 385;
+                wtime.y = 385;
             }
             else
             {
-                for (int i = 0; i < Advanced[2].size(), i < 7; i++)
-                    //DRAW...
+                char s[4];
+                for (int i = 0; i < 7 && i < Advanced[2].size(); i++)
                 {
+                    DrawTextEx(GetFontDefault(), Advanced[2][i].name.c_str(), name, 35, 1, BLACK);
+                    _itoa_s(Advanced[2][i].score, s, 10);
+                    DrawTextEx(font, s, score, 35, 1, BLACK);
+                    _itoa_s(Advanced[2][i].time, s, 10);
+                    DrawTextEx(font, s, wtime, 35, 1, BLACK);
+                    name.y += line;
+                    score.y += line;
+                    wtime.y += line;
                 }
+                name.y = 385;
+                score.y = 385;
+                wtime.y = 385;
             }
         }
 
@@ -356,17 +369,39 @@ void ViewLeaderboard()
         {
             if (mode == MODE_NORMAL)
             {
-                for (int i = 0; i < Option[3].size(), i < 7; i++)
-                    //DRAW...
+                char s[4];
+                for (int i = 0; i < 7 && i < Option[3].size(); i++)
                 {
+                    DrawTextEx(GetFontDefault(), Option[3][i].name.c_str(), name, 35, 1, BLACK);
+                    _itoa_s(Option[3][i].score, s, 10);
+                    DrawTextEx(font, s, score, 35, 1, BLACK);
+                    _itoa_s(Option[3][i].time, s, 10);
+                    DrawTextEx(font, s, wtime, 35, 1, BLACK);
+                    name.y += line;
+                    score.y += line;
+                    wtime.y += line;
                 }
+                name.y = 385;
+                score.y = 385;
+                wtime.y = 385;
             }
             else
             {
-                for (int i = 0; i < Advanced[3].size(), i < 7; i++)
-                    //DRAW...
+                char s[4];
+                for (int i = 0; i < 7 && i < Advanced[3].size(); i++)
                 {
+                    DrawTextEx(GetFontDefault(), Advanced[3][i].name.c_str(), name, 35, 1, BLACK);
+                    _itoa_s(Advanced[3][i].score, s, 10);
+                    DrawTextEx(font, s, score, 35, 1, BLACK);
+                    _itoa_s(Advanced[3][i].time, s, 10);
+                    DrawTextEx(font, s, wtime, 35, 1, BLACK);
+                    name.y += line;
+                    score.y += line;
+                    wtime.y += line;
                 }
+                name.y = 385;
+                score.y = 385;
+                wtime.y = 385;
             }
         }
 
@@ -375,16 +410,39 @@ void ViewLeaderboard()
         {
             if (mode == MODE_NORMAL)
             {
-                for (int i = 0; i < Tournament.size(), i < 7; i++)
-                    //DRAW..
-                { }
+                char s[4];
+                for (int i = 0; i < 7 && i < Tournament.size(); i++)
+                {
+                    DrawTextEx(GetFontDefault(), Tournament[i].name.c_str(), name, 35, 1, BLACK);
+                    _itoa_s(Tournament[i].score, s, 10);
+                    DrawTextEx(font, s, score, 35, 1, BLACK);
+                    _itoa_s(Tournament[i].time, s, 10);
+                    DrawTextEx(font, s, wtime, 35, 1, BLACK);
+                    name.y += line;
+                    score.y += line;
+                    wtime.y += line;
+                }
+                name.y = 385;
+                score.y = 385;
+                wtime.y = 385;
             }
             else
             {
-                for (int i = 0; i < TournamentAdvanced.size(), i < 7; i++)
-                    //DRAW...
+                char s[4];
+                for (int i = 0; i < 7 && i < TournamentAdvanced.size(); i++)
                 {
+                    DrawTextEx(GetFontDefault(), TournamentAdvanced[i].name.c_str(), name, 35, 1, BLACK);
+                    _itoa_s(TournamentAdvanced[i].score, s, 10);
+                    DrawTextEx(font, s, score, 35, 1, BLACK);
+                    _itoa_s(TournamentAdvanced[i].time, s, 10);
+                    DrawTextEx(font, s, wtime, 35, 1, BLACK);
+                    name.y += line;
+                    score.y += line;
+                    wtime.y += line;
                 }
+                name.y = 385;
+                score.y = 385;
+                wtime.y = 385;
             }
         }
         EndDrawing();
@@ -393,5 +451,5 @@ void ViewLeaderboard()
             break;
         }
     }
-        
+
 }

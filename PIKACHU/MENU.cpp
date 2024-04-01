@@ -179,6 +179,7 @@ void GameStarting_Menu()
                 ViewLeaderboard();
                 break;
             case RCO_INSTRUCTION:
+                Instruction();
                 break;
             case RCO_EXIT:
                 WantToExit = true;

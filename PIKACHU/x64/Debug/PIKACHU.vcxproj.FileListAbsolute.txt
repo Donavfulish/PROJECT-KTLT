@@ -2,7 +2,12 @@ C:\PROJECT KTLT\PIKACHU\x64\Debug\PIKACHU.exe
 D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\x64\Debug\PIKACHU.exe
 C:\KTLT_PROJECT\PIKACHU\x64\Debug\PIKACHU.exe
 C:\KTLT PRJ\PIKACHU\x64\Debug\PIKACHU.exe
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\x64\Debug\PIKACHU.vcxproj.CopyComplete
-D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\x64\Debug\raylib.dll
 C:\PROJECT KTLT\PIKACHU\x64\Debug\PIKACHU.vcxproj.CopyComplete
 C:\PROJECT KTLT\PIKACHU\x64\Debug\raylib.dll
+D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\x64\Debug\PIKACHU.vcxproj.CopyComplete
+D:\Alternative Disk C\Visual Studio 2022\bins\PROJECT-KTLT\PIKACHU\x64\Debug\raylib.dll
+C:\PROJECT-KTLT\PROJECT-KTLT\PIKACHU\x64\Debug\PIKACHU.exe
+C:\PROJECT-KTLT\PROJECT-KTLT\PIKACHU\x64\Debug\PIKACHU.vcxproj.CopyComplete
+C:\PROJECT-KTLT\PROJECT-KTLT\PIKACHU\x64\Debug\raylib.dll
+C:\KTLT PRJ\PIKACHU\x64\Debug\PIKACHU.vcxproj.CopyComplete
+C:\KTLT PRJ\PIKACHU\x64\Debug\raylib.dll

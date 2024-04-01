@@ -10,22 +10,7 @@ void LoginWindow();
 
 #define BORDER_WIDTH 3
 #define TEXT_MARGIN 20
-static Font font;
-static int RightClickOn;
-void LoadAllSound();
-void GameStarting_Menu();
-void GameStarting_Play();
-void GameStarting_Play_Option(int mode);
-void Play_OPTION(int size);
-void Play_OPTION_ADVANCED(int size);
-void ViewLeaderboard();
-void createLeaderboard();
 
-extern vector<int> cellID;
-extern vector<Texture> cellTexture;
-void arrangeCellID();
-void LoadNCellTexture(int N);
-void UnloadAllCellTexture();
 
 struct Account
 {
@@ -34,16 +19,16 @@ struct Account
 };
 extern Account User;
 
-struct matrix
-{
-	int size, life, score, death;
-	float time;
-};
-
 struct leaderBoard
 {
 	string name;
 	int score, time;
+};
+
+struct matrix
+{
+	int size, life, score, death;
+	float time;
 };
 struct statusLine
 {
@@ -70,7 +55,28 @@ struct InputBox {
 	Font font;
 	bool active;
 };
-int GameFinishingVerify(bool& isGameFinish, Texture2D win, Texture2D lose_time, Texture2D lose_life, int countcell, int life, float time, int mode, matrix Matrix);
+
+static Font font;
+static int RightClickOn;
+void LoadAllSound();
+void GameStarting_Menu();
+void GameStarting_Play();
+void GameStarting_Play_Option(int mode);
+void Play_OPTION(int size);
+void Play_OPTION_ADVANCED(int size);
+void createLeaderboard();
+void ViewLeaderboard();
+void leaderboardSaving(matrix Matrix, int mode, string name);
+
+void Instruction();
+
+extern vector<int> cellID;
+extern vector<Texture> cellTexture;
+void arrangeCellID();
+void LoadNCellTexture(int N);
+void UnloadAllCellTexture();
+
+int GameFinishingVerify(bool& isGameFinish, Texture2D win, Texture2D lose_time, Texture2D lose_life, int countcell, int life, float time);
 void setInputBoxActive(InputBox& inputBox);
 void fillTextInputBox(InputBox& inputBox);
 void DrawInputBox(InputBox& inputBox);
@@ -84,7 +90,7 @@ void deleteLinkedList(str_linkedList& list);
 
 void Paint_Broad(int** c, int size, matrix Matrix);
 void PickCell(int** c, int size, int& countcell, matrix &Matrix);
-void PickOption(int** c, Rectangle recBulb, Rectangle recSetting, matrix& Matrix, Texture2D Bulb, Texture2D Setting, int& countcell, int& setting_option);
+void PickOption(int** c, Rectangle recBulb, Rectangle recSetting, matrix& Matrix, Texture2D Bulb, Texture2D Setting, int& countcell, int& setting_option, float& time);
 int countDistinctCell(int** c, int size);
 int countCellOccurrences(int** c, int size);
 bool checkUseDij(Vector2 A, Vector2 B, int Size, int** c);
@@ -92,15 +98,17 @@ vector<Vector2> MoveSuggestion(matrix Matrix, int** c, int& status);
 int GameSetting(Texture2D win, int choiceoption);
 void SaveGame(matrix Matrix, int** c, int mode);
 void Play_Save();
-void leaderboardSaving(matrix Matrix, int mode, string name);
 
 void PaintBroad_Advanced(str_linkedList*& list, int** c, int size, matrix Matrix);
 void PickCell_Advanced(str_linkedList*& list, int** c, int size, int& countcell, matrix& Matrix);
-void PickOption_Advanced(str_linkedList* list, int** c, Rectangle recBulb, Rectangle recSetting, matrix& Matrix, Texture2D Bulb, Texture2D Setting, int& countcell, int& choice);
+void PickOption_Advanced(str_linkedList* list, int** c, Rectangle recBulb, Rectangle recSetting, matrix& Matrix, Texture2D Bulb, Texture2D Setting, int& countcell, int& choice, float& time);
 
 void Play_TOURNAMENT(int mode);
-int Play_TOURNAMENT_NORMAL(float playTime, float& currenttime, int& score, int lives, int& lives_left, int size);
-int Play_TOURNAMENT_ADVANCED(float playTime, float& currenttime, int& score, int lives, int& lives_left, int size);
+void resumeGame_Tournament(int mode, int** c, matrix Matrix, float playTime, float& currenttime, int& score, int lives, int& lives_left);
+int Play_TOURNAMENT_NORMAL(float playTime, float& runningtime, int& score, int lives, int& lives_left, int size);
+int Play_TOURNAMENT_ADVANCED(float playTime, float& runningtime, int& score, int lives, int& lives_left, int size);
 
 void Save_Mode1(int** c, matrix Matrix);
 void Save_Mode2(int** c, matrix Matrix);
+int Save_Mode3(int** c, matrix Matrix, float playTime, float& runningtime, int& score, int lives, int& lives_left);
+int Save_Mode4(int** c, matrix Matrix, float playTime, float& runningtime, int& score, int lives, int& lives_left);
