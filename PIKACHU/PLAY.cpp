@@ -685,18 +685,7 @@ void Play_OPTION_ADVANCED(int size)
         if (choiceadvanced == 1)
         {
             setting_option = GameSetting(Settingboard, choiceadvanced);
-            if (setting_option == OPTION_PLAY_AGAIN)
-            {
-                choiceadvanced = 0;
-            }
-            if (setting_option == OPTION_BACK_TO_MENU)
-            {
-                choiceadvanced = 0;
-            }
-            if (setting_option == OPTION_SAVE_GAME)
-            {
-                choiceadvanced = 0;
-            }
+            if (setting_option != 0) choiceadvanced = 0;
         }
         // Cập nhật thời gian và vẽ thanh thời gian
         if (!isGameFinish) Matrix.time = currenttime - (GetTime() - start - penaltyTime);
@@ -736,7 +725,31 @@ void Play_OPTION_ADVANCED(int size)
 }
 
 // Hàm tạo cửa sổ PlayBoard cho chế độ TOURNAMENT mode NORMAL
-int Play_TOURNAMENT_NORMAL(float playTime, float& runningtime, int& score, int lives, int& lives_left, int size)
+int Play_TOURNAMENT_NORMAL(float playTime, float& runningtime, in
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    t& score, int lives, int& lives_left, int size)
 {
     start = GetTime();
     // Khai báo kích thước màn hình
@@ -857,18 +870,7 @@ int Play_TOURNAMENT_NORMAL(float playTime, float& runningtime, int& score, int l
         if (choiceoption == 1)
         {
             setting_option = GameSetting(Settingboard, choiceoption);
-            if (setting_option == OPTION_PLAY_AGAIN)
-            {
-                choiceoption = 0;
-            }
-            if (setting_option == OPTION_BACK_TO_MENU)
-            {
-                choiceoption = 0;
-            }
-            if (setting_option == OPTION_SAVE_GAME)
-            {
-                choiceoption = 0;
-            }
+            if (setting_option != 0) choiceoption = 0;
         }
         // Cập nhật thời gian và vẽ thanh thời gian
         if (!isGameFinish) Matrix.time = SubTime - (GetTime() - start - penaltyTime);
@@ -893,7 +895,7 @@ int Play_TOURNAMENT_NORMAL(float playTime, float& runningtime, int& score, int l
             continue; // Câu lệnh giúp tránh trường hợp tọa độ cell cuối cùng click trùng với tọa độ của button -> vô tình kích hoạt ngay button
         }
 
-        if (setting_option != 0 || endgame_option == OPTION_NEXT_LEVEL || endgame_option == OPTION_PLAY_AGAIN || endgame_option == OPTION_BACK_TO_MENU)
+        if (setting_option != 0 && setting_option != 4|| endgame_option == OPTION_NEXT_LEVEL || endgame_option == OPTION_PLAY_AGAIN || endgame_option == OPTION_BACK_TO_MENU)
         {
             break;
         }
@@ -1053,18 +1055,7 @@ int Play_TOURNAMENT_ADVANCED(float playTime, float& runningtime, int& score, int
         if (choiceoption == 1)
         {
             setting_option = GameSetting(Settingboard, choiceoption);
-            if (setting_option == OPTION_PLAY_AGAIN)
-            {
-                choiceoption = 0;
-            }
-            if (setting_option == OPTION_BACK_TO_MENU)
-            {
-                choiceoption = 0;
-            }
-            if (setting_option == OPTION_SAVE_GAME)
-            {
-                choiceoption = 0;
-            }
+            if (setting_option != 0) choiceoption = 0;
         }
         // Cập nhật thời gian và vẽ thanh thời gian
         if (!isGameFinish) Matrix.time = SubTime - (GetTime() - start - penaltyTime);
@@ -1088,7 +1079,7 @@ int Play_TOURNAMENT_ADVANCED(float playTime, float& runningtime, int& score, int
             prev_endgame_option = 1;
             continue; // Câu lệnh giúp tránh trường hợp tọa độ cell cuối cùng click trùng với tọa độ của button -> vô tình kích hoạt ngay button
         }
-        if (setting_option != 0 || endgame_option == OPTION_NEXT_LEVEL || endgame_option == OPTION_PLAY_AGAIN || endgame_option == OPTION_BACK_TO_MENU)
+        if (setting_option != 0 && setting_option != 4 || endgame_option == OPTION_NEXT_LEVEL || endgame_option == OPTION_PLAY_AGAIN || endgame_option == OPTION_BACK_TO_MENU)
         {
             break;
         }
@@ -1122,6 +1113,7 @@ int GameSetting(Texture2D Is, int choiceoption) // Is stand for interface settin
         Rectangle rect_PlayAgain = { 488.75, 533.25, 221.3, 40.5 };
         Rectangle rect_BackToMenu = { 488.75, 583.6, 221.3, 40.5 };
         Rectangle rect_SaveGame = { 488.75, 482.95, 221.3, 40.5 };
+        Rectangle rect_Continue = { 489.3, 430.95, 221.3, 44.3 };
         if (CheckCollisionPointRec(GetMousePosition(), rect_PlayAgain))
         {
             DrawRectangleRec(rect_PlayAgain, Fade(RED, 0.5f));
@@ -1144,6 +1136,14 @@ int GameSetting(Texture2D Is, int choiceoption) // Is stand for interface settin
             if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
             {
                 return 3;
+            }
+        }
+        else if (CheckCollisionPointRec(GetMousePosition(), rect_Continue))
+        {
+            DrawRectangleRec(rect_Continue, Fade(GREEN, 0.5f));
+            if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+            {
+                return 4; 
             }
         }
     }

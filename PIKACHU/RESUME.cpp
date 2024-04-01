@@ -157,18 +157,7 @@ void Save_Mode1(int** c, matrix Matrix)
         if (choiceoption == 1)
         {
             setting_option = GameSetting(Settingboard, choiceoption);
-            if (setting_option == OPTION_PLAY_AGAIN)
-            {
-                choiceoption = 0;
-            }
-            if (setting_option == OPTION_BACK_TO_MENU)
-            {
-                choiceoption = 0;
-            }
-            if (setting_option == OPTION_SAVE_GAME)
-            {
-                choiceoption = 0;
-            }
+            if (setting_option != 0) choiceoption = 0;
         }
 
         // Cập nhật thời gian và vẽ thanh thời gian
@@ -303,18 +292,7 @@ void Save_Mode2(int** c, matrix Matrix)
         if (choiceadvanced == 1)
         {
             setting_option = GameSetting(Settingboard, choiceadvanced);
-            if (setting_option == OPTION_PLAY_AGAIN)
-            {
-                choiceadvanced = 0;
-            }
-            if (setting_option == OPTION_BACK_TO_MENU)
-            {
-                choiceadvanced = 0;
-            }
-            if (setting_option == OPTION_SAVE_GAME)
-            {
-                choiceadvanced = 0;
-            }
+            if (setting_option != 0) choiceadvanced = 0;
         }
         // Cập nhật thời gian và vẽ thanh thời gian
         if (!isGameFinish) Matrix.time = SubTime - (GetTime() - startsave - penaltyTime);
@@ -432,18 +410,7 @@ int Save_Mode3(int** c, matrix Matrix, float playTime, float& runningtime, int& 
         if (choiceoption == 1)
         {
             setting_option = GameSetting(Settingboard, choiceoption);
-            if (setting_option == OPTION_PLAY_AGAIN)
-            {
-                choiceoption = 0;
-            }
-            if (setting_option == OPTION_BACK_TO_MENU)
-            {
-                choiceoption = 0;
-            }
-            if (setting_option == OPTION_SAVE_GAME)
-            {
-                choiceoption = 0;
-            }
+            if (setting_option != 0) choiceoption = 0;
         }
 
         // Cập nhật thời gian và vẽ thanh thời gian
@@ -467,7 +434,7 @@ int Save_Mode3(int** c, matrix Matrix, float playTime, float& runningtime, int& 
             continue; // Câu lệnh giúp tránh trường hợp tọa độ cell cuối cùng click trùng với tọa độ của button -> vô tình kích hoạt ngay button
         }
 
-        if (setting_option != 0 || endgame_option == OPTION_PLAY_AGAIN || endgame_option == OPTION_BACK_TO_MENU) // Option next level = OPTION_PLAY_AGAIN
+        if (setting_option != 0 && setting_option != 4 || endgame_option == OPTION_PLAY_AGAIN || endgame_option == OPTION_BACK_TO_MENU) // Option next level = OPTION_PLAY_AGAIN
         {
             break;
         }
@@ -589,18 +556,7 @@ int Save_Mode4(int** c, matrix Matrix, float playTime, float& runningtime, int& 
         if (choiceoption == 1)
         {
             setting_option = GameSetting(Settingboard, choiceoption);
-            if (setting_option == OPTION_PLAY_AGAIN)
-            {
-                choiceoption = 0;
-            }
-            if (setting_option == OPTION_BACK_TO_MENU)
-            {
-                choiceoption = 0;
-            }
-            if (setting_option == OPTION_SAVE_GAME)
-            {
-                choiceoption = 0;
-            }
+            if (setting_option != 0) choiceoption = 0;
         }
 
         // Cập nhật thời gian và vẽ thanh thời gian
@@ -626,7 +582,7 @@ int Save_Mode4(int** c, matrix Matrix, float playTime, float& runningtime, int& 
             continue; // Câu lệnh giúp tránh trường hợp tọa độ cell cuối cùng click trùng với tọa độ của button -> vô tình kích hoạt ngay button
         }
 
-        if (setting_option != 0 || endgame_option == OPTION_PLAY_AGAIN || endgame_option == OPTION_BACK_TO_MENU) // Option next level = OPTION_PLAY_AGAIN
+        if (setting_option != 0 && setting_option != 4|| endgame_option == OPTION_PLAY_AGAIN || endgame_option == OPTION_BACK_TO_MENU) // Option next level = OPTION_PLAY_AGAIN
         {
             break;
         }
