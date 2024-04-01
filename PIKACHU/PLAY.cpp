@@ -8,6 +8,7 @@
 #include <chrono>
 #include <thread>
 #include <fstream>
+#include <string>
 using namespace std;
 
 #define RCO_NONE -1
@@ -38,34 +39,35 @@ void ModeButtonPressed(Texture2D mode_normal, Texture2D mode_advanced, int& stat
 {
     if (status == NORMAL_MODE)
     {
-        DrawTexture(mode_normal, 209.3, 353.3, WHITE);
-        Rectangle dest = { 337, 353.3, 127.7, 63.6 };
+        DrawTexture(mode_normal, 182, 353.3, WHITE);
+        Rectangle dest = { 309.7, 353.3, 127.7, 63.6 };
         if (CheckCollisionPointRec(GetMousePosition(), dest))
         {
             Rectangle source = { 1.0f * mode_normal.width / 2, 0, 1.0f * mode_normal.width / 2, 1.0f * mode_normal.height };
             DrawTexturePro(mode_normal, source, dest, { 0, 0 }, 0, Fade(ORANGE, 0.5f));
             if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
             {
+                PlaySound(sound_ClickOnButton);
                 status = ADVANCED_MODE;
             }
         }
     }
     else if (status == ADVANCED_MODE)
-    {   
-        DrawTexture(mode_advanced, 209.3, 353.3, WHITE);
-        Rectangle dest = { 209.3, 353.3, 127.7, 63.6 };
+    {
+        DrawTexture(mode_advanced, 182, 353.3, WHITE);
+        Rectangle dest = { 182, 353.3, 127.7, 63.6 };
         if (CheckCollisionPointRec(GetMousePosition(), dest))
         {
             Rectangle source = { 0, 0, 1.0f * mode_normal.width / 2, 1.0f * mode_normal.height };
             DrawTexturePro(mode_advanced, source, dest, { 0, 0 }, 0, Fade(YELLOW, 0.5f));
             if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
             {
+                PlaySound(sound_ClickOnButton);
                 status = NORMAL_MODE;
             }
         }
     }
 }
-
 // Hàm hiển thị và thực hiện các chức năng của cửa sổ Pikachu Menu - Play
 void GameStarting_Play()
 {
@@ -78,17 +80,6 @@ void GameStarting_Play()
     // Khởi tạo cửa sổ
     SetWindowTitle("Pikachu Menu - Play");
 
-    // Đặt font chữ Amatic SC Bold.ttf
-    font = LoadFont("Amatic SC Bold.ttf");
-
-    // Đặt font size
-    int fontSize = 70;
-
-    // Tính toạ độ để vẽ các nút
-    const int buttonSpacing = 80; // Khoảng cách giữa các nút
-    int buttonX = screenWidth * 0.28;
-    int buttonY = screenHeight * 0.5;
-
     // Tải texture Background từ máy tính
     Texture2D texture = LoadTexture("GameStarting_Play.png");
     Texture2D mode_normal = LoadTexture("button_mode_Normal.png");
@@ -99,7 +90,7 @@ void GameStarting_Play()
     while (!WindowShouldClose())
     {
         if (!IsSoundPlaying(sound_BackgroundMenu)) PlaySound(sound_BackgroundMenu);
-        if (!IsSoundPlaying(sound_BackgroundPlay)) StopSound(sound_BackgroundPlay);
+        if (IsSoundPlaying(sound_BackgroundPlay)) StopSound(sound_BackgroundPlay);
 
         // Bắt đầu vẽ
         BeginDrawing();
@@ -108,73 +99,41 @@ void GameStarting_Play()
         // Insert Background cho Menu
         DrawTexture(texture, 0, 0, WHITE);
 
-        // Vẽ các nút
-            // Vẽ button chọn mode
         ModeButtonPressed(mode_normal, mode_advanced, mode);
-            // Vẽ button OPTION
-        Rectangle rec_Option // Lưu thông tin button hình chữ nhật "OPTION"
+
+        // Xác định vùng diện tích của các button
+        Rectangle rect_Option = { 177, 450, 264.9, 69.9 };
+        Rectangle rect_Tournament = { 177, 533.9, 264.9, 69.9 };
+        Rectangle rect_Exit = { 177, 617.7, 264.9, 69.9 };
+
+        // Kiểm tra xem nếu cá nút được bấm
+        if (CheckCollisionPointRec(GetMousePosition(), rect_Option))
         {
-            buttonX - MeasureTextEx(font, "TOURNAMENT", fontSize, 1).x / 2 - TEXT_MARGIN,
-            buttonY,
-            MeasureTextEx(font, "TOURNAMENT", fontSize, 1).x + TEXT_MARGIN * 2,
-            MeasureTextEx(font, "OPTION", fontSize, 1).y
-        };
-        DrawRectangleRec(rec_Option, Fade(ORANGE, 0.7f));
-        if (CheckCollisionPointRec(GetMousePosition(), rec_Option))
-        {
-            DrawRectangleRec(rec_Option, Fade(RED, 0.8f));
-            DrawTextEx(font, "OPTION", { buttonX - MeasureTextEx(font, "OPTION", fontSize, 1).x / 2, rec_Option.y }, fontSize, 1, WHITE);
+            DrawRectangleRec(rect_Option, Fade(GREEN, 0.3f));
             if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
             {
                 PlaySound(sound_ClickOnButton);
                 RightClickOn = RCO_OPTION;
             }
         }
-        else DrawTextEx(font, "OPTION", { buttonX - MeasureTextEx(font, "OPTION", fontSize, 1).x / 2, rec_Option.y }, fontSize, 1, BLACK);
-        DrawRectangleLinesEx(rec_Option, BORDER_WIDTH, BLACK);
-        // Vẽ button TOURNAMENT
-        Rectangle rec_Tournament // Lưu thông tin button hình chữ nhật "TOURNAMENT"
+        else if (CheckCollisionPointRec(GetMousePosition(), rect_Tournament))
         {
-            buttonX - MeasureTextEx(font, "TOURNAMENT", fontSize, 1).x / 2 - TEXT_MARGIN,
-            buttonY + buttonSpacing,
-            MeasureTextEx(font, "TOURNAMENT", fontSize, 1).x + TEXT_MARGIN * 2,
-            MeasureTextEx(font, "TOURNAMENT", fontSize, 1).y
-        };
-        DrawRectangleRec(rec_Tournament, Fade(ORANGE, 0.7f));
-        if (CheckCollisionPointRec(GetMousePosition(), rec_Tournament))
-        {
-            DrawRectangleRec(rec_Tournament, Fade(RED, 0.8f));
-            DrawTextEx(font, "TOURNAMENT", { buttonX - MeasureTextEx(font, "TOURNAMENT", fontSize, 1).x / 2, rec_Tournament.y }, fontSize, 1, WHITE);
+            DrawRectangleRec(rect_Tournament, Fade(GREEN, 0.3f));
             if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
             {
                 PlaySound(sound_ClickOnButton);
                 RightClickOn = RCO_TOURNAMENT;
             }
         }
-        else DrawTextEx(font, "TOURNAMENT", { buttonX - MeasureTextEx(font, "TOURNAMENT", fontSize, 1).x / 2, rec_Tournament.y }, fontSize, 1, BLACK);
-        DrawRectangleLinesEx(rec_Tournament, BORDER_WIDTH, BLACK);
-        // Vẽ button BACK
-        Rectangle rec_Back // Lưu thông tin button hình chữ nhật "BACK"
+        else if (CheckCollisionPointRec(GetMousePosition(), rect_Exit))
         {
-            buttonX - MeasureTextEx(font, "TOURNAMENT", fontSize, 1).x / 2 - TEXT_MARGIN,
-            buttonY + 2 * buttonSpacing,
-            MeasureTextEx(font, "TOURNAMENT", fontSize, 1).x + TEXT_MARGIN * 2,
-            MeasureTextEx(font, "BACK", fontSize, 1).y
-        };
-        DrawRectangleRec(rec_Back, Fade(ORANGE, 0.7f));
-        if (CheckCollisionPointRec(GetMousePosition(), rec_Back))
-        {
-            DrawRectangleRec(rec_Back, Fade(RED, 0.8f));
-            DrawTextEx(font, "BACK", { buttonX - MeasureTextEx(font, "BACK", fontSize, 1).x / 2, rec_Back.y }, fontSize, 1, WHITE);
+            DrawRectangleRec(rect_Exit, Fade(GREEN, 0.3f));
             if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
             {
                 PlaySound(sound_ClickOnButton);
                 RightClickOn = RCO_EXIT;
             }
         }
-        else DrawTextEx(font, "BACK", { buttonX - MeasureTextEx(font, "BACK", fontSize, 1).x / 2, rec_Back.y }, fontSize, 1, RED);
-        DrawRectangleLinesEx(rec_Back, BORDER_WIDTH, BLACK);
-
         // Kết thúc vẽ
         EndDrawing();
 
@@ -218,15 +177,6 @@ void GameStarting_Play_Option(int mode)
     // Khởi tạo cửa sổ
     SetWindowTitle("Pikachu Menu - Play - Option");
 
-    // Đặt font chữ Amatic SC Bold.ttf
-    font = LoadFont("Amatic SC Bold.ttf");
-
-    // Đặt font size
-    int fontSize = 70;
-
-    // Tính khoảng cách giữa các nút
-    int buttonSpacing = 275; 
-
     // Tải texture Background từ máy tính
     Texture2D texture = LoadTexture("GameStarting_Play_Option.png");
 
@@ -252,7 +202,7 @@ void GameStarting_Play_Option(int mode)
     while (!WindowShouldClose())
     {
         if (!IsSoundPlaying(sound_BackgroundMenu)) PlaySound(sound_BackgroundMenu);
-        if (!IsSoundPlaying(sound_BackgroundPlay)) StopSound(sound_BackgroundPlay);
+        if (IsSoundPlaying(sound_BackgroundPlay)) StopSound(sound_BackgroundPlay);
 
         // Bắt đầu vẽ
         BeginDrawing();
@@ -261,97 +211,67 @@ void GameStarting_Play_Option(int mode)
         // Insert Background cho Menu
         DrawTexture(texture, 0, 0, WHITE);
 
-        /* ------------------------------------------------VẼ CÁC BUTTON CHỌN LEVEL------------------------------------------------*/
-        // Vẽ button chọn Level 4x4
-        Rectangle rec_Option_4x4
+        // Xác định vị trí các nút chọn Level
+        Vector2 pos4x4 = { 76.2, 340 };
+        Vector2 pos6x6 = { 351.8, 340 };
+        Vector2 pos8x8 = { 627.8, 340 };
+        Vector2 pos10x10 = { 903.8, 340 };
+
+        // Xác định vùng diện tích nút Exit
+        Rectangle rect_Back = { 490, 810, 220, 60.3 };
+
+        // Vẽ các button chọn Level
+        DrawTextureV(Texture_Option_4x4, pos4x4, WHITE);
+        DrawTextureV(Texture_Option_6x6, pos6x6, WHITE);
+        DrawTextureV(Texture_Option_8x8, pos8x8, WHITE);
+        DrawTextureV(Texture_Option_10x10, pos10x10, WHITE);
+
+        // Kiểm tra vị trí chuột và button chuột click vào
+        if (CheckCollisionPointRec(GetMousePosition(), { pos4x4.x, pos4x4.y, 220, 220 }))
         {
-            0.06f * screenWidth, screenHeight / 2 - LEVEL_BUTTON_SIZE / 2,
-            LEVEL_BUTTON_SIZE, LEVEL_BUTTON_SIZE
-        };
-        DrawTexturePro(Texture_Option_4x4,{ 0, 0, 1.0f * Texture_Option_4x4.width, 1.0f * Texture_Option_4x4.height }, rec_Option_4x4, { 0, 0 }, 0, WHITE);
-        if (CheckCollisionPointRec(GetMousePosition(), rec_Option_4x4))
-        {
-            DrawTexturePro(Texture_Option_4x4, { 0, 0, 1.0f * Texture_Option_4x4.width, 1.0f * Texture_Option_4x4.height }, rec_Option_4x4, { 0, 0 }, 0, Fade(RED, 0.5f));
+            DrawTextureV(Texture_Option_4x4, pos4x4, Fade(GREEN, 0.5f));
             if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
             {
                 PlaySound(sound_ClickOnButton);
                 RightClickOn = RCO_LEVEL_4x4;
             }
         }
-
-        // Vẽ button chọn Level 6x6
-        Rectangle rec_Option_6x6
+        else if (CheckCollisionPointRec(GetMousePosition(), { pos6x6.x, pos6x6.y, 220, 220 }))
         {
-            0.06f * screenWidth + buttonSpacing, screenHeight / 2 - LEVEL_BUTTON_SIZE / 2,
-            LEVEL_BUTTON_SIZE, LEVEL_BUTTON_SIZE
-        };
-        DrawTexturePro(Texture_Option_6x6, { 0, 0, 1.0f * Texture_Option_6x6.width, 1.0f * Texture_Option_6x6.height }, rec_Option_6x6, { 0, 0 }, 0, WHITE);
-        if (CheckCollisionPointRec(GetMousePosition(), rec_Option_6x6))
-        {
-            DrawTexturePro(Texture_Option_6x6, { 0, 0, 1.0f * Texture_Option_6x6.width, 1.0f * Texture_Option_6x6.height }, rec_Option_6x6, { 0, 0 }, 0, Fade(RED, 0.5f));
+            DrawTextureV(Texture_Option_6x6, pos6x6, Fade(GREEN, 0.5f));
             if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
             {
                 PlaySound(sound_ClickOnButton);
                 RightClickOn = RCO_LEVEL_6x6;
             }
         }
-
-        // Vẽ button chọn Level 8x8
-        Rectangle rec_Option_8x8
+        else if (CheckCollisionPointRec(GetMousePosition(), { pos8x8.x, pos8x8.y, 220, 220 }))
         {
-            0.06f * screenWidth + 2 * buttonSpacing, screenHeight / 2 - LEVEL_BUTTON_SIZE / 2,
-            LEVEL_BUTTON_SIZE, LEVEL_BUTTON_SIZE
-        };
-        DrawTexturePro(Texture_Option_8x8, { 0, 0, 1.0f * Texture_Option_8x8.width, 1.0f * Texture_Option_8x8.height }, rec_Option_8x8, { 0, 0 }, 0, WHITE);
-        if (CheckCollisionPointRec(GetMousePosition(), rec_Option_8x8))
-        {
-            DrawTexturePro(Texture_Option_8x8, { 0, 0, 1.0f * Texture_Option_8x8.width, 1.0f * Texture_Option_8x8.height }, rec_Option_8x8, { 0, 0 }, 0, Fade(RED, 0.5f));
+            DrawTextureV(Texture_Option_8x8, pos8x8, Fade(GREEN, 0.5f));
             if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
             {
                 PlaySound(sound_ClickOnButton);
                 RightClickOn = RCO_LEVEL_8x8;
             }
         }
-
-        // Vẽ button chọn Level 10x10
-        Rectangle rec_Option_10x10
+        else if (CheckCollisionPointRec(GetMousePosition(), { pos10x10.x, pos10x10.y, 220, 220 }))
         {
-            0.06f * screenWidth + 3 * buttonSpacing, screenHeight / 2 - LEVEL_BUTTON_SIZE / 2,
-            LEVEL_BUTTON_SIZE, LEVEL_BUTTON_SIZE
-        };
-        DrawTexturePro(Texture_Option_10x10, { 0, 0, 1.0f * Texture_Option_10x10.width, 1.0f * Texture_Option_10x10.height }, rec_Option_10x10, { 0, 0 }, 0, WHITE);
-        if (CheckCollisionPointRec(GetMousePosition(), rec_Option_10x10))
-        {
-            DrawTexturePro(Texture_Option_10x10, { 0, 0, 1.0f * Texture_Option_10x10.width, 1.0f * Texture_Option_10x10.height }, rec_Option_10x10, { 0, 0 }, 0, Fade(RED, 0.5f));
+            DrawTextureV(Texture_Option_10x10, pos10x10, Fade(GREEN, 0.5f));
             if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
             {
                 PlaySound(sound_ClickOnButton);
                 RightClickOn = RCO_LEVEL_10x10;
             }
         }
-
-        // Vẽ button BACK
-        Rectangle rec_Back // Lưu thông tin button hình chữ nhật "BACK"
+        else if (CheckCollisionPointRec(GetMousePosition(), rect_Back))
         {
-            screenWidth / 2 - MeasureTextEx(font, "BACK", fontSize, 1).x / 2 - TEXT_MARGIN,
-            screenHeight * 0.85,
-            MeasureTextEx(font, "BACK", fontSize, 1).x + TEXT_MARGIN * 2,
-            MeasureTextEx(font, "BACK", fontSize, 1).y
-        };
-        DrawRectangleRec(rec_Back, Fade(ORANGE, 0.7f));
-        if (CheckCollisionPointRec(GetMousePosition(), rec_Back))
-        {
-            DrawRectangleRec(rec_Back, Fade(RED, 0.8f));
-            DrawTextEx(font, "BACK", { screenWidth / 2 - MeasureTextEx(font, "BACK", fontSize, 1).x / 2, rec_Back.y }, fontSize, 1, WHITE);
+            DrawRectangleRec(rect_Back, Fade(GREEN, 0.3f));
             if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
             {
                 PlaySound(sound_ClickOnButton);
                 RightClickOn = RCO_EXIT;
             }
         }
-        else DrawTextEx(font, "BACK", { screenWidth / 2 - MeasureTextEx(font, "BACK", fontSize, 1).x / 2, rec_Back.y }, fontSize, 1, RED);
-        DrawRectangleLinesEx(rec_Back, BORDER_WIDTH, BLACK);
-
         // Kết thúc vẽ
         EndDrawing();
 
@@ -465,7 +385,6 @@ void Play_OPTION(int size)
     int fontSize = 50;
     int setting_option = 0;
     Font font = GetFontDefault();
-    Font font_name = LoadFont("Roboto.ttf");
     char s[4];
     Rectangle recBulb = { 750, 380, 125, 125 };
     Rectangle recSetting = { 900, 380, 120, 120 };
@@ -523,7 +442,7 @@ void Play_OPTION(int size)
         DrawRectangle(230, 155, Matrix.time/currenttime * 400, 30, { 255, 105, 180, 180 });
 
         // Game Finishing Verify
-        int endgame_option = GameFinishingVerify(isGameFinish, result_win, result_lose_time, result_lose_life, countcell, Matrix.life - Matrix.death, Matrix.time);
+        int endgame_option = GameFinishingVerify(isGameFinish, result_win, result_lose_time, result_lose_life, countcell, Matrix.life - Matrix.death, Matrix.time, currenttime, Matrix.score);
         // Kết thúc vẽ
         EndDrawing();
         if (setting_option == 3)
@@ -569,7 +488,7 @@ void Play_OPTION(int size)
         }
     }
     StopSound(sound_BackgroundPlay);
-    UnloadFont(font_name);
+    UnloadFont(font);
     UnloadTexture(background);
     UnloadTexture(result_win);
     UnloadTexture(result_lose_life);
@@ -721,7 +640,7 @@ void Play_OPTION_ADVANCED(int size)
         DrawRectangle(230, 155, Matrix.time/currenttime * 400, 30, { 255, 105, 180, 180 });
         
         // Game Finishing Verify
-        int endgame_option = GameFinishingVerify(isGameFinish, result_win, result_lose_time, result_lose_life, countcell, Matrix.life - Matrix.death, Matrix.time);
+        int endgame_option = GameFinishingVerify(isGameFinish, result_win, result_lose_time, result_lose_life, countcell, Matrix.life - Matrix.death, Matrix.time, currenttime, Matrix.score);
         EndDrawing();
 
         if (setting_option == 3)
@@ -909,7 +828,7 @@ int Play_TOURNAMENT_NORMAL(float playTime, float& runningtime, int& score, int l
         DrawRectangle(230, 155, Matrix.time / currenttime * 400, 30, { 255, 105, 180, 180 });
 
         // Game Finishing Verify
-        endgame_option = GameFinishingVerify(isGameFinish, result_pass, result_lose_time, result_lose_life, countcell, Matrix.life, Matrix.time);
+        endgame_option = GameFinishingVerify(isGameFinish, result_pass, result_lose_time, result_lose_life, countcell, Matrix.life, Matrix.time, currenttime, Matrix.score);
 
         // Kết thúc vẽ
         EndDrawing();
@@ -943,6 +862,7 @@ int Play_TOURNAMENT_NORMAL(float playTime, float& runningtime, int& score, int l
     score = Matrix.score;
     lives_left = Matrix.life - Matrix.death;
     runningtime = Matrix.time;
+    if (setting_option == OPTION_BACK_TO_MENU) runningtime = 0; // Phụ check: Nếu back to menu và runningtime == 0 -> thoát ra giữa trận -> chưa thắng
     if (endgame_option == OPTION_NEXT_LEVEL && countcell == 0) return 1;
     else if (setting_option == OPTION_PLAY_AGAIN || endgame_option == OPTION_PLAY_AGAIN) return 2;
     else if (setting_option == OPTION_BACK_TO_MENU || endgame_option == OPTION_BACK_TO_MENU) return 3;
@@ -1094,7 +1014,7 @@ int Play_TOURNAMENT_ADVANCED(float playTime, float& runningtime, int& score, int
         DrawRectangle(230, 155, Matrix.time / currenttime * 400, 30, { 255, 105, 180, 180 });
 
         // Game Finishing Verify
-        endgame_option = GameFinishingVerify(isGameFinish, result_pass, result_lose_time, result_lose_life, countcell, Matrix.life, Matrix.time);
+        endgame_option = GameFinishingVerify(isGameFinish, result_pass, result_lose_time, result_lose_life, countcell, Matrix.life, Matrix.time, currenttime, Matrix.score);
 
         // Kết thúc vẽ
         EndDrawing();
@@ -1127,6 +1047,7 @@ int Play_TOURNAMENT_ADVANCED(float playTime, float& runningtime, int& score, int
     score = Matrix.score;
     lives_left = Matrix.life - Matrix.death;
     runningtime = Matrix.time;
+    if (setting_option == OPTION_BACK_TO_MENU) runningtime = 0; // Phụ check: Nếu back to menu và runningtime == 0 -> thoát ra giữa trận -> chưa thắng
     if (endgame_option == OPTION_NEXT_LEVEL && countcell == 0) return 1;
     else if (setting_option == OPTION_PLAY_AGAIN || endgame_option == OPTION_PLAY_AGAIN) return 2;
     else if (setting_option == OPTION_BACK_TO_MENU || endgame_option == OPTION_BACK_TO_MENU) return 3;
@@ -1181,7 +1102,7 @@ int GameSetting(Texture2D Is, int choiceoption) // Is stand for interface settin
 }
 
 // Check end game
-int GameFinishingVerify(bool& isGameFinish, Texture2D win, Texture2D lose_time, Texture2D lose_life, int countcell, int life, float time)
+int GameFinishingVerify(bool& isGameFinish, Texture2D win, Texture2D lose_time, Texture2D lose_life, int countcell, int life, float time, int currenttime, int score)
 {
     // Nếu không còn ô nào nữa thì3 kết quả YOU WIN
     if (countcell == 0)
@@ -1189,6 +1110,9 @@ int GameFinishingVerify(bool& isGameFinish, Texture2D win, Texture2D lose_time, 
         isGameFinish = true;
         DrawRectangle(0, 0, 1200, 900, Fade(BLACK, 0.5f));
         DrawTexturePro(win, { 0, 0, 1.0f * win.width, 1.0f * win.height }, { 0, 0, 1.0f * GetScreenWidth(), 1.0f * GetScreenHeight() }, { 0, 0 }, 0, WHITE);
+        DrawText(User.username.c_str(), 555.6, 340, 40, BLACK);
+        DrawText(to_string(score).c_str(), 555.6, 399.2, 40, BLACK);
+        DrawText(formatTime(to_string(currenttime - time).c_str()).c_str(), 555.6, 458.4, 40, BLACK);
     }
 
     // Nếu hết thời gian thì GAME OVER
@@ -1237,7 +1161,7 @@ void leaderboardSaving(matrix Matrix, int mode, string name)
     fstream fs;
     if (mode == 1)
     {
-        fs.open("LeaderboardNormal", std::ios::app);
+        fs.open("LeaderboardNormal.txt", std::ios::app);
         if (!fs.is_open()) return;
         int time = Matrix.size * Matrix.size * 3 - Matrix.time;
         fs << Matrix.size << " " << Matrix.score << " " << time << " " << name << "\n";
@@ -1246,7 +1170,7 @@ void leaderboardSaving(matrix Matrix, int mode, string name)
     }
     if (mode == 2)
     {
-        fs.open("LeaderboardAdvanced", std::ios::app);
+        fs.open("LeaderboardAdvanced.txt", std::ios::app);
         if (!fs.is_open()) return;
         int time = Matrix.size * Matrix.size * 3 - Matrix.time;
         fs << Matrix.size << " " << Matrix.score << " " << time << " " << name << "\n";
@@ -1255,18 +1179,18 @@ void leaderboardSaving(matrix Matrix, int mode, string name)
     }
     if (mode == 3)
     {
-        fs.open("LeaderboardTourNormal", std::ios::app);
+        fs.open("LeaderboardTourNormal.txt", std::ios::app);
         if (!fs.is_open()) return;
-        int time = Matrix.size * Matrix.size * 3 - Matrix.time;
+        int time = 600 - Matrix.time;
         fs << Matrix.score << " " << time << " " << name << "\n";
         fs.close();
         return;
     }
     if (mode == 4)
     {
-        fs.open("LeaderboardTourAdvanced", std::ios::app);
+        fs.open("LeaderboardTourAdvanced.txt", std::ios::app);
         if (!fs.is_open()) return;
-        int time = Matrix.size * Matrix.size * 3 - Matrix.time;
+        int time = 600 - Matrix.time;
         fs << Matrix.score << " " << time << " " << name << "\n";
         fs.close();
         return;

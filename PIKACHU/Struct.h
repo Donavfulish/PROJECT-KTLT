@@ -67,6 +67,7 @@ void Play_OPTION_ADVANCED(int size);
 void createLeaderboard();
 void ViewLeaderboard();
 void leaderboardSaving(matrix Matrix, int mode, string name);
+string formatTime(const char* time);
 
 void Instruction();
 
@@ -76,7 +77,7 @@ void arrangeCellID();
 void LoadNCellTexture(int N);
 void UnloadAllCellTexture();
 
-int GameFinishingVerify(bool& isGameFinish, Texture2D win, Texture2D lose_time, Texture2D lose_life, int countcell, int life, float time);
+int GameFinishingVerify(bool& isGameFinish, Texture2D win, Texture2D lose_time, Texture2D lose_life, int countcell, int life, float time, int currenttime, int score);
 void setInputBoxActive(InputBox& inputBox);
 void fillTextInputBox(InputBox& inputBox);
 void DrawInputBox(InputBox& inputBox);

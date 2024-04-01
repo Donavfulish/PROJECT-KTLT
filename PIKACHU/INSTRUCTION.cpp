@@ -10,13 +10,13 @@ using namespace std;
 #define PREV_PAGE 1
 #define NEXT_PAGE 2
 // Khai báo mảng các textures cho các sections trong instruction (số lượng phần tử khai báo là số trang của từng section trong instruction)
-Texture2D GameRule[4];
+Texture2D GameRule[3];
 Texture2D PlayMode[3];
 Texture2D PlayOption[4];
 Texture2D Functionalities[5];
 
 // Biến lưu số page của từng section
-int sectionPage[] = { 4, 3, 4, 5 };
+int sectionPage[] = { 3, 3, 4, 5 };
 
 // Lưu tọa độ tâm của các nút tròn và bán kính nút tròn
 Vector2 prevPage = { 410.15, 810 };
@@ -30,7 +30,6 @@ void Instruction_LoadAllTexture()
 	GameRule[0] = LoadTexture("Instruction\\Instruction_1.1.png");
 	GameRule[1] = LoadTexture("Instruction\\Instruction_1.2.png");
 	GameRule[2] = LoadTexture("Instruction\\Instruction_1.3.png");
-	GameRule[3] = LoadTexture("Instruction\\Instruction_1.4.png");
 
 	// Load all textures cho section Play Mode
 	PlayMode[0] = LoadTexture("Instruction\\Instruction_2.1.png");

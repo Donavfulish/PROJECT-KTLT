@@ -167,7 +167,7 @@ void Save_Mode1(int** c, matrix Matrix)
         DrawRectangle(230, 155, Matrix.time / currenttime * 400, 30, { 255, 105, 180, 180 });
 
         // Game Finishing Verify
-        int endgame_option = GameFinishingVerify(isGameFinish, result_win, result_lose_time, result_lose_life, countcell, Matrix.life - Matrix.death, Matrix.time);
+        int endgame_option = GameFinishingVerify(isGameFinish, result_win, result_lose_time, result_lose_life, countcell, Matrix.life - Matrix.death, Matrix.time, currenttime, Matrix.score);
         // Kết thúc vẽ
         EndDrawing();
         if (setting_option == OPTION_SAVE_GAME)
@@ -301,7 +301,7 @@ void Save_Mode2(int** c, matrix Matrix)
         DrawRectangle(230, 155, Matrix.time / currenttime * 400, 30, { 255, 105, 180, 180 });
 
         // Game Finishing Verify
-        int endgame_option = GameFinishingVerify(isGameFinish, result_win, result_lose_time, result_lose_life, countcell, Matrix.life - Matrix.death, Matrix.time);
+        int endgame_option = GameFinishingVerify(isGameFinish, result_win, result_lose_time, result_lose_life, countcell, Matrix.life - Matrix.death, Matrix.time, currenttime, Matrix.score);
         EndDrawing();
 
         if (setting_option == OPTION_SAVE_GAME)
@@ -420,7 +420,7 @@ int Save_Mode3(int** c, matrix Matrix, float playTime, float& runningtime, int& 
         DrawRectangle(230, 155, Matrix.time / runningtime * 400, 30, { 255, 105, 180, 180 });
 
         // Game Finishing Verify
-        endgame_option = GameFinishingVerify(isGameFinish, result_pass, result_lose_time, result_lose_life, countcell, Matrix.life - Matrix.death, Matrix.time);
+        endgame_option = GameFinishingVerify(isGameFinish, result_pass, result_lose_time, result_lose_life, countcell, Matrix.life - Matrix.death, Matrix.time, runningtime, Matrix.score);
         // Kết thúc vẽ
         EndDrawing();
         if (setting_option == OPTION_SAVE_GAME)
@@ -452,6 +452,7 @@ int Save_Mode3(int** c, matrix Matrix, float playTime, float& runningtime, int& 
     score = Matrix.score;
     lives_left = Matrix.life - Matrix.death;
     runningtime = Matrix.time;
+    if (setting_option == OPTION_BACK_TO_MENU) runningtime = 0; // Phụ check: Nếu back to menu và runningtime == 0 -> thoát ra giữa trận -> chưa thắng
     if (endgame_option == OPTION_PLAY_AGAIN && countcell == 0) return 1; //OPTION_NEXT_LEVEL = OPTION_PLAY_AGAIN
     else if (setting_option == OPTION_PLAY_AGAIN || endgame_option == OPTION_PLAY_AGAIN) return 2;
     else if (setting_option == OPTION_BACK_TO_MENU || endgame_option == OPTION_BACK_TO_MENU) return 3;
@@ -566,7 +567,7 @@ int Save_Mode4(int** c, matrix Matrix, float playTime, float& runningtime, int& 
         DrawRectangle(230, 155, Matrix.time / runningtime * 400, 30, { 255, 105, 180, 180 });
 
         // Game Finishing Verify
-        endgame_option = GameFinishingVerify(isGameFinish, result_pass, result_lose_time, result_lose_life, countcell, Matrix.life - Matrix.death, Matrix.time);
+        endgame_option = GameFinishingVerify(isGameFinish, result_pass, result_lose_time, result_lose_life, countcell, Matrix.life - Matrix.death, Matrix.time, runningtime, Matrix.score);
         // Kết thúc vẽ
         EndDrawing();
 
@@ -600,6 +601,7 @@ int Save_Mode4(int** c, matrix Matrix, float playTime, float& runningtime, int& 
     score = Matrix.score;
     lives_left = Matrix.life - Matrix.death;
     runningtime = Matrix.time;
+    if (setting_option == OPTION_BACK_TO_MENU) runningtime = 0; // Phụ check: Nếu back to menu và runningtime == 0 -> thoát ra giữa trận -> chưa thắng
     if (endgame_option == OPTION_PLAY_AGAIN && countcell == 0) return 1; //OPTION_NEXT_LEVEL = OPTION_PLAY_AGAIN
     else if (setting_option == OPTION_PLAY_AGAIN || endgame_option == OPTION_PLAY_AGAIN) return 2;
     else if (setting_option == OPTION_BACK_TO_MENU || endgame_option == OPTION_BACK_TO_MENU) return 3;

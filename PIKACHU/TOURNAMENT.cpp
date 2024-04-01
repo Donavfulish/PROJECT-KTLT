@@ -28,6 +28,13 @@ void Play_TOURNAMENT(int mode)
 					if ((endgame_option = Play_TOURNAMENT_NORMAL(playTime, runningtime, score, lives, lives_left, 8)) == OPTION_NEXT_LEVEL)
 					{
 						endgame_option = Play_TOURNAMENT_NORMAL(playTime, runningtime, score, lives, lives_left, 10);
+						if (runningtime > 0 && lives_left > 0)
+						{
+							matrix Matrix;
+							Matrix.time = runningtime;
+							Matrix.score = score;
+							leaderboardSaving(Matrix, 3, User.username);
+						}
 					}
 				}
 			}
@@ -52,6 +59,13 @@ void Play_TOURNAMENT(int mode)
 					if ((endgame_option = Play_TOURNAMENT_ADVANCED(playTime, runningtime, score, lives, lives_left, 8)) == OPTION_NEXT_LEVEL)
 					{
 						endgame_option = Play_TOURNAMENT_ADVANCED(playTime, runningtime, score, lives, lives_left, 10);
+						if (runningtime > 0 && lives_left > 0)
+						{
+							matrix Matrix;
+							Matrix.time = runningtime;
+							Matrix.score = score;
+							leaderboardSaving(Matrix, 4, User.username);
+						}
 					}
 				}
 			}
@@ -96,6 +110,13 @@ void resumeGame_Tournament(int mode, int** c, matrix Matrix, float playTime, flo
 						if (currentLevel > 10 || (endgame_option = Play_TOURNAMENT_NORMAL(playTime, currenttime, score, lives, lives_left, 10) == OPTION_NEXT_LEVEL))
 						{
 							currentLevel = 0;
+							if (currenttime > 0 && lives_left > 0)
+							{
+								matrix Matrix;
+								Matrix.time = currenttime;
+								Matrix.score = score;
+								leaderboardSaving(Matrix, 3, User.username);
+							}
 						}
 					}
 				}
@@ -131,6 +152,13 @@ void resumeGame_Tournament(int mode, int** c, matrix Matrix, float playTime, flo
 						if (currentLevel > 10 || (endgame_option = Play_TOURNAMENT_ADVANCED(playTime, currenttime, score, lives, lives_left, 10) == OPTION_NEXT_LEVEL))
 						{
 							currentLevel = 0;
+							if (currenttime > 0 && lives_left > 0)
+							{
+								matrix Matrix;
+								Matrix.time = currenttime;
+								Matrix.score = score;
+								leaderboardSaving(Matrix, 4, User.username);
+							}
 						}
 					}
 				}
