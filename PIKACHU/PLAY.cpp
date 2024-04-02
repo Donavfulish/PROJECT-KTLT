@@ -424,6 +424,9 @@ void Play_OPTION(int size)
         _itoa_s(Matrix.score, s, 10);
         DrawTextEx(font, s, { 910, 675 }, fontSize, 2, BLACK);
         
+        // Biến lưu số cell còn lại trước khi người chơi chọn pair tiếp theo
+        int prev_countCell = countcell;
+
         // Vẽ lưới
         Paint_Broad(c, size, Matrix);
         if (choiceoption == 0 && !isGameFinish) PickCell(c, size, countcell, Matrix);
@@ -445,6 +448,20 @@ void Play_OPTION(int size)
         int endgame_option = GameFinishingVerify(isGameFinish, result_win, result_lose_time, result_lose_life, countcell, Matrix.life - Matrix.death, Matrix.time, currenttime, Matrix.score);
         // Kết thúc vẽ
         EndDrawing();
+
+        // Nếu người chơi đã chọn 2 ô chính xác, kiểm tra xem PlayBoard còn Valid Pair không
+        if (countcell != 0 && countcell != prev_countCell)
+        {
+            int status = -1;
+            vector<Vector2> validPair = MoveSuggestion(Matrix, c, status);
+            while (validPair[0].x == -1 && validPair[0].y == -1)
+            {
+                penaltyTime -= 10;
+                shuffleMatrix(c, size);
+                validPair = MoveSuggestion(Matrix, c, status);
+            }
+        }
+
         if (setting_option == 3)
         {
             SaveGame(Matrix, c, 1);
@@ -624,6 +641,9 @@ void Play_OPTION_ADVANCED(int size)
         _itoa_s(Matrix.score, s, 10);
         DrawTextEx(font, s, { 910, 675 }, fontSize, 2, BLACK);
 
+        // Biến lưu số ô còn lại trước khi người chơi chọn pair tiếp theo
+        int prev_countCell = countcell;
+
         // Vẽ lưới
         PaintBroad_Advanced(list, c, size, Matrix);
         if (choiceadvanced == 0 && !isGameFinish) PickCell_Advanced(list, c, size, countcell, Matrix);
@@ -643,6 +663,19 @@ void Play_OPTION_ADVANCED(int size)
         int endgame_option = GameFinishingVerify(isGameFinish, result_win, result_lose_time, result_lose_life, countcell, Matrix.life - Matrix.death, Matrix.time, currenttime, Matrix.score);
         EndDrawing();
 
+        // Nếu người chơi đã chọn 2 ô chính xác, kiểm tra xem PlayBoard còn Valid Pair không
+        if (countcell != 0 && countcell != prev_countCell)
+        {
+            int status = -1;
+            vector<Vector2> validPair = MoveSuggestion(Matrix, c, status);
+            while (validPair[0].x == -1 && validPair[0].y == -1)
+            {
+                penaltyTime -= 10;
+                shuffleMatrix_Advanced(list, c, size);
+                validPair = MoveSuggestion(Matrix, c, status);
+            }
+        }       
+
         if (setting_option == 3)
         {
             SaveGame(Matrix, c, 2);
@@ -650,7 +683,7 @@ void Play_OPTION_ADVANCED(int size)
         }
         if (setting_option == OPTION_PLAY_AGAIN )
         {
-            Play_OPTION(size);
+            Play_OPTION_ADVANCED(size);
             break;
         }
         if (setting_option == OPTION_BACK_TO_MENU )
@@ -808,6 +841,9 @@ int Play_TOURNAMENT_NORMAL(float playTime, float& runningtime, int& score, int l
         // Hiển thị tên người chơi
         DrawTextEx(font, User.username.c_str(), { 910, 548 }, fontSize, 2, BLACK);
 
+        // Biến lưu số cell còn lại trước khi người chơi chọn pair tiếp theo
+        int prev_countCell = countcell;
+
         // Hiển thị sự thay đổi của điểm số
         _itoa_s(Matrix.score, s, 10);
         DrawTextEx(font, s, { 910, 675 }, fontSize, 2, BLACK);
@@ -832,6 +868,19 @@ int Play_TOURNAMENT_NORMAL(float playTime, float& runningtime, int& score, int l
 
         // Kết thúc vẽ
         EndDrawing();
+
+        // Nếu người chơi đã chọn 2 ô chính xác, kiểm tra xem PlayBoard còn Valid Pair không
+        if (countcell != 0 && countcell != prev_countCell)
+        {
+            int status = -1;
+            vector<Vector2> validPair = MoveSuggestion(Matrix, c, status);
+            while (validPair[0].x == -1 && validPair[0].y == -1)
+            {
+                penaltyTime -= 10;
+                shuffleMatrix(c, size);
+                validPair = MoveSuggestion(Matrix, c, status);
+            }
+        }
 
         if (setting_option == OPTION_SAVE_GAME)
         {
@@ -998,6 +1047,9 @@ int Play_TOURNAMENT_ADVANCED(float playTime, float& runningtime, int& score, int
         _itoa_s(Matrix.score, s, 10);
         DrawTextEx(font, s, { 910, 675 }, fontSize, 2, BLACK);
 
+        // Biến lưu số ô còn lại trước khi người chơi chọn pair tiếp theo
+        int prev_countCell = countcell;
+
         // Vẽ lưới
         PaintBroad_Advanced(list, c, size, Matrix);
         if (choiceoption == 0 && !isGameFinish) PickCell_Advanced(list, c, size, countcell, Matrix);
@@ -1018,6 +1070,19 @@ int Play_TOURNAMENT_ADVANCED(float playTime, float& runningtime, int& score, int
 
         // Kết thúc vẽ
         EndDrawing();
+
+        // Nếu người chơi đã chọn 2 ô chính xác, kiểm tra xem PlayBoard còn Valid Pair không
+        if (countcell != 0 && countcell != prev_countCell)
+        {
+            int status = -1;
+            vector<Vector2> validPair = MoveSuggestion(Matrix, c, status);
+            while (validPair[0].x == -1 && validPair[0].y == -1)
+            {
+                penaltyTime -= 10;
+                shuffleMatrix_Advanced(list, c, size);
+                validPair = MoveSuggestion(Matrix, c, status);
+            }
+        }
 
         if (setting_option == OPTION_SAVE_GAME)
         {

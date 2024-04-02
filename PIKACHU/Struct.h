@@ -89,6 +89,9 @@ void removeHead(str_linkedList& list);
 void removeAtK(str_linkedList& list, int k);
 void deleteLinkedList(str_linkedList& list);
 
+void shuffleMatrix_Advanced(str_linkedList*& list, int** c, int size);
+void shuffleMatrix(int** c, int size);
+
 void Paint_Broad(int** c, int size, matrix Matrix);
 void PickCell(int** c, int size, int& countcell, matrix &Matrix);
 void PickOption(int** c, Rectangle recBulb, Rectangle recSetting, matrix& Matrix, Texture2D Bulb, Texture2D Setting, int& countcell, int& setting_option, float& time);

@@ -62,8 +62,7 @@ bool checkUseDij(Vector2 A, Vector2 B, int Size, int **c) {
 }
 
 vector<Vector2> MoveSuggestion(matrix Matrix, int** c, int& status)
-{
-    
+{  
     vector<Vector2> V;
     for (int i = 1; i <= Matrix.size ; i++)
         for (int j = 1; j <= Matrix.size; j++)
@@ -86,10 +85,3 @@ vector<Vector2> MoveSuggestion(matrix Matrix, int** c, int& status)
         }
     return { {-1, -1}, {-1, -1} };
 }
-
-//vector<statusLine> MoveDescription(matrix Matrix, int** c, Vector2 A, Vector2 B)
-//{
-//
-//}
-//
-//

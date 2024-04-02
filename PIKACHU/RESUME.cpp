@@ -10,6 +10,23 @@ using namespace std;
 #define OPTION_SAVE_GAME 3
 
 int startsave;
+// Hàm tìm giá trị lớn nhất trong ma trận được lưu
+int maxCellValue(int** c, int size)
+{
+    int max = -1;
+    for (int i = 1; i <= size; i++)
+    {
+        for (int j = 1; j <= size; j++)
+        {
+            if (max < c[i][j])
+            {
+                max = c[i][j];
+            }
+        }
+    }
+    return max;
+}
+
 // Ghi dữ liệu
 void SaveGame(matrix Matrix, int** c, int mode)
 {
@@ -21,6 +38,14 @@ void SaveGame(matrix Matrix, int** c, int mode)
         fs << mode << "\n";
         fs << Matrix.size << "\n";
         fs << Matrix.life << " " << Matrix.death << " " << Matrix.score << " " << int(Matrix.time) << "\n";
+
+        int countCellID = 0;
+        for (int x : cellID)
+        {
+            if (countCellID++ % 10 == 0) fs << endl;
+            fs << x << " ";
+        }
+        fs << endl << endl;
         for (int i = 1; i <= Matrix.size; i++)
         {
             for (int j = 1; j <= Matrix.size; j++)
@@ -33,6 +58,7 @@ void SaveGame(matrix Matrix, int** c, int mode)
     }
     fs.close();
 }
+
 
 
 // Đọc dữ liệu
@@ -51,6 +77,16 @@ void Play_Save()
     fs >> mode;
     fs >> Matrix.size;
     fs >> Matrix.life >> Matrix.death >> Matrix.score >> Matrix.time;
+    cellID.clear();
+
+    for (int i = 0; i < 50; i++)
+    {
+        int x;
+        fs >> x;
+        cellID.push_back(x);
+    }
+    fs.ignore();
+
     int size = Matrix.size;
 
     // Cấp phát bộ nhớ cho con trỏ lưu dữ liệu của lưới ô 2 chiều
@@ -116,8 +152,7 @@ void Save_Mode1(int** c, matrix Matrix)
     Rectangle recSetting = { 900, 380, 120, 120 };
 
     // Khởi tạo Textures cho các Cell
-    arrangeCellID();
-    LoadNCellTexture(countDistinctCell(c, Matrix.size));
+    LoadNCellTexture(maxCellValue(c, Matrix.size) + 1);
     countcell = countCellOccurrences(c, Matrix.size);
     bool isGameFinish = false;
 
@@ -150,6 +185,8 @@ void Save_Mode1(int** c, matrix Matrix)
         _itoa_s(Matrix.score, s, 10);
         DrawTextEx(font, s, { 910, 675 }, fontSize, 2, BLACK);
 
+        // Biến lưu số ô còn lại trước khi người chơi chọn pair tiếp theo
+        int prev_countCell = countcell;
         // Vẽ lưới
         Paint_Broad(c, size, Matrix);
         if (choiceoption == 0 && !isGameFinish) PickCell(c, size, countcell, Matrix);
@@ -170,6 +207,20 @@ void Save_Mode1(int** c, matrix Matrix)
         int endgame_option = GameFinishingVerify(isGameFinish, result_win, result_lose_time, result_lose_life, countcell, Matrix.life - Matrix.death, Matrix.time, currenttime, Matrix.score);
         // Kết thúc vẽ
         EndDrawing();
+
+        // Nếu người chơi đã chọn 2 ô chính xác, kiểm tra xem PlayBoard còn Valid Pair không
+        if (countcell != 0 && countcell != prev_countCell)
+        {
+            int status = -1;
+            vector<Vector2> validPair = MoveSuggestion(Matrix, c, status);
+            while (validPair[0].x == -1 && validPair[0].y == -1)
+            {
+                penaltyTime -= 10;
+                shuffleMatrix(c, size);
+                validPair = MoveSuggestion(Matrix, c, status);
+            }
+        }
+
         if (setting_option == OPTION_SAVE_GAME)
         {
             SaveGame(Matrix, c, 1);
@@ -252,8 +303,7 @@ void Save_Mode2(int** c, matrix Matrix)
     Rectangle recSetting = { 900, 380, 120, 120 };
 
     // Khởi tạo Textures cho các Cell
-    arrangeCellID();
-    LoadNCellTexture(countDistinctCell(c, Matrix.size));
+    LoadNCellTexture(maxCellValue(c, Matrix.size) + 1);
     countcell = countCellOccurrences(c, Matrix.size);
 
     bool isGameFinish = false;
@@ -285,6 +335,9 @@ void Save_Mode2(int** c, matrix Matrix)
         _itoa_s(Matrix.score, s, 10);
         DrawTextEx(font, s, { 910, 675 }, fontSize, 2, BLACK);
 
+        // Biến lưu số cell còn lại trước khi người chơi chọn pair tiếp theo
+        int prev_countCell = countcell;
+
         // Vẽ lưới
         PaintBroad_Advanced(list, c, size, Matrix);
         if (choiceadvanced == 0 && !isGameFinish) PickCell_Advanced(list, c, size, countcell, Matrix);
@@ -303,6 +356,19 @@ void Save_Mode2(int** c, matrix Matrix)
         // Game Finishing Verify
         int endgame_option = GameFinishingVerify(isGameFinish, result_win, result_lose_time, result_lose_life, countcell, Matrix.life - Matrix.death, Matrix.time, currenttime, Matrix.score);
         EndDrawing();
+
+        // Nếu người chơi đã chọn 2 ô chính xác, kiểm tra xem PlayBoard còn Valid Pair không
+        if (countcell != 0 && countcell != prev_countCell)
+        {
+            int status = -1;
+            vector<Vector2> validPair = MoveSuggestion(Matrix, c, status);
+            while (validPair[0].x == -1 && validPair[0].y == -1)
+            {
+                penaltyTime -= 10;
+                shuffleMatrix_Advanced(list, c, size);
+                validPair = MoveSuggestion(Matrix, c, status);
+            }
+        }
 
         if (setting_option == OPTION_SAVE_GAME)
         {
@@ -366,8 +432,7 @@ int Save_Mode3(int** c, matrix Matrix, float playTime, float& runningtime, int& 
     Rectangle recSetting = { 900, 380, 120, 120 };
 
     // Khởi tạo Textures cho các Cell
-    arrangeCellID();
-    LoadNCellTexture(countDistinctCell(c, Matrix.size));
+    LoadNCellTexture(maxCellValue(c, Matrix.size) + 1);
     countcell = countCellOccurrences(c, Matrix.size);
 
     bool isGameFinish = false;
@@ -403,6 +468,8 @@ int Save_Mode3(int** c, matrix Matrix, float playTime, float& runningtime, int& 
         _itoa_s(Matrix.score, s, 10);
         DrawTextEx(font, s, { 910, 675 }, fontSize, 2, BLACK);
 
+        // Biến lưu số cell còn lại trước khi người chơi chọn pair tiếp theo
+        int prev_countCell = countcell;
         // Vẽ lưới
         Paint_Broad(c, size, Matrix);
         if (choiceoption == 0 && !isGameFinish) PickCell(c, size, countcell, Matrix);
@@ -423,6 +490,20 @@ int Save_Mode3(int** c, matrix Matrix, float playTime, float& runningtime, int& 
         endgame_option = GameFinishingVerify(isGameFinish, result_pass, result_lose_time, result_lose_life, countcell, Matrix.life - Matrix.death, Matrix.time, runningtime, Matrix.score);
         // Kết thúc vẽ
         EndDrawing();
+
+        // Nếu người chơi đã chọn 2 ô chính xác, kiểm tra xem PlayBoard còn Valid Pair không
+        if (countcell != 0 && countcell != prev_countCell)
+        {
+            int status = -1;
+            vector<Vector2> validPair = MoveSuggestion(Matrix, c, status);
+            while (validPair[0].x == -1 && validPair[0].y == -1)
+            {
+                penaltyTime -= 10;
+                shuffleMatrix(c, size);
+                validPair = MoveSuggestion(Matrix, c, status);
+            }
+        }
+
         if (setting_option == OPTION_SAVE_GAME)
         {
             SaveGame(Matrix, c, 3);
@@ -513,8 +594,7 @@ int Save_Mode4(int** c, matrix Matrix, float playTime, float& runningtime, int& 
     Rectangle recSetting = { 900, 380, 120, 120 };
 
     // Khởi tạo Textures cho các Cell
-    arrangeCellID();
-    LoadNCellTexture(countDistinctCell(c, Matrix.size));
+    LoadNCellTexture(maxCellValue(c, Matrix.size) + 1);
     countcell = countCellOccurrences(c, Matrix.size);
 
     bool isGameFinish = false;
@@ -550,6 +630,9 @@ int Save_Mode4(int** c, matrix Matrix, float playTime, float& runningtime, int& 
         _itoa_s(Matrix.score, s, 10);
         DrawTextEx(font, s, { 910, 675 }, fontSize, 2, BLACK);
 
+        // Biến lưu số cell còn lại trước khi người chơi chọn pair tiếp theo
+        int prev_countCell = countcell;
+        
         // Vẽ lưới
         PaintBroad_Advanced(list, c, size, Matrix);
         if (choiceoption == 0 && !isGameFinish) PickCell_Advanced(list, c, size, countcell, Matrix);
@@ -570,6 +653,19 @@ int Save_Mode4(int** c, matrix Matrix, float playTime, float& runningtime, int& 
         endgame_option = GameFinishingVerify(isGameFinish, result_pass, result_lose_time, result_lose_life, countcell, Matrix.life - Matrix.death, Matrix.time, runningtime, Matrix.score);
         // Kết thúc vẽ
         EndDrawing();
+
+        // Nếu người chơi đã chọn 2 ô chính xác, kiểm tra xem PlayBoard còn Valid Pair không
+        if (countcell != 0 && countcell != prev_countCell)
+        {
+            int status = -1;
+            vector<Vector2> validPair = MoveSuggestion(Matrix, c, status);
+            while (validPair[0].x == -1 && validPair[0].y == -1)
+            {
+                penaltyTime -= 10;
+                shuffleMatrix_Advanced(list, c, size);
+                validPair = MoveSuggestion(Matrix, c, status);
+            }
+        }
 
         if (setting_option == OPTION_SAVE_GAME)
         {

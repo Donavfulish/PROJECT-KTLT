@@ -212,5 +212,67 @@ void PickOption_Advanced(str_linkedList* list, int** c, Rectangle recBulb, Recta
         if (IsMouseButtonPressed(0))
             choice = 1;
     }
+}
 
+void shuffleMatrix_Advanced(str_linkedList*& list, int** c, int size)
+{
+    // Lưu các giá trị của các Cell vào một vector
+    vector<int> cellValue;
+    for (int i = 1; i <= size; i++)
+    {
+        for (int j = 1; j <= size; j++)
+        {
+            cellValue.push_back(c[i][j]);
+        }
+    }
+    // Sắp xếp random các giá trị của các Cell trong vector rồi gán lại các giá trị đó vào ma trận Cell -> Các giá trị đã được Shuffle
+    shuffle(cellValue.begin(), cellValue.end(), default_random_engine(time(nullptr)));
+    int count = 0;
+    for (int i = 1; i <= size; i++)
+    {
+        for (int j = 1; j <= size; j++)
+        {
+            c[i][j] = cellValue[count++];
+        }
+    }
+
+    // Để đảm bảo tất cả các Cell đều không có khoảng trống bên trái, gán các giá trị vào Linkedlist và xử lý
+    for (int i = 1; i <= size; i++) // Xóa các giá trị trong LinkedList và làm mới
+    {
+        deleteLinkedList(list[i]);
+        for (int j = 1; j <= size; j++)
+        {
+            if (c[i][j] != -1)
+            {
+                addTail(list[i], c[i][j]);
+            }
+        }
+    }
+
+    // Gán lại các giá trị trong Cell trong **c để đồng nhất với Linkedlist
+    for (int i = 1; i <= size; i++)
+    {
+        str_node* pCurr = list[i].pHead;
+        int j = 1;
+        if (pCurr == nullptr)
+        {
+            for (j = 1; j <= size; j++)
+            {
+                c[i][j] = -1;
+            }
+        }
+        else if (pCurr != nullptr)
+        {
+            while (pCurr != nullptr && pCurr->val != -1)
+            {
+                c[i][j] = pCurr->val;
+                pCurr = pCurr->pNext;
+                j++;
+            }
+            for (; j <= size; j++)
+            {
+                c[i][j] = -1;
+            }
+        }        
+    }
 }

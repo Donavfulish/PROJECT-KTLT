@@ -226,6 +226,30 @@ void PickOption(int** c, Rectangle recBulb, Rectangle recSetting, matrix& Matrix
             setting_option = 1;
     }
 }
+
+void shuffleMatrix(int** c, int size)
+{
+    // Lưu các giá trị của các Cell vào một vector
+    vector<int> cellValue;
+    for (int i = 1; i <= size; i++)
+    {
+        for (int j = 1; j <= size; j++)
+        {
+            cellValue.push_back(c[i][j]);
+        }
+    }
+    // Sắp xếp random các giá trị của các Cell trong vector rồi gán lại các giá trị đó vào ma trận Cell -> Các giá trị đã được Shuffle
+    shuffle(cellValue.begin(), cellValue.end(), default_random_engine(time(nullptr)));
+    int count = 0;
+    for (int i = 1; i <= size; i++)
+    {
+        for (int j = 1; j <= size; j++)
+        {
+            c[i][j] = cellValue[count++];
+        }
+    }
+}
+
 // Sắp xếp ID các giá trị của cell
 /* Chi tiết:
 * Mỗi cell có giá trị int >= 1
